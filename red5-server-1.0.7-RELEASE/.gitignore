@@ -1,0 +1,14 @@
+target/
+.settings/
+.project
+.classpath
+.DS_Store
+
+*.zip
+*.tar.gz
+*~
+
+Thumbs.db
+build.sh
+log/
+temp/

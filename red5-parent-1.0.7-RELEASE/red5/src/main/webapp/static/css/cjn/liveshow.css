@@ -1,0 +1,179 @@
+#main{
+    width: 80%;
+    margin: 0 auto;
+}
+#CuPlayer {
+    overflow: hidden;
+    width:680px;
+    height:460px;
+    position:relative;
+}
+
+#controlBar{
+    border: solid 1px #E5E4E4;
+    border-radius: 1%;
+}
+
+#controlBar span{
+    display: inline-block;
+    height:30px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 25px;
+}
+#controlBar span:last-child{
+    color: #ffffff;
+    border-radius: 10%;
+    background-color: #FE8A23;
+}
+
+#playBody{
+    display: inline-block;
+    vertical-align: top;
+    width:680px;
+    height:560px;
+}
+#chatBox{
+    display: inline-block;
+    height: 560px;
+    border: solid 1px #E5E4E4;
+    border-radius: 1%;
+}
+
+#playTitle{
+    position: relative;
+    height:90px;
+    margin-bottom: 10px;
+    border:solid 2px #f8f8f8;
+}
+#headPic{
+    display: inline-block;
+    border-right:solid 1px #F8F8F8;
+    width: 90px;
+    height:90px;
+}
+#headPic img{
+    height: 100%;
+    width: 100%;
+}
+
+#headContent{
+    display: inline-block;
+    float: right;
+    margin-right: 0px;
+    height:90px;
+}
+#headContent div{
+    margin-left: 10px;
+}
+
+#chatView{
+    width: 100%;
+    height:500px;
+    overflow-y: auto;
+    background-color: #F8F8F8;
+    border-bottom: solid 1px #E5E4E4;
+}
+#care div{
+    width: 80px;
+    height:25px;
+    vertical-align: bottom;
+    display: inline-block;
+}
+
+#care{
+    position: absolute;
+    top:10px;
+    right: 25px;
+}
+#chatSend{
+    height: 60px;
+    width: 80%;
+    margin:0 auto;
+}
+
+#sendContent{
+    overflow: hidden;
+    maxlength:15;
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border:solid 1px #ec971f;
+    outline: none;
+    color: #ec971f;
+    padding-top: 5px;
+    padding-left: 5px;
+    margin-top: 8px;
+    height: 45px;
+    width: 70%;
+    vertical-align: top;
+}
+#sendButton{
+    padding-left: 0.5em;
+    color: white;
+    display: inline-block;
+    font-size: 10px;
+    line-height: 45px;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+    background-color: #ec971f;
+    margin-top: 8px;
+    height: 45px;
+    width: 24%;
+    text-align: center;
+}
+#sendButton:hover{
+    cursor: pointer;
+    background-color: orange;
+}
+#careButton{
+    background-color: #FF7700;
+}
+#seal{
+    transition:background-color 0.5s linear;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 25px;
+    width: 60px;
+    position: absolute;
+    bottom: 10px;
+    right: 105px;
+    text-align: center;
+    line-height: 25px;
+    background-color: orangered;
+    color: white;
+}
+
+#seal:hover{
+    background-color: #FE8A23;
+}
+
+#recommend{
+    transition:background-color 0.5s linear;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 25px;
+    width: 60px;
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    text-align: center;
+    line-height: 25px;
+    background-color: #FF983B;
+    color: white;
+}
+
+#recommend:hover{
+    background-color: #ff6600;
+}
+
+.ulDanmaku{
+    width: 100%;
+    list-style: none;
+}
+
+.danmakuUser{
+    padding-top: 15px;
+    padding-left: 10px;
+    width: 100%;
+    
+}
