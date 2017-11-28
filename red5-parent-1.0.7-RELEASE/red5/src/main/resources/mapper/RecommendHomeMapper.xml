@@ -5,7 +5,7 @@
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="room_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="time" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -102,7 +102,7 @@
   <insert id="insert" parameterType="org.liveshow.entity.RecommendHome" >
     insert into recommend_home (id, room_id, time
       )
-    values (#{id,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}
+    values (#{id,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}, #{time,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="org.liveshow.entity.RecommendHome" >
@@ -126,7 +126,7 @@
         #{roomId,jdbcType=INTEGER},
       </if>
       <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
+        #{time,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -146,7 +146,7 @@
         room_id = #{record.roomId,jdbcType=INTEGER},
       </if>
       <if test="record.time != null" >
-        time = #{record.time,jdbcType=TIMESTAMP},
+        time = #{record.time,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -157,7 +157,7 @@
     update recommend_home
     set id = #{record.id,jdbcType=INTEGER},
       room_id = #{record.roomId,jdbcType=INTEGER},
-      time = #{record.time,jdbcType=TIMESTAMP}
+      time = #{record.time,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,7 +169,7 @@
         room_id = #{roomId,jdbcType=INTEGER},
       </if>
       <if test="time != null" >
-        time = #{time,jdbcType=TIMESTAMP},
+        time = #{time,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -177,7 +177,7 @@
   <update id="updateByPrimaryKey" parameterType="org.liveshow.entity.RecommendHome" >
     update recommend_home
     set room_id = #{roomId,jdbcType=INTEGER},
-      time = #{time,jdbcType=TIMESTAMP}
+      time = #{time,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
