@@ -1,15 +1,13 @@
 package org.liveshow.entity;
 
-import java.util.Date;
-
 public class RecommendHome {
     private Integer id;
 
     private Integer roomId;
 
-    private Date time;
+    private Integer time;
 
-    public RecommendHome(Integer id, Integer roomId, Date time) {
+    public RecommendHome(Integer id, Integer roomId, Integer time) {
         this.id = id;
         this.roomId = roomId;
         this.time = time;
@@ -35,11 +33,11 @@ public class RecommendHome {
         this.roomId = roomId;
     }
 
-    public Date getTime() {
+    public Integer getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Integer time) {
         this.time = time;
     }
 }
