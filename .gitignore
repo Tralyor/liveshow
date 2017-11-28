@@ -1,3 +1,6 @@
+/liveshow.iml
+/pom.xml
+*.iml
 .idea/
 target/
 red5-parent-1.0.7-RELEASE/red5/src/main/resources/spring/spring-dao.xml
