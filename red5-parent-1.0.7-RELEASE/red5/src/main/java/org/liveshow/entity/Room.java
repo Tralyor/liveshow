@@ -17,7 +17,9 @@ public class Room {
 
     private Boolean switchJudge;
 
-    public Room(Integer id, Integer userId, String name, String streamCode, String notice, String photo, Integer moduleId, Boolean switchJudge) {
+    private Integer mostPopular;
+
+    public Room(Integer id, Integer userId, String name, String streamCode, String notice, String photo, Integer moduleId, Boolean switchJudge, Integer mostPopular) {
         this.id = id;
         this.userId = userId;
         this.name = name;
@@ -26,6 +28,7 @@ public class Room {
         this.photo = photo;
         this.moduleId = moduleId;
         this.switchJudge = switchJudge;
+        this.mostPopular = mostPopular;
     }
 
     public Room() {
@@ -94,5 +97,13 @@ public class Room {
 
     public void setSwitchJudge(Boolean switchJudge) {
         this.switchJudge = switchJudge;
+    }
+
+    public Integer getMostPopular() {
+        return mostPopular;
+    }
+
+    public void setMostPopular(Integer mostPopular) {
+        this.mostPopular = mostPopular;
     }
 }
