@@ -623,6 +623,66 @@ public class RoomExample {
             addCriterion("switch_judge not between", value1, value2, "switchJudge");
             return (Criteria) this;
         }
+
+        public Criteria andMostPopularIsNull() {
+            addCriterion("most_popular is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularIsNotNull() {
+            addCriterion("most_popular is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularEqualTo(Integer value) {
+            addCriterion("most_popular =", value, "mostPopular");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularNotEqualTo(Integer value) {
+            addCriterion("most_popular <>", value, "mostPopular");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularGreaterThan(Integer value) {
+            addCriterion("most_popular >", value, "mostPopular");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularGreaterThanOrEqualTo(Integer value) {
+            addCriterion("most_popular >=", value, "mostPopular");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularLessThan(Integer value) {
+            addCriterion("most_popular <", value, "mostPopular");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularLessThanOrEqualTo(Integer value) {
+            addCriterion("most_popular <=", value, "mostPopular");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularIn(List<Integer> values) {
+            addCriterion("most_popular in", values, "mostPopular");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularNotIn(List<Integer> values) {
+            addCriterion("most_popular not in", values, "mostPopular");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularBetween(Integer value1, Integer value2) {
+            addCriterion("most_popular between", value1, value2, "mostPopular");
+            return (Criteria) this;
+        }
+
+        public Criteria andMostPopularNotBetween(Integer value1, Integer value2) {
+            addCriterion("most_popular not between", value1, value2, "mostPopular");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

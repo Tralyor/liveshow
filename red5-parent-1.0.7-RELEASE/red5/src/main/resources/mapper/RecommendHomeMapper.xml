@@ -180,4 +180,8 @@
       time = #{time,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="findRecoRoom" resultType="org.liveshow.entity.Room">
+    SELECT a.* FROM room a,recommend_home b WHERE a.id = b.room_id  AND switch_judge = 1 ORDER BY b.time limit 0,5
+  </select>
 </mapper>
