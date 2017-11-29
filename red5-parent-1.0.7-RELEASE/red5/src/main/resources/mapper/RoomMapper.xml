@@ -274,4 +274,9 @@
       most_popular = #{mostPopular,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="findRecoRoom" resultType="org.liveshow.entity.Room">
+    SELECT * FROM room WHERE room.module_id = #{moduleId} AND room.switch_judge = 1 ORDER BY room.most_popular DESC LIMIT #{pageNo},#{pageSize}
+  </select>
+  
 </mapper>

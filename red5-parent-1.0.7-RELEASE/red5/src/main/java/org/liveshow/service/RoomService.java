@@ -9,4 +9,6 @@ import org.liveshow.entity.Room;
 public interface RoomService {
     
     List<Room> findAllRoom();
+    
+    List<Room> findRecoRoom(int recoModule,int pageNo,int pageSize);
 }

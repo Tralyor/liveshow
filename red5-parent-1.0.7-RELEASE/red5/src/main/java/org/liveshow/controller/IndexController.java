@@ -1,9 +1,11 @@
 package org.liveshow.controller;
 
+import com.sun.tracing.dtrace.ArgsAttributes;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.Room;
 import org.liveshow.service.RecommendHomeService;
 import org.liveshow.service.RecommendModuleService;
+import org.liveshow.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +20,21 @@ public class IndexController {
     private RecommendHomeService recommendHomeService;
     @Autowired
     private RecommendModuleService recommendModuleService;
+    @Autowired
+    private RoomService roomService;
     
     @RequestMapping("/index")
     public String getIndex(Model model){
        List<Room> recoRoom =  recommendHomeService.findAllRecHome();
        List<Module> modules = recommendModuleService.findRecoModul();
+       List<Room> reco1 = roomService.findRecoRoom(modules.get(0).getId(),0,4);
+       List<Room> reco2 = roomService.findRecoRoom(modules.get(1).getId(),0,4);
+       List<Room> reco3 = roomService.findRecoRoom(modules.get(2).getId(),0,4);
+       model.addAttribute("recoRoom",recoRoom);
+       model.addAttribute("modules",modules);
+       model.addAttribute("reco1",reco1);
+       model.addAttribute("reco2",reco2);
+       model.addAttribute("reco3",reco3);
        return "show/index";
     }
 }
