@@ -1,10 +1,9 @@
 package org.liveshow.dao;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.liveshow.entity.Room;
 import org.liveshow.entity.RoomExample;
-
-import java.util.List;
 
 public interface RoomMapper {
     int countByExample(RoomExample example);
