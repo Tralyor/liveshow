@@ -43,6 +43,13 @@ public class RoomHeat {
         this.roomIsOnline = roomIsOnline;
     }
 
+    public void addpopulartyNow(){
+        this.populartyNow++;
+    }
+    public void delete(){
+        this.populartyNow--;
+    }
+    
     public void setMaxPopulation(){
         if (this.populartyNow  > getPopulartyMax){
            getPopulartyMax =  populartyNow;

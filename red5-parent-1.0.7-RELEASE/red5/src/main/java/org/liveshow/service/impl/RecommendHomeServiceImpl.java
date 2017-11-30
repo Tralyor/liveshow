@@ -5,6 +5,7 @@ import org.liveshow.entity.Room;
 import org.liveshow.service.RecommendHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class RecommendHomeServiceImpl implements RecommendHomeService {
     private RecommendHomeMapper recommendHomeMapper;
     
     @Override
+    @Transactional
     public List<Room> findAllRecHome() {
         List<Room> lists = recommendHomeMapper.findRecoRoom();
         if (lists == null || lists.size() == 0){

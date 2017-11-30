@@ -12,4 +12,6 @@ public interface PartService {
     List<Part> getAllPart();
 
     List<Part> findAllPart();
+    
+    Part findPartById(int partId);
 }

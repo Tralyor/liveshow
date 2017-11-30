@@ -6,6 +6,7 @@ import org.liveshow.entity.RecommendModule;
 import org.liveshow.service.RecommendModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,8 +18,9 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
 
     @Autowired
     private RecommendModuleMapper recommendModuleMapper;
-
+    
     @Override
+    @Transactional
     public int handleRecommendModule(int id, String moduleId) {
         int status = recommendModuleMapper.confirmById(id);
         if (moduleId.equals("empty")){
@@ -48,6 +50,7 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
     }
 
     @Override
+    @Transactional
     public List<RecommendModule> getAllRecommendModule() {
         return recommendModuleMapper.selectModulePresent();
     }
@@ -57,6 +60,7 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
      * @return List<Module> limit 3
      */
     @Override
+    @Transactional
     public List<Module> findRecoModul() {
         List<Module> lists =  recommendModuleMapper.findRecoModule();
         if (lists == null || lists.size() == 0){

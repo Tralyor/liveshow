@@ -6,6 +6,7 @@ import org.liveshow.entity.RoomExample;
 import org.liveshow.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class RoomeServiceImpl implements RoomService {
      * @return list 所有的房间信息
      */
     @Override
+    @Transactional
     public List<Room> findAllRoom() {
         RoomExample roomExample = new RoomExample();
         List<Room> list =  roomMapper.selectByExample(roomExample);
@@ -38,6 +40,7 @@ public class RoomeServiceImpl implements RoomService {
      * @return lists
      */
     @Override
+    @Transactional
     public List<Room> findRecoRoom(int recoModule,int pageNo,int pageSize) {
         List<Room> lists = roomMapper.findRecoRoom(recoModule,pageNo,pageSize);
         if (lists  == null || lists.size() == 0){
@@ -47,6 +50,7 @@ public class RoomeServiceImpl implements RoomService {
     }
 
     @Override
+    @Transactional
     public Room findRoomById(int roomId) {
         RoomExample roomExample = new RoomExample();
         RoomExample.Criteria criteria = roomExample.createCriteria();

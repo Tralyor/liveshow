@@ -12,4 +12,6 @@ public interface ModuleService {
     List<Module> getAllModule();
 
     List<Module> findModuleByPartId(int typeNum);
+    
+    Module findModuleById(int moduleId);
 }
