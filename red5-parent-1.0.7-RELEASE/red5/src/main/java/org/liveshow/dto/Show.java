@@ -1,4 +1,4 @@
-package org.liveshow.bean;
+package org.liveshow.dto;
 
 /**
  * Created by Cjn on 2017/11/30.

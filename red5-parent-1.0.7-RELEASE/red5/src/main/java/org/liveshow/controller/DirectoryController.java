@@ -1,6 +1,6 @@
 package org.liveshow.controller;
 
-import org.liveshow.bean.Show;
+import org.liveshow.dto.Show;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.Part;
 import org.liveshow.entity.Room;
@@ -11,7 +11,6 @@ import org.liveshow.surveillant.RoomPopularity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;

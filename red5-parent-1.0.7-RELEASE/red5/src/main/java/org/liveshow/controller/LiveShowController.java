@@ -1,5 +1,6 @@
 package org.liveshow.controller;
 
+import org.liveshow.dto.Show;
 import org.liveshow.entity.Room;
 import org.liveshow.service.RoomService;
 import org.liveshow.surveillant.RoomPopularity;
@@ -31,7 +32,10 @@ public class LiveShowController {
     }
     
     @RequestMapping("/addCare")
-    public void addCare(){
+    public Show addCare(int roomId,int userId){
         
+        Show show = new Show();
+        
+        return show;
     }
 }
