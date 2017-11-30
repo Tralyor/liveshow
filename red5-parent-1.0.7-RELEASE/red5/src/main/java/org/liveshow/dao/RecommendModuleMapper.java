@@ -28,4 +28,33 @@ public interface RecommendModuleMapper {
     int updateByPrimaryKeySelective(RecommendModule record);
 
     int updateByPrimaryKey(RecommendModule record);
+
+    /**
+     * 查询现在推荐的模块
+     * @return
+     */
+    List<RecommendModule> selectModulePresent();
+
+    /**
+     * 添加新的推荐模块
+     * @param recommendModule
+     * @return
+     */
+    int insertRecommendModule(RecommendModule recommendModule);
+
+    /**
+     * 判断该id的数据是否存在
+     * @param id
+     * @return
+     */
+    int confirmById(int id);
+
+    /**
+     * 更新推荐的模块
+     * @param id
+     * @param moduleId
+     * @param recoTime
+     * @return
+     */
+    int updateById(@Param("id") int id, @Param("moduleId") int moduleId, @Param("recoTime") int recoTime);
 }

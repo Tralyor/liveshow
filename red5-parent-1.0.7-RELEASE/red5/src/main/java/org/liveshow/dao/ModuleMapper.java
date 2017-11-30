@@ -1,6 +1,7 @@
 package org.liveshow.dao;
 
 import org.apache.ibatis.annotations.Param;
+import org.bouncycastle.math.raw.Mod;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.ModuleExample;
 
@@ -28,4 +29,11 @@ public interface ModuleMapper {
     int updateByPrimaryKeySelective(Module record);
 
     int updateByPrimaryKey(Module record);
+
+    /**
+     * 获取所有模块信息
+     * @return
+     */
+    List<Module> selectAll();
+
 }

@@ -28,4 +28,11 @@ public interface PartMapper {
     int updateByPrimaryKeySelective(Part record);
 
     int updateByPrimaryKey(Part record);
+
+    /**
+     * 获取所有板块
+     * @return
+     */
+    List<Part> selectAll();
+
 }
