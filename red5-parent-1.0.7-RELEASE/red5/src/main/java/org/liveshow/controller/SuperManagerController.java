@@ -1,6 +1,8 @@
 package org.liveshow.controller;
 
 import org.liveshow.dto.Show;
+import org.liveshow.service.DarkroomRoomService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +22,14 @@ import java.util.Date;
 @Controller
 @RequestMapping("/supermanage")
 public class SuperManagerController {
+    @Autowired
+    private DarkroomRoomService darkroomRoomService;
+    
     @RequestMapping("/closure")
     @ResponseBody
-    public Show closureRoom(String message ,HttpServletRequest request,Model model){
-        //Show show = new Show();
-        System.out.println(message);
+    public Show closureRoom(int roomId, String reason ,int hours,int managerId,HttpServletRequest request,Model model){
+        Show show = new Show();
+        
 
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
@@ -48,7 +53,6 @@ public class SuperManagerController {
         String fileName = logoRealPathDir + File.separator   + logImageName;
         File file = new File(fileName);
         System.out.println(fileName);
-
         try {
             multipartFile.transferTo(file);
         } catch (IllegalStateException e) {
@@ -56,8 +60,26 @@ public class SuperManagerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return null;
+        
+        int res = darkroomRoomService.insertDarkRecord(roomId,reason,hours,fileName,managerId);
+        if (res == 0){
+            show.setState(0);
+            show.setMessage("操作失败");
+        }else{
+            show.setState(1);
+            show.setMessage("封印成功");
+        }
+        
+        return show;
+    }
+    
+    
+    @RequestMapping("/recoRoom")
+    @ResponseBody
+    public Show addRecoRoom( int roomId ,int time){
+        Show show = new Show();
+        
+        return show;
     }
     
 }

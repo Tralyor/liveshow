@@ -112,12 +112,12 @@
             <div class="modal-body">
                 <form enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">举报名</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <label for="recipient-name" class="control-label">房间号</label>
+                        <input type="text" name="roomId" class="form-control" id="recipient-name">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="control-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <label for="message-text" class="control-label">Reason:</label>
+                        <textarea name="reason" class="form-control"  id="message-text"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">File input</label>

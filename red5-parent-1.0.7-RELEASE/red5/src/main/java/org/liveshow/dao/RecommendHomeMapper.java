@@ -29,6 +29,6 @@ public interface RecommendHomeMapper {
     int updateByPrimaryKeySelective(RecommendHome record);
 
     int updateByPrimaryKey(RecommendHome record);
-    
+
     List<Room> findRecoRoom();
 }

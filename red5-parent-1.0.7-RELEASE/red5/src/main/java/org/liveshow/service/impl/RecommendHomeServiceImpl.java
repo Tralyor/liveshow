@@ -1,6 +1,7 @@
 package org.liveshow.service.impl;
 
 import org.liveshow.dao.RecommendHomeMapper;
+import org.liveshow.entity.RecommendHome;
 import org.liveshow.entity.Room;
 import org.liveshow.service.RecommendHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,14 @@ public class RecommendHomeServiceImpl implements RecommendHomeService {
             return null;
         }
         return lists;
+    }
+
+    @Override
+    public int addRecoRoom(int roomId,int time) {
+        RecommendHome recommendHome = new RecommendHome();
+        recommendHome.setRoomId(roomId);
+        recommendHome.setTime(Integer.parseInt(String.valueOf(System.currentTimeMillis()/1000)));
+        int res= recommendHomeMapper.insert(recommendHome);
+        return res;
     }
 }
