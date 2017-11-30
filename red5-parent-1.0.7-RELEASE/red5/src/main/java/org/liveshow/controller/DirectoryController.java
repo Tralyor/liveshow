@@ -1,5 +1,6 @@
 package org.liveshow.controller;
 
+import org.liveshow.bean.Show;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.Part;
 import org.liveshow.entity.Room;
@@ -56,9 +57,19 @@ public class DirectoryController {
     
     @RequestMapping("/video/page")
     @ResponseBody
-    public List<Room> videoDirectory(int moduleId ,int pageNo, int pageSize){
+    public Show videoDirectory(int moduleId , int pageNo, int pageSize){
         List<Room> room = roomService.findRecoRoom(moduleId,pageNo,pageSize);
-        return room;
+        Show show = new Show();
+        if (room ==null){
+            show.setState(0);
+            show.setMessage("已经没有直播间了");
+        }else{
+            show.setData(room);
+            show.setState(1);
+            show.setMessage("请求成功");
+            
+        }
+        return show;
     }
     
 }

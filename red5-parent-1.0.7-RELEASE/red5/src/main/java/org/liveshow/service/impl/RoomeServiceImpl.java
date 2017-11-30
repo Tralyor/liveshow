@@ -46,5 +46,15 @@ public class RoomeServiceImpl implements RoomService {
         return lists;
     }
 
-
+    @Override
+    public Room findRoomById(int roomId) {
+        RoomExample roomExample = new RoomExample();
+        RoomExample.Criteria criteria = roomExample.createCriteria();
+        criteria.andIdEqualTo(roomId);
+        List<Room> rooms = roomMapper.selectByExample(roomExample);
+        if (rooms == null || rooms.size()!= 1){
+            return null;
+        }
+        return rooms.get(0);
+    }
 }

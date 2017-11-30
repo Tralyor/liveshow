@@ -20,4 +20,9 @@ public class RoomServiceImplTest {
     public void findRecoRoom(){
         roomService.findRecoRoom(1,0,4);
     }
+    
+    @Test
+    public void findRoomById(){
+        roomService.findRoomById(1);
+    }
 }
