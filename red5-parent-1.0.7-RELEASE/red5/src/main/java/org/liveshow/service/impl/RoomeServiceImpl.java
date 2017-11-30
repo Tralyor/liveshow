@@ -17,7 +17,11 @@ public class RoomeServiceImpl implements RoomService {
 
     @Autowired
     private RoomMapper roomMapper;
-    
+
+    /**
+     * @Author cjn
+     * @return list 所有的房间信息
+     */
     @Override
     public List<Room> findAllRoom() {
         RoomExample roomExample = new RoomExample();
@@ -26,5 +30,31 @@ public class RoomeServiceImpl implements RoomService {
             return null;
         }else
             return list;
+    }
+
+    /**
+     * @Author Cjn
+      * @param recoModule
+     * @return lists
+     */
+    @Override
+    public List<Room> findRecoRoom(int recoModule,int pageNo,int pageSize) {
+        List<Room> lists = roomMapper.findRecoRoom(recoModule,pageNo,pageSize);
+        if (lists  == null || lists.size() == 0){
+            return null;
+        }
+        return lists;
+    }
+
+    @Override
+    public Room findRoomById(int roomId) {
+        RoomExample roomExample = new RoomExample();
+        RoomExample.Criteria criteria = roomExample.createCriteria();
+        criteria.andIdEqualTo(roomId);
+        List<Room> rooms = roomMapper.selectByExample(roomExample);
+        if (rooms == null || rooms.size()!= 1){
+            return null;
+        }
+        return rooms.get(0);
     }
 }

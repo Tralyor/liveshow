@@ -195,4 +195,8 @@
       reco_time = #{recoTime,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="findRecoModule" resultType="org.liveshow.entity.Module">
+    SELECT a.* FROM module a,recommend_module b WHERE a.id = b.module_id ORDER BY b.reco_time DESC LIMIT 3
+  </select>
 </mapper>

@@ -2,6 +2,7 @@ package org.liveshow.service.impl;
 
 import org.liveshow.dao.PartMapper;
 import org.liveshow.entity.Part;
+import org.liveshow.entity.PartExample;
 import org.liveshow.service.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,15 @@ public class PartServiceImpl implements PartService {
     @Override
     public List<Part> getAllPart() {
         return partMapper.selectAll();
+    }
+
+    @Override
+    public List<Part> findAllPart() {
+        PartExample partExample = new PartExample();
+        List<Part> lists = partMapper.selectByExample(partExample);
+        if (lists == null || lists.size() == 0) {
+            return null;
+        }
+        return lists;
     }
 }

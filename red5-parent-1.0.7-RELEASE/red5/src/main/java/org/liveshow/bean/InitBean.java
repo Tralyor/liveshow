@@ -36,6 +36,7 @@ public class InitBean implements ApplicationListener<ContextRefreshedEvent>{
                     roomHeat.setRoom(room);
                     roomHeat.setPopulartyNow(0);
                     roomHeat.setGetPopulartyMax(0);
+                    roomHeat.setRoomIsOnline(room.getSwitchJudge());
                     hashMap.put(room.getId(),roomHeat);
                 }
             }

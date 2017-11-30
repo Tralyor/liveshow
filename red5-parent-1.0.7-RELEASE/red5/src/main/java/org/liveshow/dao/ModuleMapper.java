@@ -36,4 +36,5 @@ public interface ModuleMapper {
      */
     List<Module> selectAll();
 
+    List<Module> findByPart(@Param("typeNum") int typeNum);
 }

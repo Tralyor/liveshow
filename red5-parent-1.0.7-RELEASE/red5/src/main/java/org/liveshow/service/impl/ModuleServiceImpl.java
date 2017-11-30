@@ -5,6 +5,7 @@ import org.liveshow.entity.Module;
 import org.liveshow.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 import java.util.List;
 
@@ -20,5 +21,14 @@ public class ModuleServiceImpl  implements ModuleService{
     @Override
     public List<Module> getAllModule() {
         return moduleMapper.selectAll();
+    }
+    
+    @Override
+    public List<Module> findModuleByPartId(int typeNum) {
+        List<Module> lists = moduleMapper.findByPart(typeNum);
+        if (lists == null || lists.size() ==0){
+            return null;
+        }
+        return lists;
     }
 }

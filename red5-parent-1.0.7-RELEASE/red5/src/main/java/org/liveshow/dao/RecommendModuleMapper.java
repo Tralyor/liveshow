@@ -1,8 +1,10 @@
 package org.liveshow.dao;
 
 import org.apache.ibatis.annotations.Param;
+import org.liveshow.entity.Module;
 import org.liveshow.entity.RecommendModule;
 import org.liveshow.entity.RecommendModuleExample;
+import org.liveshow.entity.Room;
 
 import java.util.List;
 
@@ -57,4 +59,6 @@ public interface RecommendModuleMapper {
      * @return
      */
     int updateById(@Param("id") int id, @Param("moduleId") int moduleId, @Param("recoTime") int recoTime);
+    
+    List<Module> findRecoModule();
 }

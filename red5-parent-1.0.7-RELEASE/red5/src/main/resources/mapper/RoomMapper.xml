@@ -11,6 +11,7 @@
       <arg column="photo" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="module_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="switch_judge" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="most_popular" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_id, name, stream_code, notice, photo, module_id, switch_judge
+    id, user_id, name, stream_code, notice, photo, module_id, switch_judge, most_popular
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.liveshow.entity.RoomExample" >
     select
@@ -107,10 +108,12 @@
   <insert id="insert" parameterType="org.liveshow.entity.Room" >
     insert into room (id, user_id, name, 
       stream_code, notice, photo, 
-      module_id, switch_judge)
+      module_id, switch_judge, most_popular
+      )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{streamCode,jdbcType=VARCHAR}, #{notice,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
-      #{moduleId,jdbcType=INTEGER}, #{switchJudge,jdbcType=BIT})
+      #{moduleId,jdbcType=INTEGER}, #{switchJudge,jdbcType=BIT}, #{mostPopular,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.liveshow.entity.Room" >
     insert into room
@@ -139,6 +142,9 @@
       <if test="switchJudge != null" >
         switch_judge,
       </if>
+      <if test="mostPopular != null" >
+        most_popular,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -164,6 +170,9 @@
       </if>
       <if test="switchJudge != null" >
         #{switchJudge,jdbcType=BIT},
+      </if>
+      <if test="mostPopular != null" >
+        #{mostPopular,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -200,6 +209,9 @@
       <if test="record.switchJudge != null" >
         switch_judge = #{record.switchJudge,jdbcType=BIT},
       </if>
+      <if test="record.mostPopular != null" >
+        most_popular = #{record.mostPopular,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -214,7 +226,8 @@
       notice = #{record.notice,jdbcType=VARCHAR},
       photo = #{record.photo,jdbcType=VARCHAR},
       module_id = #{record.moduleId,jdbcType=INTEGER},
-      switch_judge = #{record.switchJudge,jdbcType=BIT}
+      switch_judge = #{record.switchJudge,jdbcType=BIT},
+      most_popular = #{record.mostPopular,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -243,6 +256,9 @@
       <if test="switchJudge != null" >
         switch_judge = #{switchJudge,jdbcType=BIT},
       </if>
+      <if test="mostPopular != null" >
+        most_popular = #{mostPopular,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -254,7 +270,13 @@
       notice = #{notice,jdbcType=VARCHAR},
       photo = #{photo,jdbcType=VARCHAR},
       module_id = #{moduleId,jdbcType=INTEGER},
-      switch_judge = #{switchJudge,jdbcType=BIT}
+      switch_judge = #{switchJudge,jdbcType=BIT},
+      most_popular = #{mostPopular,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="findRecoRoom" resultType="org.liveshow.entity.Room">
+    SELECT * FROM room WHERE room.module_id = #{moduleId} AND room.switch_judge = 1 ORDER BY room.most_popular DESC LIMIT #{pageNo},#{pageSize}
+  </select>
+  
 </mapper>

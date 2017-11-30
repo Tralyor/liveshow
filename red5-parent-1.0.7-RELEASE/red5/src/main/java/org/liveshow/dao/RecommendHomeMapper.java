@@ -3,6 +3,7 @@ package org.liveshow.dao;
 import org.apache.ibatis.annotations.Param;
 import org.liveshow.entity.RecommendHome;
 import org.liveshow.entity.RecommendHomeExample;
+import org.liveshow.entity.Room;
 
 import java.util.List;
 
@@ -28,4 +29,6 @@ public interface RecommendHomeMapper {
     int updateByPrimaryKeySelective(RecommendHome record);
 
     int updateByPrimaryKey(RecommendHome record);
+    
+    List<Room> findRecoRoom();
 }

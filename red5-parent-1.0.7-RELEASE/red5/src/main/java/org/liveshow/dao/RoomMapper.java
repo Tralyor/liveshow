@@ -1,10 +1,9 @@
 package org.liveshow.dao;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.liveshow.entity.Room;
 import org.liveshow.entity.RoomExample;
-
-import java.util.List;
 
 public interface RoomMapper {
     int countByExample(RoomExample example);
@@ -28,4 +27,6 @@ public interface RoomMapper {
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
+    
+    List<Room> findRecoRoom(@Param("moduleId") int moduleId , @Param("pageNo") int pageNo,@Param("pageSize") int pageSize);
 }

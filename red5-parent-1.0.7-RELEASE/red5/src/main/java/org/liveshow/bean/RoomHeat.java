@@ -9,6 +9,7 @@ public class RoomHeat {
     public Room room;
     public int populartyNow;
     public int getPopulartyMax;
+    public boolean roomIsOnline;
 
     public Room getRoom() {
         return room;
@@ -33,7 +34,15 @@ public class RoomHeat {
     public void setGetPopulartyMax(int getPopulartyMax) {
         this.getPopulartyMax = getPopulartyMax;
     }
-    
+
+    public boolean getRoomIsOnline() {
+        return roomIsOnline;
+    }
+
+    public void setRoomIsOnline(boolean roomIsOnline) {
+        this.roomIsOnline = roomIsOnline;
+    }
+
     public void setMaxPopulation(){
         if (this.populartyNow  > getPopulartyMax){
            getPopulartyMax =  populartyNow;
