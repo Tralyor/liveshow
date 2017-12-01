@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/cjn/liveshow.css">
+    <link rel="stylesheet" href="/static/css/user/liveshow.css">
     <link rel="stylesheet" type="text/css" href="/static/barrage/static/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/barrage/dist/css/barrager.css">
     <style>

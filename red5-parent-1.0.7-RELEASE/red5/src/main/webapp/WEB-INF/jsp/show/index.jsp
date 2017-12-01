@@ -5,29 +5,41 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
-        *{
-            margin:0;
-            padding:0;
+        *
+        {
+            margin: 0;
+            padding: 0;
         }
 
-
-        #main{
+        #main
+        {
             width: 90%;
             margin: 0 auto;
         }
-        #playBody{
+
+        .index-main
+        {
+            padding-top: 20px;
+        }
+
+        #playBody
+        {
             display: inline-block;
             margin-right: 5px;
         }
-        #showNav{
+
+        #showNav
+        {
             border-radius: 7px;
             display: inline-block;
             vertical-align: top;
             margin-top: 0px;
             height: 460px;
-            background: rgba(121,121,121,1);
+            background: rgba(121, 121, 121, 1);
         }
-        .divs{
+
+        .divs
+        {
             transition: all 0.5s;
             position: relative;
             margin: 0 auto;
@@ -36,344 +48,527 @@
             width: 94%;
         }
 
-        #showNav div img{
+        #showNav div img
+        {
             cursor: pointer;
             width: 100%;
-            height:100%;
+            height: 100%;
         }
-        #showNav div div{
-            position: absolute;
-            width: 50px;
+
+        #showNav div div
+        {
             display: inline-block;
-            left:-15px;
+            position: absolute;
+            top: 50%;
+            left: -15px;
+            /*transform: translate(0, -50%);*/
+            transform: translateY(-50%);
         }
-        #showNav div div span{
+
+        #showNav div div span
+        {
             display: none;
             color: red;
             font-size: 20px;
-            margin-top: 40px;
             z-index: 1000;
         }
 
-        #footRec{
+        #footRec
+        {
             width: 90%;
             height: 400px;
-            background-color: white;
-            margin:0 auto;
+            background-color: #F2F2F2;
+            margin: 0 auto;
             margin-top: 10px;
         }
-        .footDivBig{
+
+        .footDivBig
+        {
             overflow: hidden;
             display: inline-block;
             vertical-align: top;
-            width: 30%;
-            height: 380px;
+            width: 32%;
+            /*height: 380px;*/
             margin-bottom: 5px;
-            margin-left: 2%;
-        }
-        a,a:hover ,a:active, a:visited{
-            text-decoration: none;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-bottom: 20px;
+            background-color: #ffffff;
         }
 
+        .footDivBig:nth-child(2)
+        {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        a, a:hover, a:active, a:visited
+        {
+            text-decoration: none;
+        }
 
         .footDivBig h3 a,
-        .footDivBig h3 a:hover ,
+        .footDivBig h3 a:hover,
         .footDivBig h3 a:active,
-        .footDivBig h3 a:visited{
+        .footDivBig h3 a:visited
+        {
             text-decoration: none;
         }
 
-        .showVideo{
+        .showVideo
+        {
             overflow: hidden;
             position: relative;
             border-radius: 10px;
-            width: 45%;
+            width: 48%;
             height: 130px;
             display: inline-block;
             vertical-align: top;
-            margin-right: 10px;
             background-color: red;
             margin-top: 15px;
         }
 
-        .imgStyle{
+        .showVideo:nth-child(2n-1)
+        {
+            margin-right: 1%;
+        }
+
+        .imgStyle
+        {
             width: 100%;
             height: 100%;
             z-index: -1;
         }
-        .textDiv{
+
+        .textDiv
+        {
             position: absolute;
             bottom: 0px;
             width: 100%;
             height: 30px;
             line-height: 30px;
             text-align: center;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             color: white;
         }
 
-
-        .playIcon{
+        .playIcon
+        {
             position: absolute;
-            bottom: 45px;
-            width:100%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
             height: 40px;
             display: none;
         }
     </style>
     <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.css">
-    <scrip  type="text/javascript" src="/static/plugin/bootstrap/js/bootstrap.js"></scrip>
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/css/user/common.css"/>
     <script type="text/javascript" src="/static/js/plugins/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="/play/js/swfobject.js"></script>
 </head>
 <body style="background-color: #F2F2F2">
+    <nav class="navbar navbar-inverse navbar-fixed-top live-shadow" role="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="navbar-header">
+                        <!-- <a class="navbar-brand" href="#">菜鸟教程</a> -->
+                        <div style="line-height: 50px;">
+                            <img src="../static/img/tmp.png" alt="">
+                        </div>
+                    </div>
 
+                    <!-- 左边部分 -->
+                    <ul class="nav navbar-nav live-left">
+                        <li class="">
+                            <a href="#">首页</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                分类
+                                <b class="live-caret"></b>
+                            </a>
+                            <div class="live-nav">
+                                <div class="live-shadow live-border live-border-radius">
+                                    <div class="anim">
+                                        <div class="class-main">
+                                            <div class="list-wrap">
+                                                <h4>热门分类</h4>
+                                                <ul class="live-btns">
+                                                    <li>
+                                                        <a href="#">主机游戏</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">主机游戏</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">主机游戏</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">主机游戏</a>
+                                                    </li>
+                                                </ul>
+                                                <h4>热门分类</h4>
+                                                <ul class="live-btns">
+                                                    <li>
+                                                        <a href="#">主机游戏</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">主机游戏</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">主机游戏</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">主机游戏</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">直播</a>
+                        </li>
+                    </ul>
 
-<div id="main">
-    <div id="playBody">
+                    <!-- 右边部分 -->
+                    <!-- <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"></span> 注册
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-log-in"></span> 登录
+                            </a>
+                        </li>
+                    </ul> -->
+                    <div class="nav navbar-nav navbar-right">
+                        <div class="live-user">
+                            <div class="live-user-img">
+                                <img src="../static/img/logo.jpg" alt="">
+                                <div class="live-nav">
+                                    <div class="live-shadow live-border live-border-radius">
+                                        <div class="anim">
+                                            <div class="user-main">
+                                                <div class="user-out">
+                                                    <a href="#">退出</a>
+                                                </div>
+                                                <div class="user-pic">
+                                                    <img src="../static/img/logo.jpg" alt="">
+                                                </div>
+                                                <div class="user-btns">
+                                                    <button class="btn btn-large btn-primary btn-block" type="button">个人中心
+                                                    </button>
+                                                    <button class="btn btn-large btn-primary btn-block" type="button">我的关注
+                                                    </button>
+                                                    <button class="btn btn-large btn-primary btn-block" type="button">直播设置
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid live-container">
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10">
+                <div class="index-main">
+                    <div id="main">
+                        <div id="playBody">
+                            <div class="video" id="CuPlayer">
+                                <b> <img src="/play/images/loading.gif"/> 网页视频播放器加载中，请稍后...</b>
+                            </div>
+                        </div>
+                        <div id="showNav">
+                            <div class="divs" name="1"><img src="/static/img/test.png" alt="">
+                                <div><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></div>
+                            </div>
+                            <div class="divs" name="2"><img src="/static/img/test2.png" alt="">
+                                <div>
+                                    <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="divs" name="3"><img src="/static/img/test.png" alt="">
+                                <div><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></div>
+                            </div>
+                            <div class="divs" name="4"><img src="/static/img/test.png" alt="">
+                                <div><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footRec">
+                        <div class="footDivBig">
+                            <h3>
+                                <a href="" name="tagA" style="color: black">
+                                    <i><img src="/static/img/indexClassIcon.png" alt=""></i>
+                                    <span>游戏达人</span>
+                                </a>
+                            </h3>
+                            <hr style="color: #F3F4F8">
+                            <div style="width: 100%; margin-top: -15px">
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footDivBig">
+                            <h3>
+                                <a href="" name="tagA" style="color: black">
+                                    <i><img src="/static/img/indexClassIcon.png" alt=""></i>
+                                    <span>游戏达人</span>
+                                </a>
+                            </h3>
+                            <hr style="color: #F3F4F8">
+                            <div style="width: 100%; margin-top: -15px">
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footDivBig">
+                            <h3>
+                                <a href="" name="tagA" style="color: black">
+                                    <i><img src="/static/img/indexClassIcon.png" alt=""></i>
+                                    <span>游戏达人</span>
+                                </a>
+                            </h3>
+                            <hr style="color: #F3F4F8">
+                            <div style="width: 100%; margin-top: -15px">
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                                <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
+                                    <div class="playIcon">
+                                        <div style="width: 40px;margin: 0 auto;">
+                                            <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="textDiv">xxx</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <div class="video" id="CuPlayer">
-            <b> <img src="/play/images/loading.gif" /> 网页视频播放器加载中，请稍后...</b>
-        </div>
-    </div>
-    <div id="showNav">
-        <div class="divs" name="1"><img src="/static/img/test.png" alt=""><div><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></div></div>
-        <div class="divs" name="2"><img src="/static/img/test2.png" alt=""><div><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></div></div>
-        <div class="divs" name="3"><img src="/static/img/test.png" alt=""><div><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></div></div>
-        <div class="divs" name="4"><img src="/static/img/test.png" alt=""><div><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></div></div>
-    </div>
-</div>
-<div id="footRec">
-    <div class="footDivBig">
-        <h3>
-            <a  href="" name="tagA" style="color: black">
-                <i><img src="/static/img/indexClassIcon.png" alt=""></i>
-                <span>游戏达人</span>
-            </a>
-        </h3>
-        <hr style="color: #F3F4F8">
-        <div style="width: 100%; margin-top: -15px">
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-        </div>
-    </div>
-    <div class="footDivBig">
-        <h3>
-            <a  href="" name="tagA" style="color: black">
-                <i><img src="/static/img/indexClassIcon.png" alt=""></i>
-                <span>游戏达人</span>
-            </a>
-        </h3>
-        <hr style="color: #F3F4F8">
-        <div style="width: 100%; margin-top: -15px">
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-        </div>
-    </div>
-    <div class="footDivBig">
-        <h3>
-            <a  href="" name="tagA" style="color: black">
-                <i><img src="/static/img/indexClassIcon.png" alt=""></i>
-                <span>游戏达人</span>
-            </a>
-        </h3>
-        <hr style="color: #F3F4F8">
-        <div style="width: 100%; margin-top: -15px">
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-            <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-                <div class="playIcon">
-                    <div style="width: 40px;margin: 0 auto;">
-                        <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                    </div>
-                </div>
-                <div class="textDiv">xxx</div></div>
-        </div>
-    </div>
-</div>
 <script type="text/javascript" src="/static/js/config/rtmpConfig.js"></script>
 <script>
     var fatherWidth = $("#main").width();
-    var playBody = fatherWidth*0.7;
-    var _width = playBody+""; //播放器属性
-    var _height = "560";
+    var playBody = fatherWidth * 0.8;
+    var _width = playBody + ""; //播放器属性
+    var _height = playBody / 1.65;
     var _stream = "cat";
-
-
-    $("#showNav").css("height",560 + "px");
-    $("#showNav").children("div").css("height",560/4 - 5 + "px");
+    $("#showNav").css("height", _height + "px");
+    $("#showNav").children("div").css("height", (_height - 25) / 4 + "px");
     /**
      * 设置基本框架
      *
      */
-    $("#playBody").css("width",playBody);
-    $("#CuPlayer").css("width",playBody);
-
+    $("#playBody").css("width", playBody);
+    $("#CuPlayer").css("width", playBody);
     /**
      *自适应右边宽度的宽度
      */
     var fWidth = $("#main").width();
     var lWidth = $("#playBody").width();
-    $("#showNav").css("width",fWidth-lWidth -10+'px');
-
-
-
-
-    function createFlash(width , height,stream , rtmpIp) {
-        var so = new SWFObject("play/player.swf","ply",width,height,"9","#000000");
-        so.addParam("allowfullscreen","true");
-        so.addParam("allowscriptaccess","always");
-        so.addParam("wmode","opaque");
-        so.addParam("quality","high");
-        so.addParam("salign","lt");
+    $("#showNav").css("width", fWidth - lWidth - 10 + 'px');
+    function createFlash(width, height, stream, rtmpIp)
+    {
+        var so = new SWFObject("play/player.swf", "ply", width, height, "9", "#000000");
+        so.addParam("allowfullscreen", "true");
+        so.addParam("allowscriptaccess", "always");
+        so.addParam("wmode", "opaque");
+        so.addParam("quality", "high");
+        so.addParam("salign", "lt");
         <!-- HTML代码参数/Begin -->
-        so.addVariable("JcScpServer",rtmpIp); //您的rtmp流媒体服务器地址 
-        so.addVariable("JcScpVideoPath",stream); //流名称
-        so.addVariable("JcScpImg","play/images/startpic.jpg"); //视频缩略图
-        so.addVariable("JcScpFile","play/CuSunV4set.xml"); //配置文件
+        so.addVariable("JcScpServer", rtmpIp); //您的rtmp流媒体服务器地址
+        so.addVariable("JcScpVideoPath", stream); //流名称
+        so.addVariable("JcScpImg", "play/images/startpic.jpg"); //视频缩略图
+        so.addVariable("JcScpFile", "play/CuSunV4set.xml"); //配置文件
         <!-- HTML代码参数/End -->
         so.write("CuPlayer");
     }
-
-    createFlash(_width,_height,_stream,_rtmpIp);
-
-    window.onresize = function () {
+    createFlash(_width, _height, _stream, _rtmpIp);
+    window.onresize = function()
+    {
         var fatherWidth = $("#main").width();
-        var playBody = fatherWidth*0.7;
-        var _width = playBody+""; //播放器属性
-        var _height = "560";
+        var playBody = fatherWidth * 0.8;
+        var _width = playBody + ""; //播放器属性
+        var _height = playBody / 1.65;
         var _stream = "cat";
-
+        $("#showNav").css("height", _height + "px");
+        $("#showNav").children("div").css("height", (_height - 25) / 4 + "px");
         /**
          * 设置基本框架
          *
          */
-        $("#playBody").css("width",playBody);
-        $("#CuPlayer").css("width",playBody);
-
+        $("#playBody").css("width", playBody);
+        $("#CuPlayer").css("width", playBody);
         /**
          *自适应右边宽度的宽度
          */
         var fWidth = $("#main").width();
         var lWidth = $("#playBody").width();
-        $("#showNav").css("width",fWidth-lWidth -10+'px');
+        $("#showNav").css("width", fWidth - lWidth - 10 + 'px');
+        createFlash(_width, _height, _stream, _rtmpIp);
 
-        createFlash(_width,_height,_stream,_rtmpIp);
-
+        /**
+         * 调整下面三部分的长宽
+         * 及
+         * 视频的长宽
+         **/
+        var footRecWidth = $("#footRec").width();
+        $(".footDivBig").css("width", (footRecWidth - 30) / 3 + "px");
+        var showVideoWidth = $(".showVideo").width();
+        $(".showVideo").css("height", showVideoWidth / 1.65 + "px");
     }
-
-
     /**
      *右侧视频里表边框
      * @type {number}
      */
     var num = 0;
-
-    $(".divs").mouseover (function(){
-        $(this).css("border","solid 2px #FF7701");
-        $(this).children("div").children("span").css("display","block");
-
+    $(".divs").mouseover(function()
+    {
+        $(this).css("border", "solid 2px #FF7701");
+        $(this).children("div").children("span").css("display", "block");
     });
-    $(".divs").mouseleave(function () {
-        if($(this).attr('name') != num){
-            $(this).children("div").children("span").css("display","none");
-            $(this).css("border","none");
+    $(".divs").mouseleave(function()
+    {
+        if($(this).attr('name') != num)
+        {
+            $(this).children("div").children("span").css("display", "none");
+            $(this).css("border", "none");
         }
     })
-
-    $(".divs").click(function () {
+    $(".divs").click(function()
+    {
         num = $(this).attr('name');
         clearBorder();
-        $(this).css("border","solid 2px #FF7701");
-        $(this).children("div").children("span").css("display","block");
+        $(this).css("border", "solid 2px #FF7701");
+        $(this).children("div").children("span").css("display", "block");
     })
-
-    function clearBorder(){
-        $("#showNav").children("div").css("border","none");
-        $("#showNav").children("div").children("div").children("span").css("display","none");
+    function clearBorder()
+    {
+        $("#showNav").children("div").css("border", "none");
+        $("#showNav").children("div").children("div").children("span").css("display", "none");
     }
 </script>
 <script>
     //    控制play图标
-    $(".showVideo").hover(function () {
+    $(".showVideo").hover(function()
+    {
         $(this).children(".playIcon").fadeIn(500);
-
     })
-
-    $(".showVideo").mouseleave(function () {
+    $(".showVideo").mouseleave(function()
+    {
         $(this).children(".playIcon").fadeOut(500);
     })
+
+    var footRecWidth = $("#footRec").width();
+    $(".footDivBig").css("width", (footRecWidth - 30) / 3 + "px");
+    var showVideoWidth = $(".showVideo").width();
+    $(".showVideo").css("height", showVideoWidth / 1.65 + "px");
 </script>
 </body>
 </html>
