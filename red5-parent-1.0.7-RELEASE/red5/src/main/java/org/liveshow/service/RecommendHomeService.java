@@ -10,5 +10,5 @@ public interface RecommendHomeService {
     
     List<Room> findAllRecHome();
     
-    int addRecoRoom(int roomId,int time);
+    int addRecoRoom(int roomI,int managerId);
 }

@@ -28,4 +28,6 @@ public interface DanmakuMapper {
     int updateByPrimaryKeySelective(Danmaku record);
 
     int updateByPrimaryKey(Danmaku record);
+    
+    int addDanmaku(Danmaku danmaku);
 }

@@ -23,6 +23,6 @@ public class RecommendHomeServiceImplTest {
     
     @Test
     public void insert(){
-        
+        recommendHomeService.addRecoRoom(4,2);
     }
 }

@@ -2,32 +2,29 @@ package org.liveshow.serice.impl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.liveshow.service.RoomService;
+import org.liveshow.entity.LiveRecord;
+import org.liveshow.service.LiveRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Created by Cjn on 2017/11/29.
+ * Created by Cjn on 2017/12/1.
  */
 @ContextConfiguration("classpath:spring/spring-*.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class RoomServiceImplTest {
+public class LiveRecordServiceImplTest {
+    
     @Autowired
-    private RoomService roomService;
+    private LiveRecordService liveRecordService;
     
     @Test
-    public void findRecoRoom(){
-        roomService.findRecoRoom(1,0,4);
+    public void addRecord(){
+        liveRecordService.addRecord(1);
     }
     
     @Test
-    public void findRoomById(){
-        roomService.findRoomById(1);
-    }
-    
-    @Test
-    public void changeRoomState(){
-        roomService.changeRoomState(1,0);
+    public void stopRecord(){
+        liveRecordService.finishRecord(1);
     }
 }

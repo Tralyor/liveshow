@@ -46,7 +46,7 @@ public class RoomHeat {
     public void addpopulartyNow(){
         this.populartyNow++;
     }
-    public void delete(){
+    public void deletepopulartyNow(){
         this.populartyNow--;
     }
     

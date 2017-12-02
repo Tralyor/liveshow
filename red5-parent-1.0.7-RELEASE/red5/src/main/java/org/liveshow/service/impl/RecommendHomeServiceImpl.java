@@ -29,9 +29,10 @@ public class RecommendHomeServiceImpl implements RecommendHomeService {
     }
 
     @Override
-    public int addRecoRoom(int roomId,int time) {
+    public int addRecoRoom(int roomId,int managerId) {
         RecommendHome recommendHome = new RecommendHome();
         recommendHome.setRoomId(roomId);
+        recommendHome.setManagerId(managerId);
         recommendHome.setTime(Integer.parseInt(String.valueOf(System.currentTimeMillis()/1000)));
         int res= recommendHomeMapper.insert(recommendHome);
         return res;

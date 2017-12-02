@@ -61,4 +61,15 @@ public class RoomeServiceImpl implements RoomService {
         }
         return rooms.get(0);
     }
+
+    @Override
+    public int changeRoomState(int roomId, int state) {
+        Room room = findRoomById(roomId);
+        if (state == 0)
+            room.setSwitchJudge(false);
+        else
+            room.setSwitchJudge(true);
+        roomMapper.updateByPrimaryKeySelective(room);
+        return 0;
+    }
 }

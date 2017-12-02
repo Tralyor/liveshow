@@ -210,4 +210,29 @@
       state = #{state,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="isDark" resultType="org.liveshow.entity.DarkroomDanmaku"> 
+SELECT
+	c.*
+FROM
+	`user` a,
+	danmaku b,
+	darkroom_danmaku c
+WHERE
+	a.id = b.user_id
+AND
+	b.id = c.danmaku_id
+AND 
+	c.time + c.hours > unix_timestamp(now())
+AND
+ a.id = #{userId}
+AND
+ b.room_id = #{roomId}
+ORDER BY
+  c.time
+  </select>
+  
+  <update id="changeState">
+    
+  </update>
 </mapper>

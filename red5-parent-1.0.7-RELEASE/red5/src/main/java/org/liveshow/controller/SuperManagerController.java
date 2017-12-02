@@ -24,7 +24,18 @@ import java.util.Date;
 public class SuperManagerController {
     @Autowired
     private DarkroomRoomService darkroomRoomService;
-    
+
+    /**
+     *@Author Cjn
+     * @param roomId
+     * @param reason
+     * @param hours
+     * @param managerId
+     * @param request
+     * @param model
+     * @return
+     * 封禁主播
+     */
     @RequestMapping("/closure")
     @ResponseBody
     public Show closureRoom(int roomId, String reason ,int hours,int managerId,HttpServletRequest request,Model model){
@@ -76,8 +87,10 @@ public class SuperManagerController {
     
     @RequestMapping("/recoRoom")
     @ResponseBody
-    public Show addRecoRoom( int roomId ,int time){
+    public Show addRecoRoom( int roomId ,int managerId){
         Show show = new Show();
+        
+        
         
         return show;
     }

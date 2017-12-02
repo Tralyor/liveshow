@@ -2,32 +2,22 @@ package org.liveshow.serice.impl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.liveshow.service.RoomService;
+import org.liveshow.service.DanmakuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Created by Cjn on 2017/11/29.
+ * Created by Cjn on 2017/12/1.
  */
 @ContextConfiguration("classpath:spring/spring-*.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class RoomServiceImplTest {
+public class DanmakuServiceImplTest {
     @Autowired
-    private RoomService roomService;
+    private DanmakuService danmakuService;
     
     @Test
-    public void findRecoRoom(){
-        roomService.findRecoRoom(1,0,4);
-    }
-    
-    @Test
-    public void findRoomById(){
-        roomService.findRoomById(1);
-    }
-    
-    @Test
-    public void changeRoomState(){
-        roomService.changeRoomState(1,0);
+    public void addDanmaku(){
+        danmakuService.addDanmaku(1,1,"hh");
     }
 }

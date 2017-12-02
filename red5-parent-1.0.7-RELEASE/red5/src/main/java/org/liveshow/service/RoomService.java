@@ -13,4 +13,6 @@ public interface RoomService {
     List<Room> findRecoRoom(int recoModule,int pageNo,int pageSize);
     
     Room findRoomById(int roomId);
+    
+    int changeRoomState(int roomId,int state);
 }

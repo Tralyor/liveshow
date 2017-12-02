@@ -4,10 +4,7 @@ import org.liveshow.dto.Show;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.Part;
 import org.liveshow.entity.Room;
-import org.liveshow.service.CareService;
-import org.liveshow.service.ModuleService;
-import org.liveshow.service.PartService;
-import org.liveshow.service.RoomService;
+import org.liveshow.service.*;
 import org.liveshow.surveillant.RoomPopularity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
@@ -31,6 +28,8 @@ public class LiveShowController {
     private PartService partService;
     @Autowired
     private ModuleService moduleService;
+    @Autowired
+    private DarkroomDanmakuService darkroomDanmakuService;
     
     @RequestMapping("/index")
     public String indexPage(int roomId,@RequestParam(value = "userId",required = false,defaultValue = "0") int userId,Model model){
@@ -40,8 +39,11 @@ public class LiveShowController {
         }
         int careNum = careService.careNum(roomId);
         int isCare = 1;
-        if (userId != 0)
-         isCare = careService.isCare(userId,roomId);
+        int isDark = 0;
+        if (userId != 0){
+            isCare = careService.isCare(userId,roomId);
+            isDark = darkroomDanmakuService.isDark(userId, roomId);   
+        }
         Module module =  moduleService.findModuleById(room.getModuleId());
         Part part = partService.findPartById(module.getPartId());
         model.addAttribute("module",module);
@@ -49,6 +51,7 @@ public class LiveShowController {
         model.addAttribute("room",room);
         model.addAttribute("careNum",careNum);
         model.addAttribute("isCare",isCare);
+        model.addAttribute("isDark",isDark);
         RoomPopularity  roomPopularity  = RoomPopularity.getInstance();
         roomPopularity.getRoomIdAndPopularity().get(roomId).addpopulartyNow();
         roomPopularity.getRoomIdAndPopularity().get(roomId).setMaxPopulation();
@@ -110,4 +113,9 @@ public class LiveShowController {
         return show;
     }
     
+    @RequestMapping("/leave")
+    public void leavePage(int roomId){
+        RoomPopularity.getInstance().getRoomIdAndPopularity().get(roomId).deletepopulartyNow();
+        return ;
+    }
 }
