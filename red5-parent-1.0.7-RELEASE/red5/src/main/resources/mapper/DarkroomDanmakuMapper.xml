@@ -231,8 +231,4 @@ AND
 ORDER BY
   c.time
   </select>
-  
-  <update id="changeState">
-    
-  </update>
 </mapper>
