@@ -32,30 +32,31 @@ public class LiveShowController {
     private DarkroomDanmakuService darkroomDanmakuService;
     
     @RequestMapping("/index")
-    public String indexPage(int roomId,@RequestParam(value = "userId",required = false,defaultValue = "0") int userId,Model model){
-        Room room = roomService.findRoomById(roomId);
-        if (room == null){
-            return "404";
-        }
-        int careNum = careService.careNum(roomId);
-        int isCare = 1;
-        int isDark = 0;
-        if (userId != 0){
-            isCare = careService.isCare(userId,roomId);
-            isDark = darkroomDanmakuService.isDark(userId, roomId);   
-        }
-        Module module =  moduleService.findModuleById(room.getModuleId());
-        Part part = partService.findPartById(module.getPartId());
-        model.addAttribute("module",module);
-        model.addAttribute("part",part);
-        model.addAttribute("room",room);
-        model.addAttribute("careNum",careNum);
-        model.addAttribute("isCare",isCare);
-        model.addAttribute("isDark",isDark);
-        RoomPopularity  roomPopularity  = RoomPopularity.getInstance();
-        roomPopularity.getRoomIdAndPopularity().get(roomId).addpopulartyNow();
-        roomPopularity.getRoomIdAndPopularity().get(roomId).setMaxPopulation();
-        model.addAttribute("onlinePeople",roomPopularity.getRoomIdAndPopularity().get(roomId).getPopulartyNow());
+	public String indexPage(Model model){
+		//    public String indexPage(int roomId,@RequestParam(value = "userId",required = false,defaultValue = "0") int userId,Model model){
+//        Room room = roomService.findRoomById(roomId);
+//        if (room == null){
+//            return "404";
+//        }
+//        int careNum = careService.careNum(roomId);
+//        int isCare = 1;
+//        int isDark = 0;
+//        if (userId != 0){
+//            isCare = careService.isCare(userId,roomId);
+//            isDark = darkroomDanmakuService.isDark(userId, roomId);
+//        }
+//        Module module =  moduleService.findModuleById(room.getModuleId());
+//        Part part = partService.findPartById(module.getPartId());
+//        model.addAttribute("module",module);
+//        model.addAttribute("part",part);
+//        model.addAttribute("room",room);
+//        model.addAttribute("careNum",careNum);
+//        model.addAttribute("isCare",isCare);
+//        model.addAttribute("isDark",isDark);
+//        RoomPopularity  roomPopularity  = RoomPopularity.getInstance();
+//        roomPopularity.getRoomIdAndPopularity().get(roomId).addpopulartyNow();
+//        roomPopularity.getRoomIdAndPopularity().get(roomId).setMaxPopulation();
+//        model.addAttribute("onlinePeople",roomPopularity.getRoomIdAndPopularity().get(roomId).getPopulartyNow());
         return "show/liveShow";
     }
 

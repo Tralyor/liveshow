@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" %>
+<%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <%@ include file="../common/resources.jsp"%>
     <style>
         *
         {
@@ -162,11 +164,6 @@
             display: none;
         }
     </style>
-    <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/static/css/user/common.css"/>
-    <script type="text/javascript" src="/static/js/plugins/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="/play/js/swfobject.js"></script>
 </head>
 <body style="background-color: #F2F2F2">

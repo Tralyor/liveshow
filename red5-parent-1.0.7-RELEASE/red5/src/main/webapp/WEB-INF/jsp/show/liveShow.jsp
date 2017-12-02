@@ -1,17 +1,14 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@page isELIgnored="false"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.min.css">
+    <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/liveshow.css">
-    <link rel="stylesheet" type="text/css" href="/static/barrage/static/css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/barrage/dist/css/barrager.css">
+    <link rel="stylesheet" href="/static/barrage/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/barrage/dist/css/barrager.css">
     <style>
         * {
             margin: 0;
@@ -31,8 +28,225 @@
 
 </head>
 <body>
-<script type="text/javascript" src="play/js/swfobject.js"></script>
+<script type="text/javascript" src="/play/js/swfobject.js"></script>
+<nav class="navbar navbar-inverse navbar-fixed-top live-shadow" role="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="navbar-header">
+                    <!-- <a class="navbar-brand" href="#">菜鸟教程</a> -->
+                    <div style="line-height: 50px;">
+                        <img src="../static/img/tmp.png" alt="">
+                    </div>
+                </div>
 
+                <!-- 左边部分 -->
+                <ul class="nav navbar-nav live-left">
+                    <li class="">
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            分类
+                            <b class="live-caret"></b>
+                        </a>
+                        <div class="live-nav">
+                            <div class="live-shadow live-border live-border-radius">
+                                <div class="anim">
+                                    <div class="class-main">
+                                        <div class="list-wrap">
+                                            <h4>热门分类</h4>
+                                            <ul class="live-btns">
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="list-wrap">
+                                            <h4>热门分类</h4>
+                                            <ul class="live-btns">
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">直播</a>
+                    </li>
+                </ul>
+
+                <!-- 右边部分 -->
+                <!-- <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-user"></span> 注册
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-log-in"></span> 登录
+                        </a>
+                    </li>
+                </ul> -->
+                <div class="nav navbar-nav navbar-right">
+                    <div class="live-user">
+                        <div class="live-user-img">
+                            <img src="../static/img/logo.jpg" alt="">
+                            <div class="live-nav">
+                                <div class="live-shadow live-border live-border-radius">
+                                    <div class="anim">
+                                        <div class="user-main">
+                                            <div class="user-out">
+                                                <a href="#">退出</a>
+                                            </div>
+                                            <div class="user-pic">
+                                                <img src="../static/img/logo.jpg" alt="">
+                                            </div>
+                                            <div class="user-btns">
+                                                <button class="btn btn-large btn-primary btn-block" type="button">个人中心</button>
+                                                <button class="btn btn-large btn-primary btn-block" type="button">我的关注</button>
+                                                <button class="btn btn-large btn-primary btn-block" type="button">直播设置</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="live-side">
+    <div class="live-side-scroll">
+        <div class="live-viewport">
+            <!-- 按钮区域 -->
+            <div class="live-side-btns">
+                <button class="btn btn-large btn-primary btn-block" type="button">全部直播</button>
+                <button class="btn btn-large btn-primary btn-block" type="button">全部分类</button>
+            </div>
+
+            <!-- 游戏推荐区域 -->
+            <div class="live-side-recommend">
+                <div class="live-side-title">
+                    <ul>
+                        <li>栏目</li>
+                    </ul>
+                </div>
+                <div class="list-wrap">
+                    <div>
+                        <i></i>
+                        <span>热门游戏</span>
+                    </div>
+                    <ul class="live-btns">
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-wrap">
+                    <div>
+                        <i></i>
+                        <span>热门游戏</span>
+                    </div>
+                    <ul class="live-btns">
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-wrap">
+                    <div>
+                        <i></i>
+                        <span>热门游戏</span>
+                    </div>
+                    <ul class="live-btns">
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-wrap">
+                    <div>
+                        <i></i>
+                        <span>热门游戏</span>
+                    </div>
+                    <ul class="live-btns">
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div
 <div id="main">
     <div id="controlBar" style="width: 100%;height: 60px;margin-bottom: 10px">
         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
@@ -74,7 +288,7 @@
             </div>
         </div>
         <div class="video" id="CuPlayer">
-            <b> <img src="play/images/loading.gif"/> 网页视频播放器加载中，请稍后...</b>
+            <b> <img src="/play/images/loading.gif"/> 网页视频播放器加载中，请稍后...</b>
         </div>
     </div>
     <div id="chatBox">
@@ -98,9 +312,8 @@
         </div>
     </div>
 </div>
+
 <!--拟态框-->
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -134,18 +347,17 @@
 </div>
 
 
-<script type="text/javascript" src="/static/barrage/static/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="/static/barrage/static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/barrage/static/js/tinycolor-0.9.15.min.js"></script>
 <script type="text/javascript" src="/static/barrage/dist/js/jquery.barrager.js"></script>
-
 <script type="text/javascript" src="/static/js/config/rtmpConfig.js"></script>
 <script>
     var fatherWidth = $("#main").width();
-    var playBody = fatherWidth * 0.7;
+    var playBody = (fatherWidth) * 0.8;
     var _width = playBody + ""; //播放器属性
-    var _height = "460";
+    var _height = playBody / 1.65;
     var _stream = "cat";
+
+    createFlash(_width, _height, _stream, _rtmpIp);
 
     /**
      * 设置基本框架
@@ -161,6 +373,8 @@
     var fWidth = $("#main").width();
     var lWidth = $("#playBody").width();
     $("#chatBox").css("width", fWidth - lWidth - 50 + 'px');
+    $("#chatBox").height($("#playBody").height() + "px");
+    console.log($("#playBody").height());
 
     /**
      * 自适应头部信息
@@ -179,19 +393,17 @@
         <!-- HTML代码参数/Begin -->
         so.addVariable("JcScpServer", rtmpIp); //您的rtmp流媒体服务器地址 
         so.addVariable("JcScpVideoPath", stream); //流名称
-        so.addVariable("JcScpImg", "play/images/startpic.jpg"); //视频缩略图
-        so.addVariable("JcScpFile", "play/CuSunV4set.xml"); //配置文件
+        so.addVariable("JcScpImg", "/play/images/startpic.jpg"); //视频缩略图
+        so.addVariable("JcScpFile", "/play/CuSunV4set.xml"); //配置文件
         <!-- HTML代码参数/End -->
         so.write("CuPlayer");
     }
 
-    createFlash(_width, _height, _stream, _rtmpIp);
-
     window.onresize = function () {
         var fatherWidth = $("#main").width();
-        var playBody = fatherWidth * 0.7;
+        var playBody = fatherWidth * 0.8;
         var _width = playBody + ""; //播放器属性
-        var _height = "460";
+        var _height = playBody / 1.65;
 
         /**
          * 设置基本框架
@@ -224,7 +436,7 @@
 <script>
     //    发送弹幕
     var item = {
-        img: 'static/img/cute.png', //图片 
+        img: '/static/img/cute.png', //图片
         info: '弹幕文字信息', //文字 
         href: '#', //链接 
         close: true, //显示关闭按钮 
