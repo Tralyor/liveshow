@@ -246,7 +246,7 @@
             </div>
         </div>
     </div>
-</div
+</div>
 <div id="main">
     <div id="controlBar" style="width: 100%;height: 60px;margin-bottom: 10px">
         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
@@ -352,7 +352,7 @@
 <script type="text/javascript" src="/static/js/config/rtmpConfig.js"></script>
 <script>
     var fatherWidth = $("#main").width();
-    var playBody = (fatherWidth) * 0.8;
+    var playBody = (fatherWidth) * 0.7;
     var _width = playBody + ""; //播放器属性
     var _height = playBody / 1.65;
     var _stream = "cat";
@@ -401,7 +401,7 @@
 
     window.onresize = function () {
         var fatherWidth = $("#main").width();
-        var playBody = fatherWidth * 0.8;
+        var playBody = fatherWidth * 0.7;
         var _width = playBody + ""; //播放器属性
         var _height = playBody / 1.65;
 
