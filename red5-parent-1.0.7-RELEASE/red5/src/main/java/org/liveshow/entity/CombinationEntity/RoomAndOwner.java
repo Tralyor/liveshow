@@ -3,7 +3,8 @@ package org.liveshow.entity.CombinationEntity;
 /**
  * Created by Cjn on 2017/12/4.
  */
-public class RoomAndOnwer {
+public class RoomAndOwner
+{
     private Integer id;
 
     private Integer userId;

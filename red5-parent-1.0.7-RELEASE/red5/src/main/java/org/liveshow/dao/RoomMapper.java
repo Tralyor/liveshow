@@ -2,7 +2,7 @@ package org.liveshow.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.liveshow.entity.CombinationEntity.RoomAndOnwer;
+import org.liveshow.entity.CombinationEntity.RoomAndOwner;
 import org.liveshow.entity.Room;
 import org.liveshow.entity.RoomExample;
 
@@ -31,8 +31,8 @@ public interface RoomMapper {
 
     Room selectByUserIdWithModule(int userId);
 
-    List<RoomAndOnwer> findRecoRoom(@Param("moduleId") int moduleId , @Param("pageNo") int pageNo, @Param("pageSize") int pageSize);
+    List<RoomAndOwner> findRecoRoom(@Param("moduleId") int moduleId , @Param("pageNo") int pageNo, @Param("pageSize") int pageSize);
 
-    RoomAndOnwer findRoomById(int roomId);
+    RoomAndOwner findRoomById(int roomId);
 }
 

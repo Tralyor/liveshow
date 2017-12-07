@@ -2,20 +2,17 @@ package org.liveshow.controller;
 
 import org.liveshow.dto.Show;
 import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
-import org.liveshow.entity.CombinationEntity.RoomAndOnwer;
+import org.liveshow.entity.CombinationEntity.RoomAndOwner;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.Part;
-import org.liveshow.entity.Room;
 import org.liveshow.entity.User;
 import org.liveshow.service.*;
 import org.liveshow.surveillant.RoomPopularity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +42,7 @@ public class LiveShowController {
     
     @RequestMapping("/index/{roomId}") 
     public String indexPage(@PathVariable("roomId") int roomId, HttpServletRequest req, Model model){
-        RoomAndOnwer room = roomService.findRoomByIdWidhtOnwer(roomId);
+        RoomAndOwner room = roomService.findRoomByIdWidhtOnwer(roomId);
         if (room == null){
             return "404";
         }

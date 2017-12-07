@@ -1,8 +1,10 @@
 package org.liveshow.service.impl;
 
-import org.junit.Test;
 import org.liveshow.dao.RoomMapper;
-import org.liveshow.entity.CombinationEntity.RoomAndOnwer;
+import org.liveshow.dto.PersonalLiveSettingDTO;
+import org.liveshow.entity.CombinationEntity.RoomAndOwner;
+import org.liveshow.entity.Module;
+import org.liveshow.entity.Part;
 import org.liveshow.entity.Room;
 import org.liveshow.entity.RoomExample;
 import org.liveshow.service.RoomService;
@@ -44,8 +46,8 @@ public class RoomeServiceImpl implements RoomService {
      */
     @Override
     @Transactional
-    public List<RoomAndOnwer> findRecoRoom(int recoModule, int pageNo, int pageSize) {
-        List<RoomAndOnwer> lists = roomMapper.findRecoRoom(recoModule,pageNo,pageSize);
+    public List<RoomAndOwner> findRecoRoom(int recoModule, int pageNo, int pageSize) {
+        List<RoomAndOwner> lists = roomMapper.findRecoRoom(recoModule,pageNo,pageSize);
         if (lists  == null || lists.size() == 0){
             return null;
         }
@@ -54,7 +56,7 @@ public class RoomeServiceImpl implements RoomService {
 
     @Override
     @Transactional
-    public RoomAndOnwer findRoomByIdWidhtOnwer(int roomId) {
+    public RoomAndOwner findRoomByIdWidhtOnwer(int roomId) {
         return roomMapper.findRoomById(roomId);
     }
 
@@ -92,4 +94,23 @@ public class RoomeServiceImpl implements RoomService {
             roomMapper.updateByPrimaryKey(room);
         }
     }
+
+	@Override
+	public PersonalLiveSettingDTO getPersonalLiveSetting(int userId)
+	{
+		Room room = roomMapper.selectByUserIdWithModule(userId);
+		return entity2PersonalLiveSettingDTO(room);
+	}
+
+	private PersonalLiveSettingDTO entity2PersonalLiveSettingDTO(Room room)
+	{
+		Module module = room.getModule();
+		Part part = module.getPart();
+		return new PersonalLiveSettingDTO(room.getId(), room.getName(),
+				room.getNotice(), "",
+				room.getStreamCode(), room.getPhoto(),
+				part.getId(), part.getName(),
+				module.getId(), module.getName(),
+				room.getSwitchJudge());
+	}
 }
