@@ -275,8 +275,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
-  <select id="findRecoRoom" resultType="org.liveshow.entity.Room">
-    SELECT * FROM room WHERE room.module_id = #{moduleId} AND room.switch_judge = 1 ORDER BY room.most_popular DESC LIMIT #{pageNo},#{pageSize}
+  <select id="findRecoRoom" resultType="org.liveshow.entity.CombinationEntity.RoomAndOnwer">
+    SELECT * FROM room a, `user` b WHERE a.user_id =  b.id  AND a.module_id  =#{moduleId} AND a.switch_judge = 1 AND  NOT EXISTS(SELECT * FROM darkroom_room d WHERE d.room_id = a.id AND d.time + d.hours > unix_timestamp(now())) ORDER BY a.most_popular DESC LIMIT #{pageNo},#{pageSize}
+    </select>
+
+  <select id="findRoomById" resultType="org.liveshow.entity.CombinationEntity.RoomAndOnwer">
+    SELECT * FROM room a, `user` b WHERE a.user_id =  b.id AND  NOT EXISTS(SELECT * FROM darkroom_room d WHERE d.room_id = a.id AND d.time + d.hours > unix_timestamp(now()))  AND a.id = #{roomId}
   </select>
   
 </mapper>

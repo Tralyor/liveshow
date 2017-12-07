@@ -8,4 +8,6 @@ import java.util.List;
  */
 public interface UserService {
     List<User> users();
+    
+    User doLogin(String loginName,String password);
 }

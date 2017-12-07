@@ -1,9 +1,12 @@
 package org.liveshow.service.impl;
 
+import org.junit.Test;
 import org.liveshow.dao.RoomMapper;
+import org.liveshow.entity.CombinationEntity.RoomAndOnwer;
 import org.liveshow.entity.Room;
 import org.liveshow.entity.RoomExample;
 import org.liveshow.service.RoomService;
+import org.liveshow.surveillant.RoomPopularity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,12 +44,18 @@ public class RoomeServiceImpl implements RoomService {
      */
     @Override
     @Transactional
-    public List<Room> findRecoRoom(int recoModule,int pageNo,int pageSize) {
-        List<Room> lists = roomMapper.findRecoRoom(recoModule,pageNo,pageSize);
+    public List<RoomAndOnwer> findRecoRoom(int recoModule, int pageNo, int pageSize) {
+        List<RoomAndOnwer> lists = roomMapper.findRecoRoom(recoModule,pageNo,pageSize);
         if (lists  == null || lists.size() == 0){
             return null;
         }
         return lists;
+    }
+
+    @Override
+    @Transactional
+    public RoomAndOnwer findRoomByIdWidhtOnwer(int roomId) {
+        return roomMapper.findRoomById(roomId);
     }
 
     @Override
@@ -71,5 +80,16 @@ public class RoomeServiceImpl implements RoomService {
             room.setSwitchJudge(true);
         roomMapper.updateByPrimaryKeySelective(room);
         return 0;
+    }
+
+    @Override
+    public void changeMostPop(int roomId) {
+        Room  room = roomMapper.selectByPrimaryKey(roomId);
+        RoomPopularity roomPopularity = RoomPopularity.getInstance();
+        int people = roomPopularity.getRoomIdAndPopularity().get(roomId).getGetPopulartyMax();
+        if (room.getMostPopular() < people) {
+            room.setMostPopular(people);
+            roomMapper.updateByPrimaryKey(room);
+        }
     }
 }

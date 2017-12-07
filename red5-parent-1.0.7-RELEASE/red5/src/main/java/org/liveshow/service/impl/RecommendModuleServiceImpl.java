@@ -1,6 +1,7 @@
 package org.liveshow.service.impl;
 
 import org.liveshow.dao.RecommendModuleMapper;
+import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.RecommendModule;
 import org.liveshow.service.RecommendModuleService;
@@ -61,8 +62,8 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
      */
     @Override
     @Transactional
-    public List<Module> findRecoModul() {
-        List<Module> lists =  recommendModuleMapper.findRecoModule();
+    public List<RecommendModulAndInfo> findRecoModul() {
+        List<RecommendModulAndInfo> lists =  recommendModuleMapper.findRecoModule();
         if (lists == null || lists.size() == 0){
             return null;
         }

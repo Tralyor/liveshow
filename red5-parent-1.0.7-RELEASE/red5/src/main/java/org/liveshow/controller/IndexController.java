@@ -1,5 +1,7 @@
 package org.liveshow.controller;
 
+import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
+import org.liveshow.entity.CombinationEntity.RoomAndOnwer;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.Room;
 import org.liveshow.service.RecommendHomeService;
@@ -25,10 +27,10 @@ public class IndexController {
     @RequestMapping("/index")
     public String getIndex(Model model){
        List<Room> recoRoom =  recommendHomeService.findAllRecHome();
-       List<Module> modules = recommendModuleService.findRecoModul();
-       List<Room> reco1 = roomService.findRecoRoom(modules.get(0).getId(),0,4);
-       List<Room> reco2 = roomService.findRecoRoom(modules.get(1).getId(),0,4);
-       List<Room> reco3 = roomService.findRecoRoom(modules.get(2).getId(),0,4);
+       List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+       List<RoomAndOnwer> reco1 = roomService.findRecoRoom(modules.get(0).getId(),0,4);
+       List<RoomAndOnwer> reco2 = roomService.findRecoRoom(modules.get(1).getId(),0,4);
+       List<RoomAndOnwer> reco3 = roomService.findRecoRoom(modules.get(2).getId(),0,4);
        model.addAttribute("recoRoom",recoRoom);
        model.addAttribute("modules",modules);
        model.addAttribute("reco1",reco1);

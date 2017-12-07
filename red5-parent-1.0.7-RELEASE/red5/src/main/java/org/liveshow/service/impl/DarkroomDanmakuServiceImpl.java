@@ -27,8 +27,8 @@ public class DarkroomDanmakuServiceImpl implements DarkroomDanmakuService {
     public int isDark(int userId, int roomId) {
         List<DarkroomDanmaku> lists = darkroomDanmakuMapper.isDark(userId,roomId);
         if (lists == null || lists.size() == 0){
-            return 1;
+            return 0;
         }
-        return 0;
+        return 1;
     }
 }

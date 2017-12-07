@@ -28,4 +28,6 @@ public interface DarkroomRoomMapper {
     int updateByPrimaryKeySelective(DarkroomRoom record);
 
     int updateByPrimaryKey(DarkroomRoom record);
+    
+    List<DarkroomRoom> isDarkRoom(int roomId);
 }
