@@ -28,4 +28,11 @@ public interface LiveRecordMapper {
     int updateByPrimaryKeySelective(LiveRecord record);
 
     int updateByPrimaryKey(LiveRecord record);
+
+    List<LiveRecord> selectByUserId(int id);
+
+    List<LiveRecord> selectByUserIdAndTime(
+    		@Param("id") int id,
+			@Param("startTime") int startTime,
+			@Param("endTime") int endTime);
 }

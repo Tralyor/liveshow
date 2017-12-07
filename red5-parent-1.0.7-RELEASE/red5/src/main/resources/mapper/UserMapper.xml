@@ -225,4 +225,37 @@
 			</if>
 		</where>
 	</select>
+
+	<resultMap id="following" type="org.liveshow.dto.PersonalFollowingDTO">
+		<result column="room_id" jdbcType="INTEGER" property="roomId"/>
+		<result column="room_name" jdbcType="VARCHAR" property="roomName"/>
+		<result column="photo" jdbcType="VARCHAR" property="livePhoto"/>
+		<result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+		<result column="switch_judge" jdbcType="TINYINT" property="liveState"/>
+		<result column="module_id" jdbcType="INTEGER" property="moduleId"/>
+		<result column="module_name" jdbcType="VARCHAR" property="moduleName"/>
+	</resultMap>
+
+	<select id="selectFollowingByUserId" resultMap="following">
+		SELECT
+			module.id module_id,
+			module.`name` module_name,
+			room.id room_id,
+			room.`name` room_name,
+			room.switch_judge,
+			`user`.*
+		FROM
+			care,
+			module,
+			room,
+			`user`
+		WHERE
+			care.room_id = room.id
+		AND
+			room.user_id = `user`.id
+		AND
+			room.module_id = module.id
+		AND
+			care.user_id = #{id}
+	</select>
 </mapper>

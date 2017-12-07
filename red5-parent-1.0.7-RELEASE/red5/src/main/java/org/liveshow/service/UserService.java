@@ -1,6 +1,7 @@
 package org.liveshow.service;
 
-import org.liveshow.dto.ChangePasswordDTO;
+import org.liveshow.dto.PersonalChangePasswordDTO;
+import org.liveshow.dto.PersonalFollowingDTO;
 import org.liveshow.dto.PersonalProfileDTO;
 import org.liveshow.dto.Show;
 import org.liveshow.entity.User;
@@ -32,8 +33,15 @@ public interface UserService {
 	 * ajax
 	 * 修改用户密码
 	 * @param id
-	 * @param changePasswordDTO
+	 * @param personalChangePasswordDTO
 	 * @return
 	 */
-	Show updatePassword(int id, ChangePasswordDTO changePasswordDTO);
+	Show updatePassword(int id, PersonalChangePasswordDTO personalChangePasswordDTO);
+
+	/**
+	 * 获取用户关注的直播间
+	 * @param id
+	 * @return
+	 */
+	List<PersonalFollowingDTO> getPersonFollowing(int id);
 }

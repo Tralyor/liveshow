@@ -278,5 +278,49 @@
   <select id="findRecoRoom" resultType="org.liveshow.entity.Room">
     SELECT * FROM room WHERE room.module_id = #{moduleId} AND room.switch_judge = 1 ORDER BY room.most_popular DESC LIMIT #{pageNo},#{pageSize}
   </select>
+
+	<resultMap id="RoomWithModule" type="org.liveshow.entity.Room">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="stream_code" jdbcType="VARCHAR" property="streamCode" />
+		<result column="notice" jdbcType="VARCHAR" property="notice" />
+		<result column="photo" jdbcType="VARCHAR" property="photo" />
+		<result column="switch_judge" jdbcType="BIT" property="switchJudge" />
+		<result column="most_popular" jdbcType="INTEGER" property="mostPopular" />
+
+		<association property="module" resultMap="Module"/>
+	</resultMap>
+
+	<resultMap id="Module" type="org.liveshow.entity.Module">
+		<id column="module_id" jdbcType="INTEGER" property="id"/>
+		<result column="module_name" jdbcType="VARCHAR" property="name"/>
+
+		<association property="part" resultMap="Part"/>
+	</resultMap>
+
+	<resultMap id="Part" type="org.liveshow.entity.Part">
+		<id column="part_id" jdbcType="INTEGER" property="id"/>
+		<result column="part_name" jdbcType="VARCHAR" property="name"/>
+	</resultMap>
+
+	<select id="selectByUserIdWithModule" resultMap="RoomWithModule">
+		SELECT
+			room.*,
+			module.id module_id,
+			module.`name` module_name,
+			part.id part_id,
+			part.`name` part_name
+		FROM
+			room,
+			module,
+			part
+		WHERE
+			room.module_id = module.id
+		AND
+			module.part_id = part.id
+		AND
+			room.user_id = #{userId}
+	</select>
   
 </mapper>

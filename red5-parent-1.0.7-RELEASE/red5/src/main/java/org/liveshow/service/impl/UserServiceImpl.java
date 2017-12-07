@@ -2,7 +2,8 @@ package org.liveshow.service.impl;
 
 import org.liveshow.dao.ApplicationMapper;
 import org.liveshow.dao.UserMapper;
-import org.liveshow.dto.ChangePasswordDTO;
+import org.liveshow.dto.PersonalChangePasswordDTO;
+import org.liveshow.dto.PersonalFollowingDTO;
 import org.liveshow.dto.PersonalProfileDTO;
 import org.liveshow.dto.Show;
 import org.liveshow.entity.User;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import org.liveshow.entity.UserExample;
 import org.liveshow.service.UserService;
+import org.liveshow.surveillant.RoomPopularity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,11 +71,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Show updatePassword(int id, ChangePasswordDTO changePasswordDTO)
+	public Show updatePassword(int id, PersonalChangePasswordDTO personalChangePasswordDTO)
 	{
-		String oldPass = changePasswordDTO.getOldPass();
-		String newPass = changePasswordDTO.getNewPass();
-		String confirmPass = changePasswordDTO.getConfirmPass();
+		String oldPass = personalChangePasswordDTO.getOldPass();
+		String newPass = personalChangePasswordDTO.getNewPass();
+		String confirmPass = personalChangePasswordDTO.getConfirmPass();
 
 		logger.info("修改密码");
 		if (!confirmPass.equals(newPass))
@@ -110,6 +112,21 @@ public class UserServiceImpl implements UserService{
 				return new Show(null, 0, "原密码错误！");
 			}
 		}
+	}
+
+	@Override
+	public List<PersonalFollowingDTO> getPersonFollowing(int id)
+	{
+		logger.info("获取用户关注的直播间");
+		List<PersonalFollowingDTO> personalFollowingDTOList = userMapper.selectFollowingByUserId(id);
+		for (PersonalFollowingDTO p : personalFollowingDTOList)
+		{
+			if (p.isLiveState())
+			{
+				p.setAttendance(RoomPopularity.getInstance().getRoomIdAndPopularity().get(p.getRoomId()).getPopulartyNow());
+			}
+		}
+		return personalFollowingDTOList;
 	}
 
 	private PersonalProfileDTO entity2PersonalProfileDTO(User user, boolean idCardState)

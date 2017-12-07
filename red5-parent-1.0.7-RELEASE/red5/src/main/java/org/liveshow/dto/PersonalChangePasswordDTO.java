@@ -3,7 +3,7 @@ package org.liveshow.dto;
 /**
  * Created by asus on 2017/12/5.
  */
-public class ChangePasswordDTO
+public class PersonalChangePasswordDTO
 {
 	private String oldPass;
 	private String newPass;

@@ -2,12 +2,13 @@ package org.liveshow.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.liveshow.dto.PersonalFollowingDTO;
 import org.liveshow.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
+import java.util.List;
 
 /**
  * Created by asus on 2017/12/5.
@@ -41,5 +42,15 @@ public class UserMapperTest
 		user2.setId(1);
 		User resultUser2 = userMapper.selectUserByPasswordAndIdOrLoginName(user2);
 		System.out.println(resultUser2.getNickName());
+	}
+
+	@Test
+	public void selectFollowingByUserId() throws Exception
+	{
+		List<PersonalFollowingDTO> personalFollowingDTOList = userMapper.selectFollowingByUserId(3);
+		for (PersonalFollowingDTO tmp : personalFollowingDTOList)
+		{
+			System.out.println(tmp);
+		}
 	}
 }
