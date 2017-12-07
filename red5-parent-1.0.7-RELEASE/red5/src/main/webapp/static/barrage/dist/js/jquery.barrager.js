@@ -18,7 +18,14 @@
 		var time = new Date().getTime();
 		var barrager_id = 'barrage_' + time;
 		var id = '#' + barrager_id;
-		var div_barrager = $("<div class='barrage' id='" + barrager_id + "'></div>").appendTo($(this));
+		
+		var _dInfo = {
+			userId:barrage.userId,
+			danmakuId:barrage.danmakuId,
+			nickName:barrage.nickName
+		}
+		
+		var div_barrager = $("<div class='barrage' id='" + barrager_id + "' name='" + JSON.stringify(_dInfo) +"'></div>").appendTo($(this));
 		var window_height = $(this).height() - 100;
 		// var bottom = (barrage.bottom == 0) ? Math.floor(Math.random() * window_height + 40) : barrage.bottom;
 		div_barrager.css("position", "absolute");
@@ -39,9 +46,8 @@
 
 		}
 		
-		var content = $("<a title='' href='' target='_blank'></a>").appendTo(id + " .barrage_box .p");
+		var content = $("<a title='' target='_blank'></a>").appendTo(id + " .barrage_box .p");
 		content.attr({
-			'href': barrage.href,
 			'id': barrage.id
 		}).empty().append(barrage.info);
 		if(navigator.userAgent.indexOf("MSIE 6.0")>0  ||  navigator.userAgent.indexOf("MSIE 7.0")>0 ||  navigator.userAgent.indexOf("MSIE 8.0")>0  ){

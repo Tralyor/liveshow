@@ -1,7 +1,10 @@
 package org.liveshow.controller;
 
 import org.liveshow.dto.Show;
+import org.liveshow.entity.RecommendHome;
+import org.liveshow.entity.User;
 import org.liveshow.service.DarkroomRoomService;
+import org.liveshow.service.RecommendHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,20 +14,24 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by Cjn on 2017/11/30.
  */
 @Controller
-@RequestMapping("/supermanage")
+@RequestMapping("/supermanager")
 public class SuperManagerController {
     @Autowired
     private DarkroomRoomService darkroomRoomService;
-
+    @Autowired
+    private RecommendHomeService recommendHomeService;
+    
     /**
      *@Author Cjn
      * @param roomId
@@ -38,10 +45,8 @@ public class SuperManagerController {
      */
     @RequestMapping("/closure")
     @ResponseBody
-    public Show closureRoom(int roomId, String reason ,int hours,int managerId,HttpServletRequest request,Model model){
+    public Show closureRoom(Integer roomId, String reason ,Integer hours,HttpServletRequest request,Model model){
         Show show = new Show();
-        
-
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
         /**构建图片保存的目录**/
@@ -57,9 +62,9 @@ public class SuperManagerController {
         /**获取文件的后缀**/
         String suffix = multipartFile.getOriginalFilename().substring
                 (multipartFile.getOriginalFilename().lastIndexOf("."));
-//        /**使用UUID生成文件名称**/    
-//        String logImageName = UUID.randomUUID().toString()+ suffix;//构建文件名称     
-        String logImageName = multipartFile.getOriginalFilename();
+        /**使用UUID生成文件名称**/    
+        String logImageName = UUID.randomUUID().toString()+ suffix;//构建文件名称     
+        //String logImageName = multipartFile.getOriginalFilename();
         /**拼成完整的文件保存路径加文件**/
         String fileName = logoRealPathDir + File.separator   + logImageName;
         File file = new File(fileName);
@@ -71,8 +76,11 @@ public class SuperManagerController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        HttpSession session = request.getSession();
+        User user =(User)session.getAttribute("user");
         
-        int res = darkroomRoomService.insertDarkRecord(roomId,reason,hours,fileName,managerId);
+        int res = darkroomRoomService.insertDarkRecord(roomId,reason,hours*60*60,fileName,user.getId());
         if (res == 0){
             show.setState(0);
             show.setMessage("操作失败");
@@ -89,9 +97,14 @@ public class SuperManagerController {
     @ResponseBody
     public Show addRecoRoom( int roomId ,int managerId){
         Show show = new Show();
-        
-        
-        
+        int res = recommendHomeService.addRecoRoom(roomId,managerId);
+        if (res == 1){
+            show.setState(1);
+            show.setMessage("推荐成功");
+        }else{
+            show.setState(0);
+            show.setMessage("推荐失败");
+        }
         return show;
     }
     

@@ -7,4 +7,5 @@ public interface DarkroomRoomService {
     
     int insertDarkRecord(int roomId ,String reason ,int hours ,String photo, int managerId);
     
+    int isDrakRoom(int roomId);
 }

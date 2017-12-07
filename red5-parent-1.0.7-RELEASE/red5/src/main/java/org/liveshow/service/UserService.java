@@ -44,4 +44,7 @@ public interface UserService {
 	 * @return
 	 */
 	List<PersonalFollowingDTO> getPersonFollowing(int id);
+    
+    User doLogin(String loginName,String password);
+
 }

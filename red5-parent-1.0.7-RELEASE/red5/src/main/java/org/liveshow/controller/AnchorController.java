@@ -30,6 +30,7 @@ public class AnchorController {
             liveRecordService.addRecord(roomId);
         }else{
             liveRecordService.finishRecord(roomId);
+            roomService.changeMostPop(roomId);
         }
         show.setState(1);
         show.setMessage("操作成功");

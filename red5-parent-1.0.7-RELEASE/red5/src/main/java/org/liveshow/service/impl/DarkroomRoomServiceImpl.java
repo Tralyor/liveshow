@@ -5,6 +5,7 @@ import org.liveshow.entity.DarkroomRoom;
 import org.liveshow.service.DarkroomRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 /**
  * Created by Cjn on 2017/11/28.
@@ -31,4 +32,14 @@ public class DarkroomRoomServiceImpl implements DarkroomRoomService {
         }
         return res;
     }
+
+    @Override
+    public int isDrakRoom(int roomId) {
+        List<DarkroomRoom> lists = darkroomRoomMapper.isDarkRoom(roomId);
+       if (lists == null || lists.size() == 0){
+           return 1;
+       }
+        return 0;
+    }
+
 }

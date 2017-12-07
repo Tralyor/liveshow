@@ -133,4 +133,17 @@ public class UserServiceImpl implements UserService{
 	{
 		return new PersonalProfileDTO(user.getNickName(), "", idCardState);
 	}
+
+    @Override
+    public User doLogin(String loginName,String password) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andLoginNameEqualTo(loginName.trim());
+        criteria.andPasswordEqualTo(password);
+        List<User> lists = userMapper.selectByExample(userExample);
+        if (lists == null || lists.size() != 1 ){
+            return null;
+        }
+        return lists.get(0);
+    }
 }

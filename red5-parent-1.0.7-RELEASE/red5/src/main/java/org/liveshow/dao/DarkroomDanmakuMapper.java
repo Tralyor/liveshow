@@ -29,5 +29,5 @@ public interface DarkroomDanmakuMapper {
 
     int updateByPrimaryKey(DarkroomDanmaku record);
     
-    List<DarkroomDanmaku> isDark(@Param("userId") int userId , int roomId);
+    List<DarkroomDanmaku> isDark(@Param("userId") int userId ,@Param("roomId") int roomId);
 }

@@ -257,4 +257,8 @@
       manager_id = #{managerId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="isDarkRoom" resultType="org.liveshow.entity.DarkroomRoom">
+    SELECT * FROM darkroom_room a WHERE a.room_id = 1 AND a.time + a.hours > unix_timestamp(now())
+  </select>
 </mapper>

@@ -1,5 +1,6 @@
 package org.liveshow.service;
 
+import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
 import org.liveshow.entity.Module;
 
 import java.util.List;
@@ -29,6 +30,6 @@ public interface RecommendModuleService {
      */
     List<RecommendModule> getAllRecommendModule();
 
-    List<Module> findRecoModul();
+    List<RecommendModulAndInfo> findRecoModul();
 
 }

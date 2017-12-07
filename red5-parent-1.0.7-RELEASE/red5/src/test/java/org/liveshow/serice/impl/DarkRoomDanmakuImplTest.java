@@ -25,4 +25,8 @@ public class DarkRoomDanmakuImplTest {
         darkroomDanmaku.setHours(2000);
         darkroomDanmakuService.addDarkRoomDanmaku(darkroomDanmaku);
     }
+    @Test
+    public void isDark(){
+        darkroomDanmakuService.isDark(2,1);
+    }
 }

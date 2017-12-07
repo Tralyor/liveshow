@@ -197,6 +197,6 @@
   </update>
 
   <select id="findRecoRoom" resultType="org.liveshow.entity.Room">
-    SELECT a.* FROM room a,recommend_home b WHERE a.id = b.room_id  AND switch_judge = 1 ORDER BY b.time limit 0,5
+  SELECT DISTINCT(a.id) as meiyong , a.* FROM room a,recommend_home b WHERE a.id = b.room_id  AND switch_judge = 1 AND NOT EXISTS(SELECT * FROM darkroom_room d WHERE d.room_id = a.id AND d.time + d.hours > unix_timestamp(now())) ORDER BY b.time limit 0,5
   </select>
 </mapper>
