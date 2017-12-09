@@ -21,13 +21,20 @@ public class RoomMapperTest
 {
 	@Autowired
 	private RoomMapper roomMapper;
+	ObjectMapper mapper = new ObjectMapper();
 
 	@Test
 	public void selectByUserIdWithModule() throws Exception
 	{
-		ObjectMapper mapper = new ObjectMapper();
 		Room room = roomMapper.selectByUserIdWithModule(1);
 		System.out.println(mapper.writeValueAsString(room));
+	}
+
+	@Test
+	public void updateByUserId() throws Exception
+	{
+		Room room = new Room();
+
 	}
 
 }

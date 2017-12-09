@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class TimeTool
 {
-    public static String getDateFormat(long  timestamp, String type){
+    public static String getDateFormat(long timestamp, String type){
         SimpleDateFormat ft = new SimpleDateFormat (type);
         String d = ft.format(timestamp * 1000);
         return d;

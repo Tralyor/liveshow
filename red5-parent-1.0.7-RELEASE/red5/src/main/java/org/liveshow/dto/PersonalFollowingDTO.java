@@ -7,6 +7,7 @@ public class PersonalFollowingDTO
 {
 	private int roomId;
 	private String roomName;
+	private int careId;
 	private String livePhoto;
 	private String nickName;
 	//直播状态
@@ -22,10 +23,10 @@ public class PersonalFollowingDTO
 	@Override
 	public String toString()
 	{
-		return "PersonalFollowingDTO{" + "roomId=" + roomId + ", roomName='" + roomName + '\'' + ", livePhoto='"
-				+ livePhoto + '\'' + ", nickName='" + nickName + '\'' + ", liveState=" + liveState + ", liveTime="
-				+ liveTime + ", attendance=" + attendance + ", moduleId=" + moduleId + ", moduleName='" + moduleName
-				+ '\'' + '}';
+		return "PersonalFollowingDTO{" + "roomId=" + roomId + ", roomName='" + roomName + '\'' + ", careId=" + careId
+				+ ", livePhoto='" + livePhoto + '\'' + ", nickName='" + nickName + '\'' + ", liveState=" + liveState
+				+ ", liveTime=" + liveTime + ", attendance=" + attendance + ", moduleId=" + moduleId + ", moduleName='"
+				+ moduleName + '\'' + '}';
 	}
 
 	public PersonalFollowingDTO()
@@ -76,6 +77,16 @@ public class PersonalFollowingDTO
 	public void setRoomName(String roomName)
 	{
 		this.roomName = roomName;
+	}
+
+	public int getCareId()
+	{
+		return careId;
+	}
+
+	public void setCareId(int careId)
+	{
+		this.careId = careId;
 	}
 
 	public String getLivePhoto()

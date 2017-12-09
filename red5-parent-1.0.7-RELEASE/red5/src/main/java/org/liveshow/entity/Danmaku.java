@@ -5,6 +5,8 @@ public class Danmaku {
 
     private Integer userId;
 
+    private User user;
+
     private Integer roomId;
 
     private String content;
@@ -39,7 +41,17 @@ public class Danmaku {
         this.userId = userId;
     }
 
-    public Integer getRoomId() {
+	public User getUser()
+	{
+		return user;
+	}
+
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
+
+	public Integer getRoomId() {
         return roomId;
     }
 

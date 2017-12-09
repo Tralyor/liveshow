@@ -3,11 +3,14 @@ package org.liveshow.service.impl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.liveshow.dto.PersonalChangePasswordDTO;
+import org.liveshow.dto.PersonalFollowingDTO;
 import org.liveshow.dto.Show;
 import org.liveshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * Created by asus on 2017/12/5.
@@ -48,6 +51,10 @@ public class UserServiceImplTest
 	@Test
 	public void getPersonFollowing() throws Exception
 	{
-
+		List<PersonalFollowingDTO> personalFollowingDTOList = userService.getPersonFollowing(1);
+		for (PersonalFollowingDTO p : personalFollowingDTOList)
+		{
+			System.out.println(p);
+		}
 	}
 }

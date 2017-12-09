@@ -234,4 +234,65 @@
 		ORDER BY
 		  c.time
   </select>
+
+	<select id="selectNotExpiredByUserId" resultType="org.liveshow.entity.DarkroomDanmaku">
+		SELECT
+			u.nick_name "danmaku.user.nickName",
+			d.content "danmaku.content",
+			dd.id,
+			dd.hours,
+			dd.time,
+			dd.state
+		FROM
+			`user` u,
+			room r,
+			danmaku d,
+			darkroom_danmaku dd
+		WHERE
+			dd.danmaku_id = d.id
+		AND
+			d.user_id = u.id
+		AND
+			r.user_id = #{userId}
+		AND
+			dd.time + dd.hours &lt; unix_timestamp(now())
+		AND
+			dd.state = 0
+	</select>
+
+	<select id="selectExpiredByUserId" resultType="org.liveshow.entity.DarkroomDanmaku">
+		SELECT
+			u.nick_name "danmaku.user.nickName",
+			d.content "danmaku.content",
+			dd.id,
+			dd.hours,
+			dd.time,
+			dd.state
+		FROM
+			`user` u,
+			room r,
+			danmaku d,
+			darkroom_danmaku dd
+		WHERE
+			dd.danmaku_id = d.id
+		AND
+			d.user_id = u.id
+		AND
+			r.user_id = #{userId}
+		AND
+			(
+					dd.time + dd.hours > unix_timestamp(now())
+				OR
+					dd.state = 1
+			)
+	</select>
+
+	<update id="cancelMute" parameterType="int">
+		UPDATE
+			darkroom_danmaku
+		SET
+			state = 1
+		WHERE
+	  		id = #{id}
+	</update>
 </mapper>

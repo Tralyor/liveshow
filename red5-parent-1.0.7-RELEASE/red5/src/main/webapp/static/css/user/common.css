@@ -16,6 +16,18 @@ ul
     list-style: none;
 }
 
+.pt-l
+{
+    float: left;
+}
+
+.pt-r
+{
+    float: right;
+}
+
+
+
 .live-left
 {
     float: left;
@@ -213,8 +225,6 @@ li:hover .class-main, .live-user-img:hover .user-main
     bottom: 0;
 
     border-right: 1px solid #9E9E9E;
-
-	background-color: #ffffff;
 }
 
 .live-side-scroll

@@ -30,4 +30,27 @@ public interface DarkroomDanmakuMapper {
     int updateByPrimaryKey(DarkroomDanmaku record);
     
     List<DarkroomDanmaku> isDark(@Param("userId") int userId ,@Param("roomId") int roomId);
+
+	/**
+	 * 通过userId取未过期的封禁名单
+	 * 并且
+	 * 起始时间 + 时长 要小于现 在
+	 * 过期状态为false
+	 * @param userId
+	 * @return
+	 */
+	List<DarkroomDanmaku> selectNotExpiredByUserId(int userId);
+
+	/**
+	 * 通过userId取过期的封禁名单
+	 * 并且
+	 * 起始时间 + 时长 要大于 现在
+	 * 或
+	 * 过期状态为true
+	 * @param userId
+	 * @return
+	 */
+	List<DarkroomDanmaku> selectExpiredByUserId(int userId);
+
+	int cancelMute(int id);
 }

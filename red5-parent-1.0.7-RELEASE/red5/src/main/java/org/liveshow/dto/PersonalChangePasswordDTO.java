@@ -9,6 +9,13 @@ public class PersonalChangePasswordDTO
 	private String newPass;
 	private String confirmPass;
 
+	@Override
+	public String toString()
+	{
+		return "PersonalChangePasswordDTO{" + "oldPass='" + oldPass + '\'' + ", newPass='" + newPass + '\''
+				+ ", confirmPass='" + confirmPass + '\'' + '}';
+	}
+
 	public String getOldPass()
 	{
 		return oldPass;

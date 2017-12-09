@@ -2,6 +2,7 @@ package org.liveshow.service.impl;
 
 import org.liveshow.dao.RoomMapper;
 import org.liveshow.dto.PersonalLiveSettingDTO;
+import org.liveshow.dto.Show;
 import org.liveshow.entity.CombinationEntity.RoomAndOwner;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.Part;
@@ -9,6 +10,8 @@ import org.liveshow.entity.Room;
 import org.liveshow.entity.RoomExample;
 import org.liveshow.service.RoomService;
 import org.liveshow.surveillant.RoomPopularity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +23,7 @@ import java.util.List;
  */
 @Service
 public class RoomeServiceImpl implements RoomService {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private RoomMapper roomMapper;
@@ -102,6 +106,25 @@ public class RoomeServiceImpl implements RoomService {
 		return entity2PersonalLiveSettingDTO(room);
 	}
 
+	@Override
+	@Transactional
+	public Show updateLiveSetting(PersonalLiveSettingDTO personalLiveSettingDTO)
+	{
+		logger.info("更新直播设置");
+		Room room = personalLiveSettingDTO2Entity(personalLiveSettingDTO);
+		int result = roomMapper.updateRoomWithoutSwitchJudge(room);
+		if (result == 1)
+		{
+			logger.info("更新成功");
+			return new Show(null, 1, "修改成功！");
+		}
+		else
+		{
+			logger.info("更新失败");
+			return new Show(null, 0, "修改失败");
+		}
+	}
+
 	private PersonalLiveSettingDTO entity2PersonalLiveSettingDTO(Room room)
 	{
 		Module module = room.getModule();
@@ -112,5 +135,13 @@ public class RoomeServiceImpl implements RoomService {
 				part.getId(), part.getName(),
 				module.getId(), module.getName(),
 				room.getSwitchJudge());
+	}
+
+	private Room personalLiveSettingDTO2Entity(PersonalLiveSettingDTO personalLiveSettingDTO)
+	{
+		return new Room(personalLiveSettingDTO.getRoomId(), 0, personalLiveSettingDTO.getRoomName(),
+				personalLiveSettingDTO.getStreamCode(), personalLiveSettingDTO.getNotice(),
+				personalLiveSettingDTO.getPhoto(), personalLiveSettingDTO.getModuleId(),
+				personalLiveSettingDTO.isLiveState(), 0);
 	}
 }

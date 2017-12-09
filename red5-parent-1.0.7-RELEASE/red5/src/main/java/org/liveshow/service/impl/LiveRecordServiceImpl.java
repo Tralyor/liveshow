@@ -77,14 +77,16 @@ public class LiveRecordServiceImpl  implements LiveRecordService{
 		try
 		{
 			logger.info("日期由String -> Date");
-			if (startTime != null)
+			if (startTime != null && startTime.length() != 0)
 			{
+				logger.info("转换startTime");
 				start = sdf.parse(startTime);
 				startTimeStamp = (int)(start.getTime() / 1000);
 			}
 
-			if (endTime != null)
+			if (endTime != null && endTime.length() != 0)
 			{
+				logger.info("转换endTime");
 				end = sdf.parse(endTime);
 				//取这个日期的23:59
 				endTimeStamp = (int)(end.getTime() / 1000 + 86400 - 1);
@@ -109,7 +111,7 @@ public class LiveRecordServiceImpl  implements LiveRecordService{
 
 	private PersonalLiveRecordDTO entity2PersonalLiveRecordDTO(LiveRecord liveRecord)
 	{
-		String format = "yyyy/MM/dd HH:mm";
+		String format = "yyyy-MM-dd HH:mm";
 		return new PersonalLiveRecordDTO(TimeTool.getDateFormat(liveRecord.getStartTime(), format),
 				TimeTool.getDateFormat(liveRecord.getEndTime(), format), (liveRecord.getDuration() + 60) / 60);
 	}

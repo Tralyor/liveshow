@@ -35,4 +35,10 @@ public interface PartMapper {
      */
     List<Part> selectAll();
 
+	/**
+	 * 获取所有板块
+	 * 并且获取板块所拥有的module
+	 * @return
+	 */
+	List<Part> selectAllWithModuleList();
 }

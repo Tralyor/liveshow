@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<PersonalFollowingDTO> getPersonFollowing(int id)
 	{
-		logger.info("获取用户关注的直播间");
+		logger.info("查找用户关注的直播间");
 		List<PersonalFollowingDTO> personalFollowingDTOList = userMapper.selectFollowingByUserId(id);
 		for (PersonalFollowingDTO p : personalFollowingDTOList)
 		{

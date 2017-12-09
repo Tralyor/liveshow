@@ -229,6 +229,7 @@
 	<resultMap id="following" type="org.liveshow.dto.PersonalFollowingDTO">
 		<result column="room_id" jdbcType="INTEGER" property="roomId"/>
 		<result column="room_name" jdbcType="VARCHAR" property="roomName"/>
+		<result column="care_id" jdbcType="INTEGER" property="careId"/>
 		<result column="photo" jdbcType="VARCHAR" property="livePhoto"/>
 		<result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
 		<result column="switch_judge" jdbcType="TINYINT" property="liveState"/>
@@ -243,6 +244,8 @@
 			room.id room_id,
 			room.`name` room_name,
 			room.switch_judge,
+			room.photo,
+			care.id care_id,
 			`user`.*
 		FROM
 			care,

@@ -113,7 +113,6 @@ public class LiveShowController {
     /**
      * @Author Cjn
      * @param roomId
-     * @param userId
      * @return
      * 添加关注接口
      */

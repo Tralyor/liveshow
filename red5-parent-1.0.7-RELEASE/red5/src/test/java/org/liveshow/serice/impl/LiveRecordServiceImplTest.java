@@ -48,7 +48,7 @@ public class LiveRecordServiceImplTest {
 	@Test
 	public void getLiveRecordByTime()
 	{
-		Show show = liveRecordService.getLiveRecordByTime(1, "2017-12-01", "2017-12-01");
+		Show show = liveRecordService.getLiveRecordByTime(1, "2017-12-01", "");
 		System.out.println(show.getMessage());
 	}
 }

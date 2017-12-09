@@ -34,5 +34,7 @@ public interface RoomMapper {
     List<RoomAndOwner> findRecoRoom(@Param("moduleId") int moduleId , @Param("pageNo") int pageNo, @Param("pageSize") int pageSize);
 
     RoomAndOwner findRoomById(int roomId);
+
+    int updateRoomWithoutSwitchJudge(Room room);
 }
 
