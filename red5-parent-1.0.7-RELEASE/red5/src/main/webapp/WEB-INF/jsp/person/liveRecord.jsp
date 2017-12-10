@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>template</title>
     <%@ include file="../common/resources.jsp" %>
-    <link rel="stylesheet" href="../../static/css/user/user.css"/>
+    <link rel="stylesheet" href="/static/css/user/user.css"/>
 </head>
 
 <body>

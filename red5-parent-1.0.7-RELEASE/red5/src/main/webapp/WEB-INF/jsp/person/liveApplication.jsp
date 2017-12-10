@@ -185,13 +185,13 @@
                             </ol>
                             <form action="#" class="form-horizontal">
                                 <div class="form-group">
-                                    <label for="" class="col-sm-2 control-label">真实姓名：</label>
+                                    <label for="realName" class="col-sm-2 control-label">真实姓名：</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" />
+                                        <input id="realName" type="text" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="" class="col-sm-2 control-label">证件类型：</label>
+                                    <label class="col-sm-2 control-label">证件类型：</label>
                                     <div class="col-sm-10">
                                         <select class="form-control">
                                             <option>身份证</option>
@@ -199,39 +199,39 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="" class="col-sm-2 control-label">证件号码：</label>
+                                    <label for="idcardId" class="col-sm-2 control-label">证件号码：</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" />
+                                        <input id="idcardId" type="text" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-4">
                                         <div class="thumbnail" style="border: none;">
-                                            <img src="../../static/img/img1.png">
+                                            <img src="/static/img/img1.png" id="headheldPassport">
                                             <div class="caption">
                                                 <span style="line-height: 34px;">手持证件照（2M内）</span>
-                                                <label class="btn btn-default pt-r" for="img1">点击上传</label>
-                                                <input type="file" id="img1" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
+                                                <label class="btn btn-default pt-r" for="headheldPassportInput">点击上传</label>
+                                                <input type="file" id="headheldPassportInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="thumbnail" style="border: none;">
-                                            <img src="../../static/img/img2.png">
+                                            <img src="/static/img/img2.png" id="passportFront">
                                             <div class="caption">
                                                 <span style="line-height: 34px;">证件正面照（2M内）</span>
-                                                <label class="btn btn-default pt-r" for="img2">点击上传</label>
-                                                <input type="file" id="img2" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
+                                                <label class="btn btn-default pt-r" for="passportFrontInput">点击上传</label>
+                                                <input type="file" id="passportFrontInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="thumbnail" style="border: none;">
-                                            <img src="../../static/img/img3.png">
+                                            <img src="/static/img/img3.png" id="passportBack">
                                             <div class="caption">
                                                 <span style="line-height: 34px;">证件背面照（2M内）</span>
-                                                <label class="btn btn-default pt-r" for="img3">点击上传</label>
-                                                <input type="file" id="img3" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
+                                                <label class="btn btn-default pt-r" for="passportBackInput">点击上传</label>
+                                                <input type="file" id="passportBackInput" accept="image/png, image/jpeg, image/jpg" style="display:none;">
                                             </div>
                                         </div>
                                     </div>
@@ -249,4 +249,20 @@
 </body>
 <%@ include file="../common/resources-foot.jsp" %>
 <script type="text/javascript" src="/static/js/user/common.js"></script>
+<script>
+    $("#headheldPassportInput").change(function()
+    {
+        preview(this, "headheldPassport");
+    });
+
+    $("#passportFrontInput").change(function()
+    {
+        preview(this, "passportFront");
+    });
+
+    $("#passportBackInput").change(function()
+    {
+        preview(this, "passportBack");
+    })
+</script>
 </html>

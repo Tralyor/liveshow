@@ -276,3 +276,9 @@ ol.class-detail li + li::before
     overflow: hidden;
     vertical-align: middle;
 }
+
+.thumbnail img
+{
+	width: 227px;
+	height: 130px;
+}
