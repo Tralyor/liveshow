@@ -73,6 +73,18 @@ option = {
     series: info
 };
 
+function handleDate() {
+    var timestampone = Date.parse(new Date(document.getElementById("text1").value + " 00:00:00"));
+    var timestamptwo = Date.parse(new Date(document.getElementById("text2").value + " 00:00:00"));
+    if(document.getElementById("text1").value == "" || document.getElementById("text2").value == ""){
+        layer.msg("开始日期或结束日期不能为空");
+    }else if (timestampone >= timestamptwo){
+        layer.msg("结束日期不能早于开始日期");
+    }else {
+        setData();
+    }
+}
+
 function setData() {
     var timestamp1 = Date.parse(new Date(document.getElementById("text1").value + " 00:00:00"));
     var timestamp2 = Date.parse(new Date(document.getElementById("text2").value + " 00:00:00"));

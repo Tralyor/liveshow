@@ -48,8 +48,11 @@ function init()
                 }
             }
             setInit();
+            sendinfo();
         }
     });
+}
+function sendinfo() {
     $.ajax({
         type : "post",
         url : "/recommend/presentModule",
