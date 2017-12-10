@@ -9,6 +9,13 @@
       <arg column="reco_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
+  <resultMap id="PresentModule" type="org.liveshow.entity.CombinationEntity.RecommendModulePresent">
+    <id property="id" column="id"/>
+    <result property="moduleId" column="module_id"/>
+    <result property="type" column="type"/>
+    <result property="recoTime" column="reco_time"/>
+    <result property="partId" column="part_id"/>
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -199,4 +206,21 @@
   <select id="findRecoModule" resultType="org.liveshow.entity.CombinationEntity.RecommendModulAndInfo">
     SELECT a.*,type FROM module a,recommend_module b WHERE a.id = b.module_id ORDER BY b.reco_time DESC LIMIT 3
   </select>
+
+  <select id="selectModulePresent" resultMap="PresentModule">
+    SELECT a.id AS id, a.module_id AS module_id, a.type AS TYPE, a.reco_time AS reco_time, b.id AS part_id FROM recommend_module AS a, part AS b, module AS c WHERE a.module_id = c.id AND c.part_id = b.id;
+  </select>
+
+  <select id="confirmById" resultType="Integer">
+    SELECT COUNT(*) FROM recommend_module WHERE id = #{id};
+  </select>
+
+  <select id="confirmModule" resultType="Integer">
+    SELECT COUNT(*) FROM recommend_module WHERE module_id = #{moduleId} AND TYPE = #{type} AND id != #{id};
+  </select>
+
+  <update id="updateById">
+    UPDATE recommend_module SET module_id = #{moduleId}, reco_time = #{recoTime} WHERE id = #{id};
+  </update>
+
 </mapper>

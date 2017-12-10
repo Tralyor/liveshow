@@ -1,34 +1,69 @@
 package org.liveshow.service.impl;
 
 import org.liveshow.dao.LiveRecordMapper;
-import org.liveshow.dto.PersonalLiveRecordDTO;
+import org.liveshow.dao.PartMapper;
+
 import org.liveshow.dto.Show;
+import org.liveshow.dto.PersonalLiveRecordDTO;
+
+import org.liveshow.entity.Part;
 import org.liveshow.entity.LiveRecord;
 import org.liveshow.entity.LiveRecordExample;
+
 import org.liveshow.service.LiveRecordService;
 import org.liveshow.surveillant.RoomPopularity;
 import org.liveshow.util.TimeTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Cjn on 2017/11/28.
  */
 @Service
 public class LiveRecordServiceImpl  implements LiveRecordService{
+
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
+    private PartMapper partMapper;
+
+    @Autowired
     private LiveRecordMapper liveRecordMapper;
+
+    @Override
+    public Show getPartsPopulation(int startTime, int endTime) {
+        Show show = new Show();
+        int countDay = (endTime - startTime) / 86400;
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        List<Part> partList = partMapper.selectAll();
+        map.put("part", partList);
+        for(int i = 0;i < partList.size();i++){
+            int[] temp = new int[countDay];
+            int m = startTime;
+            for(int n = 0;n < countDay;n++){
+                if (liveRecordMapper.selectPartPopulationByDate(partList.get(i).getId(), m, m + 86400) == null){
+                    temp[n] = 0;
+                }else{
+                    temp[n] = liveRecordMapper.selectPartPopulationByDate(partList.get(i).getId(), m, m + 86400);
+                }
+                m += startTime;
+            }
+            map.put(partList.get(i).getName(), temp);
+        }
+        show.setData(map);
+        show.setState(1);
+        return show;
+    }
     
     @Override
     public int addRecord(int roomId) {

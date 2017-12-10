@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.liveshow.dto.PersonalLiveRecordDTO;
 import org.liveshow.dto.Show;
-import org.liveshow.entity.LiveRecord;
 import org.liveshow.service.LiveRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,14 +13,26 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Created by Zzzz on 2017/12/8.
+=======
+import java.util.Date;
+import java.util.List;
+
+/**
  * Created by Cjn on 2017/12/1.
+>>>>>>> 6220cfd919ca70f7e85842a7f5271c91b18c634d
  */
 @ContextConfiguration("classpath:spring/spring-*.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LiveRecordServiceImplTest {
-    
+
     @Autowired
     private LiveRecordService liveRecordService;
+
+    @Test
+    public void test(){
+        liveRecordService.getPartsPopulation(1,2000000000);
+    }
     
     @Test
     public void addRecord(){

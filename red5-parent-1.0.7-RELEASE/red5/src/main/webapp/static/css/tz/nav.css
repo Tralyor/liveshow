@@ -1,0 +1,14 @@
+    .sidebar {position: fixed;width: 15%;margin-top: 70px;z-index: 2;}
+
+.sidebar .sidebar-search {padding: 15px;}
+.sidebar ul li a.active {background-color: #eee;}
+.sidebar ul li {background: #f8f8f8;border-bottom: #e7e7e7 1px solid;}
+.nav-second-level li {border-bottom: 0 !important;}
+.nav-second-level li a {padding-left: 38px;}
+.sidebar-nav{height: 20000px;background-color:  	#5B5B5B}
+.navbar{
+	height: 70px;
+	background-color: #3C3C3C;
+	width: 100%;
+	position: fixed;
+}

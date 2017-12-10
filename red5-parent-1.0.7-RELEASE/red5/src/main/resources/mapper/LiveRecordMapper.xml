@@ -229,6 +229,24 @@
       population = #{population,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectHighestPopulation" resultType="java.lang.Integer">
+    SELECT MAX(population) FROM live_record AS a, USER AS b, room AS c WHERE b.id = c.user_id AND c.id = a.room_id AND b.nick_name = #{userName};
+  </select>
+
+  <select id="selectWholeDuration" resultType="java.lang.Integer">
+    SELECT SUM(duration) FROM live_record AS a, USER AS b, room AS c WHERE b.id = c.user_id AND c.id = a.room_id AND b.nick_name = #{userName};
+  </select>
+
+  <select id="countTimes" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM live_record AS a, USER AS b, room AS c WHERE b.id = c.user_id AND c.id = a.room_id AND b.nick_name = #{userName};
+  </select>
+
+  <select id="selectPartPopulationByDate" resultType="java.lang.Integer">
+    SELECT SUM(population) FROM live_record AS a, room AS b
+    WHERE a.room_id = b.id AND a.start_time &gt; #{starttime} AND a.start_time &lt; #{endtime} AND b.module_id IN (SELECT c.id FROM module AS c, part AS d WHERE c.part_id = d.id AND d.id = #{partId});
+  </select>
+
 	<select id="selectByUserId" resultMap="BaseResultMap">
 		SELECT live_record.*
 		FROM live_record, room

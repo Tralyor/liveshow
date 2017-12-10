@@ -1,6 +1,10 @@
 package org.liveshow.service.impl;
 
+import org.liveshow.dao.ModuleMapper;
+import org.liveshow.dao.PartMapper;
 import org.liveshow.dao.RecommendModuleMapper;
+import org.liveshow.dto.Show;
+import org.liveshow.entity.CombinationEntity.RecommendModulePresent;
 import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.RecommendModule;
@@ -9,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,41 +24,64 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
 
     @Autowired
     private RecommendModuleMapper recommendModuleMapper;
-    
+
+    @Autowired
+    private PartMapper partMapper;
+
+    @Autowired
+    private ModuleMapper moduleMapper;
+
     @Override
-    @Transactional
-    public int handleRecommendModule(int id, String moduleId) {
+    public Show handleRecommendModule(int id, String moduleId) {
+        Show show = new Show();
+        Boolean type;
+        if (id < 5){
+            type = false;
+        }else{
+            type = true;
+        }
+
         int status = recommendModuleMapper.confirmById(id);
         if (moduleId.equals("empty")){
-            if(status == 0){
-                return 0;
+            if(recommendModuleMapper.confirmById(id) == 0){
+                show.setState(0);
+                show.setMessage("禁止上传空的模块！");
             }else{
                 recommendModuleMapper.deleteByPrimaryKey(id);
-                return 0;
+                show.setState(1);
+                show.setMessage("已将原模块取消");
             }
         }else{
             int moduleIdNumber = Integer.parseInt(moduleId);
-            if (status == 0){
-                RecommendModule recommendModule = new RecommendModule();
-                recommendModule.setId(id);
-                recommendModule.setModuleId(moduleIdNumber);
-                if (id < 4){
-                    recommendModule.setType(false);
+            if(recommendModuleMapper.confirmModule(moduleIdNumber, type, id) != 0){
+                show.setState(0);
+                show.setMessage("该模块已经存在于推荐模块中");
+            }else {
+                if (recommendModuleMapper.confirmById(id) == 0){
+                    RecommendModule recommendModule = new RecommendModule();
+                    recommendModule.setId(id);
+                    recommendModule.setModuleId(moduleIdNumber);
+                    recommendModule.setType(type);
+                    recommendModule.setRecoTime((int) System.currentTimeMillis());
+                    recommendModuleMapper.insert(recommendModule);
                 }else{
-                    recommendModule.setType(true);
+                    recommendModuleMapper.updateById(id, moduleIdNumber, (int) System.currentTimeMillis());
                 }
-                recommendModule.setRecoTime((int) System.currentTimeMillis());
-                return recommendModuleMapper.insert(recommendModule);
-            }else{
-                return recommendModuleMapper.updateById(id, moduleIdNumber, (int) System.currentTimeMillis());
+                show.setState(1);
+                show.setMessage("推荐模块已更新");
             }
         }
+        return show;
     }
 
     @Override
-    @Transactional
-    public List<RecommendModule> getAllRecommendModule() {
-        return recommendModuleMapper.selectModulePresent();
+    public Show getAllRecommendModule() {
+        List<RecommendModulePresent> recommendModulePresents = recommendModuleMapper.selectModulePresent();
+        Show show = new Show();
+        show.setMessage("获取信息成功");
+        show.setState(1);
+        show.setData(recommendModulePresents);
+        return show;
     }
 
     /**

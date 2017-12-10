@@ -194,4 +194,9 @@
 		WHERE
 			module.part_id = #{p_id}
 	</select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT * FROM part ORDER BY id;
+  </select>
 </mapper>
+

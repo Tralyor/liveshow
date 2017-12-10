@@ -1,6 +1,7 @@
 package org.liveshow.dao;
 
 import org.apache.ibatis.annotations.Param;
+import org.liveshow.entity.CombinationEntity.RecommendModulePresent;
 import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.RecommendModule;
@@ -36,14 +37,7 @@ public interface RecommendModuleMapper {
      * 查询现在推荐的模块
      * @return
      */
-    List<RecommendModule> selectModulePresent();
-
-    /**
-     * 添加新的推荐模块
-     * @param recommendModule
-     * @return
-     */
-    int insertRecommendModule(RecommendModule recommendModule);
+    List<RecommendModulePresent> selectModulePresent();
 
     /**
      * 判断该id的数据是否存在
@@ -60,6 +54,13 @@ public interface RecommendModuleMapper {
      * @return
      */
     int updateById(@Param("id") int id, @Param("moduleId") int moduleId, @Param("recoTime") int recoTime);
+
+    /**
+     * 确认该模块是否已经存在
+     * @param moduleId
+     * @return
+     */
+    int confirmModule(@Param("moduleId") int moduleId, @Param("type") Boolean type, @Param("id") int id);
     
     List<RecommendModulAndInfo> findRecoModule();
 }

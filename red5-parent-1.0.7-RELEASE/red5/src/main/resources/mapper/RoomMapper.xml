@@ -285,6 +285,14 @@
     SELECT * FROM room a, `user` b WHERE a.user_id =  b.id AND  NOT EXISTS(SELECT * FROM darkroom_room d WHERE d.room_id = a.id AND d.time + d.hours > unix_timestamp(now()))  AND a.id = #{roomId}
   </select>
 
+  <select id="getAllRoom" resultMap="BaseResultMap">
+    SELECT * FROM room;
+  </select>
+
+  <select id="getRoomByPart" resultMap="BaseResultMap">
+    SELECT * FROM room WHERE module_id IN (SELECT id FROM module WHERE part_id = #{partId});
+  </select>
+
 	<resultMap id="RoomWithModule" type="org.liveshow.entity.Room">
 		<id column="id" jdbcType="INTEGER" property="id"/>
 		<result column="user_id" jdbcType="INTEGER" property="userId"/>

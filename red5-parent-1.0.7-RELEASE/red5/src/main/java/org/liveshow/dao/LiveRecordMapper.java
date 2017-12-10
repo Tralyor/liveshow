@@ -29,6 +29,36 @@ public interface LiveRecordMapper {
 
     int updateByPrimaryKey(LiveRecord record);
 
+    /**
+     * 查询直播间最高人气
+     * @param userName
+     * @return
+     */
+    Integer selectHighestPopulation(String userName);
+
+    /**
+     * 查询直播总时长
+     * @param userName
+     * @return
+     */
+    Integer selectWholeDuration(String userName);
+
+    /**
+     * 查询直播次数
+     * @param userName
+     * @return
+     */
+    Integer countTimes(String userName);
+
+    /**
+     * 查询指定日期板块的客流量
+     * @param partId
+     * @param starttime
+     * @param endtime
+     * @return
+     */
+    Integer selectPartPopulationByDate(@Param("partId") int partId, @Param("starttime") int starttime, @Param("endtime") int endtime);
+
     List<LiveRecord> selectByUserId(int id);
 
     List<LiveRecord> selectByUserIdAndTime(

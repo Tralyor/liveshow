@@ -3,7 +3,7 @@ package org.liveshow.controller;
 import org.liveshow.dto.Show;
 import org.liveshow.entity.User;
 import org.liveshow.service.UserService;
-import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +43,4 @@ public class UserController {
         }
         return show;
     }
-   
-    
 }

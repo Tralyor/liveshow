@@ -29,6 +29,18 @@ public interface RoomMapper {
 
     int updateByPrimaryKey(Room record);
 
+    /**
+     * 获取所有房间
+     * @return
+     */
+    List<Room> getAllRoom();
+
+    /**
+     * 获取所有某板块的房间
+     * @return
+     */
+    List<Room> getRoomByPart(int partId);
+
     Room selectByUserIdWithModule(int userId);
 
     List<RoomAndOwner> findRecoRoom(@Param("moduleId") int moduleId , @Param("pageNo") int pageNo, @Param("pageSize") int pageSize);
@@ -37,4 +49,3 @@ public interface RoomMapper {
 
     int updateRoomWithoutSwitchJudge(Room room);
 }
-
