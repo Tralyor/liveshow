@@ -183,7 +183,7 @@
                                 <i class="fa fa-tv fa-fw"></i> &nbsp;
                                 <li class="active">直播申请</li>
                             </ol>
-                            <form action="#" class="form-horizontal">
+                            <form action="#" class="form-horizontal" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="realName" class="col-sm-2 control-label">真实姓名：</label>
                                     <div class="col-sm-10">
