@@ -1,0 +1,50 @@
+.container {
+	width: 100%;
+	position: absolute;
+	top: 70px;
+}
+#choosediv {
+	margin-top: 20px;
+	min-width: 1000px;
+	height: 700px;
+	background-color: #FCFCFC;
+}
+#choosediv h5{
+	padding: 0px;
+	position: absolute;
+	width: 90%;
+	top: 350px;
+	left: 5%;
+	border-bottom: 3px solid #ADADAD;
+	margin: 0px;
+}
+#headtip{
+	margin-top: 30px;
+}
+.form-control {
+	width: 90%;
+}
+.partrow {
+	margin-top: 18px;
+}
+.btn {
+	width: 60%;
+}
+#headtip2 {
+	margin-top: 30px;
+}
+.divrow {
+	height: 350px;
+}
+#title{
+    font-weight: bold;
+    width: 80%;
+    height: 40px;
+    margin-top: 40px;
+}
+blockquote{
+    border-color: #4a77a9;
+}
+blockquote p {
+	font-size: 24px;
+}

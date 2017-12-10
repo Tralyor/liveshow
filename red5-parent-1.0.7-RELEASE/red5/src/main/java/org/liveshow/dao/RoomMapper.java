@@ -29,4 +29,17 @@ public interface RoomMapper {
     int updateByPrimaryKey(Room record);
     
     List<Room> findRecoRoom(@Param("moduleId") int moduleId , @Param("pageNo") int pageNo,@Param("pageSize") int pageSize);
+
+    /**
+     * 获取所有房间
+     * @return
+     */
+    List<Room> getAllRoom();
+
+    /**
+     * 获取所有某板块的房间
+     * @return
+     */
+    List<Room> getRoomByPart(int partId);
+
 }

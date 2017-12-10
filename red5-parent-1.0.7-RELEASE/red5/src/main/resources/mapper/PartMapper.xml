@@ -163,4 +163,7 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT * FROM part ORDER BY id;
+  </select>
 </mapper>

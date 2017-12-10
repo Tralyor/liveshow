@@ -278,5 +278,13 @@
   <select id="findRecoRoom" resultType="org.liveshow.entity.Room">
     SELECT * FROM room WHERE room.module_id = #{moduleId} AND room.switch_judge = 1 ORDER BY room.most_popular DESC LIMIT #{pageNo},#{pageSize}
   </select>
-  
+
+  <select id="getAllRoom" resultMap="BaseResultMap">
+    SELECT * FROM room;
+  </select>
+
+  <select id="getRoomByPart" resultMap="BaseResultMap">
+    SELECT * FROM room WHERE module_id IN (SELECT id FROM module WHERE part_id = #{partId});
+  </select>
+
 </mapper>

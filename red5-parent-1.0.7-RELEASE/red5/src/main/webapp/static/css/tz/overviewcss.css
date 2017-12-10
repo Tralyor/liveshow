@@ -1,0 +1,48 @@
+.container {
+	position: absolute;
+	top: 70px;
+	width: 100%;
+}
+#chartpart1 {
+	margin-top: 40px;
+}
+#chart1 {
+	width: 100%;
+	height: 300px;
+	min-width: 100px;
+}
+#chartpart2 {
+	margin-top: 30px;
+}
+#title2 {
+	margin-top: 30px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+#chart3 {
+	width: 100%;
+	height: 300px;
+	min-width: 100px;
+}
+#chart2 {
+	width: 100%;
+	height: 300px;
+	min-width: 100px;
+}
+.chartdiv {
+	box-shadow: 10px 10px 5px #888888;
+	margin-top: 50px
+}
+#title{
+    font-weight: bold;
+    width: 80%;
+    height: 40px;
+    margin-top: 40px;
+}
+blockquote{
+    border-color: #4a77a9;
+}
+blockquote p {
+	font-size: 24px;
+}

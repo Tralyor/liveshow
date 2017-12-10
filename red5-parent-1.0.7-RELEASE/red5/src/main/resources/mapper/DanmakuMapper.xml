@@ -210,4 +210,9 @@
       time = #{time,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="countDanmaku" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM danmaku AS a, USER AS b, room AS c WHERE a.room_id = c.id AND b.id = c.user_id AND b.nick_name = #{userName};
+  </select>
+
 </mapper>

@@ -225,4 +225,23 @@
             <otherwise>AND a.id = #{typeNum}</otherwise>
         </choose>
   </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * FROM module ORDER BY id;
+    </select>
+    <delete id="deleteByPartId">
+        delete from module where part_id = #{partId};
+    </delete>
+
+    <update id="updateNameById">
+        UPDATE module SET NAME = #{name} WHERE id = #{id};
+    </update>
+
+    <update id="updateDescriptionById">
+        UPDATE module SET description = #{description} WHERE id = #{id};
+    </update>
+
+    <update id="updatePhotoById">
+        UPDATE module SET photo = #{photo} WHERE id = #{id};
+    </update>
+
 </mapper>

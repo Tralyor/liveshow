@@ -20,4 +20,9 @@ public class PartServiceImplTest {
     public void findAllPart(){
         partService.findAllPart();
     }
+
+    @Test
+    public void addPart(){
+        partService.addPart("aaa");
+    }
 }

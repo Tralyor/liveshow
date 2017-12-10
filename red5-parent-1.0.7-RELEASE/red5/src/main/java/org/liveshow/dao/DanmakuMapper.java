@@ -28,4 +28,12 @@ public interface DanmakuMapper {
     int updateByPrimaryKeySelective(Danmaku record);
 
     int updateByPrimaryKey(Danmaku record);
+
+    /**
+     * 查询直播间弹幕总数
+     * @param userName
+     * @return
+     */
+    Integer countDanmaku(String userName);
+
 }

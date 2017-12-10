@@ -1,8 +1,11 @@
 package org.liveshow.service.impl;
 
+import org.liveshow.dao.ModuleMapper;
 import org.liveshow.dao.PartMapper;
+import org.liveshow.dto.Show;
 import org.liveshow.entity.Part;
 import org.liveshow.entity.PartExample;
+import org.liveshow.service.ModuleService;
 import org.liveshow.service.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,9 @@ public class PartServiceImpl implements PartService {
     @Autowired
     private PartMapper partMapper;
 
+    @Autowired
+    private ModuleMapper moduleMapper;
+
     @Override
     public List<Part> getAllPart() {
         return partMapper.selectAll();
@@ -31,5 +37,39 @@ public class PartServiceImpl implements PartService {
             return null;
         }
         return lists;
+    }
+
+    @Override
+    public Show updatePart(int id, String name) {
+        Show show = new Show();
+        Part part = new Part();
+        part.setId(id);
+        part.setName(name);
+        partMapper.updateByPrimaryKey(part);
+        show.setState(1);
+        show.setMessage("修改成功");
+        return show;
+    }
+
+    @Override
+    public Show movePart(int id) {
+        Show show = new Show();
+        moduleMapper.deleteByPartId(id);
+        partMapper.deleteByPrimaryKey(id);
+        show.setState(1);
+        show.setMessage("移除成功");
+        return show;
+    }
+
+    @Override
+    public Show addPart(String name) {
+        Show show = new Show();
+        Part part = new Part();
+        part.setName(name);
+        partMapper.insert(part);
+        show.setData(partMapper.selectAll());
+        show.setState(1);
+        show.setMessage("添加成功");
+        return show;
     }
 }

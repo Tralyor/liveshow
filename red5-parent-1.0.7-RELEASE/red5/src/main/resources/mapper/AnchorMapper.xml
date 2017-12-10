@@ -227,4 +227,22 @@
       telephone = #{telephone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAnchorInfo" resultType="org.liveshow.entity.CombinationEntity.AnchorInfo">
+    SELECT b.nick_name AS userName, c.id AS roomId, a.name AS realName, a.idcard_id AS cardId, a.telephone AS telephone FROM anchor AS a, USER AS b, room AS c
+    WHERE a.user_id = b.id AND b.nick_name = #{userName} AND b.id = c.user_id;
+  </select>
+
+  <select id="selectDurationByDate" resultType="java.lang.Integer">
+    SELECT SUM(duration) FROM live_record AS a, USER AS b, room AS c WHERE c.user_id = b.id AND b.nick_name = #{userName} AND c.id = a.room_id AND start_time &lt; #{endtime} AND start_time &gt; #{starttime};
+  </select>
+
+  <select id="selectPopulationByDate" resultType="java.lang.Integer">
+    SELECT MAX(population) FROM live_record AS a, USER AS b, room AS c WHERE c.user_id = b.id AND b.nick_name = #{userName} AND c.id = a.room_id AND start_time &lt; #{endtime} AND start_time &gt; #{starttime};
+  </select>
+
+  <select id="selectAnchorByName" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM USER, anchor WHERE anchor.user_id = user.id AND user.nick_name = #{userName};
+  </select>
+
 </mapper>

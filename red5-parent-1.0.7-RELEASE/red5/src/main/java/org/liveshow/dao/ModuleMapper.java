@@ -36,5 +36,36 @@ public interface ModuleMapper {
      */
     List<Module> selectAll();
 
+    /**
+     * 删除某一板块的所有模块
+     * @param partId
+     * @return
+     */
+    int deleteByPartId(int partId);
+
+    /**
+     * 更新模块名字
+     * @param id
+     * @param name
+     * @return
+     */
+    int updateNameById(@Param("id") int id, @Param("name") String name);
+
+    /**
+     * 更新说明
+     * @param id
+     * @param description
+     * @return
+     */
+    int updateDescriptionById(@Param("id") int id, @Param("description") String description);
+
+    /**
+     * 更新图片路径
+     * @param id
+     * @param photo
+     * @return
+     */
+    int updatePhotoById(@Param("id") int id, @Param("photo") String photo);
+
     List<Module> findByPart(@Param("typeNum") int typeNum);
 }
