@@ -39,5 +39,6 @@ public interface PartService {
      * @return
      */
     Show addPart(String name);
-
+    
+    Part findPartById(int partId);
 }

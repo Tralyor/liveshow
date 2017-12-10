@@ -9,6 +9,7 @@ import org.liveshow.service.ModuleService;
 import org.liveshow.service.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,11 +26,13 @@ public class PartServiceImpl implements PartService {
     private ModuleMapper moduleMapper;
 
     @Override
+    @Transactional
     public List<Part> getAllPart() {
         return partMapper.selectAll();
     }
 
     @Override
+    @Transactional
     public List<Part> findAllPart() {
         PartExample partExample = new PartExample();
         List<Part> lists = partMapper.selectByExample(partExample);
@@ -71,5 +74,17 @@ public class PartServiceImpl implements PartService {
         show.setState(1);
         show.setMessage("添加成功");
         return show;
+    }
+
+    @Transactional
+    public Part findPartById(int partId) {
+        PartExample partExample = new PartExample();
+        PartExample.Criteria criteria = partExample.createCriteria();
+        criteria.andIdEqualTo(partId);
+        List<Part> lists = partMapper.selectByExample(partExample);
+        if (lists == null || lists.size() != 1) {
+            return null;
+        }
+        return lists.get(0);
     }
 }

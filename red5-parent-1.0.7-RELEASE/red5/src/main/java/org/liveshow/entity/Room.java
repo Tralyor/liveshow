@@ -15,6 +15,8 @@ public class Room {
 
     private Integer moduleId;
 
+    private Module module;
+
     private Boolean switchJudge;
 
     private Integer mostPopular;
@@ -91,7 +93,17 @@ public class Room {
         this.moduleId = moduleId;
     }
 
-    public Boolean getSwitchJudge() {
+	public Module getModule()
+	{
+		return module;
+	}
+
+	public void setModule(Module module)
+	{
+		this.module = module;
+	}
+
+	public Boolean getSwitchJudge() {
         return switchJudge;
     }
 

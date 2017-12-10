@@ -215,4 +215,7 @@
     SELECT COUNT(*) FROM danmaku AS a, USER AS b, room AS c WHERE a.room_id = c.id AND b.id = c.user_id AND b.nick_name = #{userName};
   </select>
 
+  <insert  parameterType="org.liveshow.entity.Danmaku" id="addDanmaku"  useGeneratedKeys="true" keyProperty="id" >
+    INSERT INTO danmaku(user_id,room_id,content,`time`) VALUES(#{userId},#{roomId},#{content},#{time})
+  </insert>
 </mapper>

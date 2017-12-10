@@ -59,4 +59,10 @@ public interface LiveRecordMapper {
      */
     Integer selectPartPopulationByDate(@Param("partId") int partId, @Param("starttime") int starttime, @Param("endtime") int endtime);
 
+    List<LiveRecord> selectByUserId(int id);
+
+    List<LiveRecord> selectByUserIdAndTime(
+    		@Param("id") int id,
+			@Param("startTime") int startTime,
+			@Param("endTime") int endTime);
 }

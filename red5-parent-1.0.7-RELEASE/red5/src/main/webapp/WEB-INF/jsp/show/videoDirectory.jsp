@@ -1,8 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@page isELIgnored="false"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ include file="../common/header.jsp"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,15 +8,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.min.css">
-    <script type="text/javascript" src="static/js/plugins/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="static/plugins/bootstrap/js/bootstrap.js"></script>
+    <%@ include file="../common/resources.jsp"%>
     <style>
-        
-        #mainBody {
-            width: 1000px;
+
+        body
+        {
             background-color: #F5F5F5;
-            margin: 0 auto;
+        }
+        #mainBody {
+            /*margin: 0 auto;*/
         }
         .headUl{
             list-style: none;
@@ -77,7 +74,7 @@
 
         .imgStyle{
             width: 100%;
-            height: 70%%;
+            height: 70%;
             z-index: -1;
         }
         .textDiv{
@@ -90,7 +87,14 @@
         .textDiv ul {
             list-style: none;
             padding-top: 5px;
-            margin-left: -25px;
+            /*margin-left: -25px;*/
+        }
+
+        .textDiv ul li
+        {
+            padding-left: 10px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         .playIcon{
@@ -100,197 +104,47 @@
             height: 40px;
             display: none;
         }
+        .textDiv ul li span{
+            display: inline-block;
+        }
     </style>
 </head>
 
 <body>
-<div id="mainBody">
-    <div  style="width:1000px;border-bottom: solid 1px #dddddd;margin-bottom: 15px">
-        <h1 style="display: inline-block">全部分类</h1>
-        <ul class="headUl">
-            <li class="liStyle" ><a href="#">全部</a></li>
-            <li class="liStyle" ><a href="#">全部</a></li>
-            <li class="liStyle" ><a href="#">全部</a></li>
-            <li class="liStyle" ><a href="#">全部</a></li>
-            <li class="liStyle" ><a href="#">全部</a></li>
-            <li class="liStyle" ><a href="#">全部</a></li>
-            <li class="liStyle" ><a href="#">全部</a></li>
-            <li class="liStyle" ><a href="#">全部</a></li>
-        </ul>
-    </div>
+<jsp:include page="../common/topNav.jsp"></jsp:include>
+<jsp:include page="../common/leftNav.jsp"></jsp:include>
+<div class="live-body">
+    <div style="padding: 15px;">
+        <div id="mainBody">
+            <div  style="width:1000px;border-bottom: solid 1px #dddddd;margin-bottom: 15px;padding-left: 12px;">
+                <h1 style="display: inline-block">直播修场</h1>
+               
+            </div>
 
-    <div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
-            </div>
-        </div>
-        <div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">
-            <div class="playIcon">
-                <div style="width: 40px;margin: 0 auto;">
-                    <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
-                </div>
-            </div>
-            <div class="textDiv">
-                <ul>
-                    <li>欢迎收听你的月亮我的心</li>
-                    <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 主播xxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>1.4w</li>
-                </ul>
+            <div>
+                
+                <c:forEach var="room" items="${room}">
+                    <div class="showVideo"><img class="imgStyle" src="${room.photo}" alt="">
+                        <div class="playIcon">
+                            <div style="width: 40px;margin: 0 auto;">
+                                <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
+                            </div>
+                        </div>
+                        <div class="textDiv">
+                            <ul >
+                                <li>${room.name}</li>
+                                <li style="color: #AEAEAE;font-size: 10px;margin-top: 5px"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span><span style="margin-right: 70px;">${room.nickName}</span> <span  class="glyphicon glyphicon-fire"  aria-hidden="true" ></span>1.4w</li>
+                            </ul>
+                        </div>
+                    </div>
+                </c:forEach>
+               
+             
             </div>
         </div>
     </div>
 </div>
+
 
 
 <%--<div style="width: 1000px;height: 500px;background-color: gainsboro">--%>

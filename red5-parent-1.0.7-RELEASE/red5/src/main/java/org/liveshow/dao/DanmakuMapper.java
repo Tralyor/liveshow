@@ -35,5 +35,6 @@ public interface DanmakuMapper {
      * @return
      */
     Integer countDanmaku(String userName);
-
+    
+    int addDanmaku(Danmaku danmaku);
 }

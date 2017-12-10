@@ -1,108 +1,110 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.liveshow.dao.LiveRecordMapper" >
-  <resultMap id="BaseResultMap" type="org.liveshow.entity.LiveRecord" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="room_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="start_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="end_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="duration" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="population" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    </constructor>
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+<mapper namespace="org.liveshow.dao.LiveRecordMapper">
+	<resultMap id="BaseResultMap" type="org.liveshow.entity.LiveRecord">
+		<constructor>
+			<idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="room_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="start_time" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="end_time" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="duration" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="population" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+		</constructor>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")"
+									         separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")"
+									         separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
     id, room_id, start_time, end_time, duration, population
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.liveshow.entity.LiveRecordExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from live_record
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from live_record
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+	<select id="selectByExample" resultMap="BaseResultMap" parameterType="org.liveshow.entity.LiveRecordExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List"/>
+		from live_record
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause"/>
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List"/>
+		from live_record
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from live_record
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.liveshow.entity.LiveRecordExample" >
-    delete from live_record
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="org.liveshow.entity.LiveRecord" >
+	<delete id="deleteByExample" parameterType="org.liveshow.entity.LiveRecordExample">
+		delete from live_record
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause"/>
+		</if>
+	</delete>
+	<insert id="insert" parameterType="org.liveshow.entity.LiveRecord">
     insert into live_record (id, room_id, start_time, 
       end_time, duration, population
       )
@@ -110,115 +112,115 @@
       #{endTime,jdbcType=INTEGER}, #{duration,jdbcType=INTEGER}, #{population,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.liveshow.entity.LiveRecord" >
-    insert into live_record
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="roomId != null" >
-        room_id,
-      </if>
-      <if test="startTime != null" >
-        start_time,
-      </if>
-      <if test="endTime != null" >
-        end_time,
-      </if>
-      <if test="duration != null" >
-        duration,
-      </if>
-      <if test="population != null" >
-        population,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="roomId != null" >
-        #{roomId,jdbcType=INTEGER},
-      </if>
-      <if test="startTime != null" >
-        #{startTime,jdbcType=INTEGER},
-      </if>
-      <if test="endTime != null" >
-        #{endTime,jdbcType=INTEGER},
-      </if>
-      <if test="duration != null" >
-        #{duration,jdbcType=INTEGER},
-      </if>
-      <if test="population != null" >
-        #{population,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="org.liveshow.entity.LiveRecordExample" resultType="java.lang.Integer" >
-    select count(*) from live_record
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update live_record
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.roomId != null" >
-        room_id = #{record.roomId,jdbcType=INTEGER},
-      </if>
-      <if test="record.startTime != null" >
-        start_time = #{record.startTime,jdbcType=INTEGER},
-      </if>
-      <if test="record.endTime != null" >
-        end_time = #{record.endTime,jdbcType=INTEGER},
-      </if>
-      <if test="record.duration != null" >
-        duration = #{record.duration,jdbcType=INTEGER},
-      </if>
-      <if test="record.population != null" >
-        population = #{record.population,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update live_record
-    set id = #{record.id,jdbcType=INTEGER},
-      room_id = #{record.roomId,jdbcType=INTEGER},
-      start_time = #{record.startTime,jdbcType=INTEGER},
-      end_time = #{record.endTime,jdbcType=INTEGER},
-      duration = #{record.duration,jdbcType=INTEGER},
-      population = #{record.population,jdbcType=INTEGER}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.liveshow.entity.LiveRecord" >
-    update live_record
-    <set >
-      <if test="roomId != null" >
-        room_id = #{roomId,jdbcType=INTEGER},
-      </if>
-      <if test="startTime != null" >
-        start_time = #{startTime,jdbcType=INTEGER},
-      </if>
-      <if test="endTime != null" >
-        end_time = #{endTime,jdbcType=INTEGER},
-      </if>
-      <if test="duration != null" >
-        duration = #{duration,jdbcType=INTEGER},
-      </if>
-      <if test="population != null" >
-        population = #{population,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.liveshow.entity.LiveRecord" >
+	<insert id="insertSelective" parameterType="org.liveshow.entity.LiveRecord">
+		insert into live_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="roomId != null">
+				room_id,
+			</if>
+			<if test="startTime != null">
+				start_time,
+			</if>
+			<if test="endTime != null">
+				end_time,
+			</if>
+			<if test="duration != null">
+				duration,
+			</if>
+			<if test="population != null">
+				population,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="roomId != null">
+				#{roomId,jdbcType=INTEGER},
+			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=INTEGER},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=INTEGER},
+			</if>
+			<if test="duration != null">
+				#{duration,jdbcType=INTEGER},
+			</if>
+			<if test="population != null">
+				#{population,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="org.liveshow.entity.LiveRecordExample" resultType="java.lang.Integer">
+		select count(*) from live_record
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause"/>
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update live_record
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.roomId != null">
+				room_id = #{record.roomId,jdbcType=INTEGER},
+			</if>
+			<if test="record.startTime != null">
+				start_time = #{record.startTime,jdbcType=INTEGER},
+			</if>
+			<if test="record.endTime != null">
+				end_time = #{record.endTime,jdbcType=INTEGER},
+			</if>
+			<if test="record.duration != null">
+				duration = #{record.duration,jdbcType=INTEGER},
+			</if>
+			<if test="record.population != null">
+				population = #{record.population,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause"/>
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update live_record
+		set id = #{record.id,jdbcType=INTEGER},
+		room_id = #{record.roomId,jdbcType=INTEGER},
+		start_time = #{record.startTime,jdbcType=INTEGER},
+		end_time = #{record.endTime,jdbcType=INTEGER},
+		duration = #{record.duration,jdbcType=INTEGER},
+		population = #{record.population,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause"/>
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="org.liveshow.entity.LiveRecord">
+		update live_record
+		<set>
+			<if test="roomId != null">
+				room_id = #{roomId,jdbcType=INTEGER},
+			</if>
+			<if test="startTime != null">
+				start_time = #{startTime,jdbcType=INTEGER},
+			</if>
+			<if test="endTime != null">
+				end_time = #{endTime,jdbcType=INTEGER},
+			</if>
+			<if test="duration != null">
+				duration = #{duration,jdbcType=INTEGER},
+			</if>
+			<if test="population != null">
+				population = #{population,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.liveshow.entity.LiveRecord">
     update live_record
     set room_id = #{roomId,jdbcType=INTEGER},
       start_time = #{startTime,jdbcType=INTEGER},
@@ -245,4 +247,26 @@
     WHERE a.room_id = b.id AND a.start_time &gt; #{starttime} AND a.start_time &lt; #{endtime} AND b.module_id IN (SELECT c.id FROM module AS c, part AS d WHERE c.part_id = d.id AND d.id = #{partId});
   </select>
 
+	<select id="selectByUserId" resultMap="BaseResultMap">
+		SELECT live_record.*
+		FROM live_record, room
+		WHERE
+			live_record.room_id = room.id
+		AND
+			room.user_id = #{id}
+	</select>
+	<select id="selectByUserIdAndTime" resultMap="BaseResultMap">
+		SELECT live_record.*
+		FROM live_record, room
+		<where>
+			live_record.room_id = room.id
+		  	AND room.user_id = #{id}
+			<if test="startTime != 0">
+				AND start_time > #{startTime}
+			</if>
+			<if test="endTime != 0">
+				AND end_time <![CDATA[<]]> #{endTime}
+			</if>
+		</where>
+	</select>
 </mapper>

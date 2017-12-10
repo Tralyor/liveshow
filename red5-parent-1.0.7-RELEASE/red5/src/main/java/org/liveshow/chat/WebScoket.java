@@ -3,46 +3,47 @@ package org.liveshow.chat;
 /**
  * Created by Cjn on 2017/11/27.
  */
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import org.liveshow.bean.UserAndRoom;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import org.liveshow.chat.content.GetHttpSessionConfigurator;
+import org.liveshow.service.resolver.ResolverFactory;
+import org.liveshow.surveillant.RoomPopularity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.socket.server.standard.SpringConfigurator;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.servlet.http.HttpSession;
+import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/danmakuChat/{roomId}")
-public class danmakuChat {
+@ServerEndpoint(value="/WebScoket/{roomId}" , configurator = GetHttpSessionConfigurator.class)
+public class WebScoket {
     private static int onlineCount = 0;
 
     //concurrent包的线程安全Set，用来存放每个客户端对应的danmakuChat对象。若要实现服务端与单一客户端通信的话，可以使用Map来存放，其中Key可以为用户标识
-    private static CopyOnWriteArraySet<danmakuChat> webSocketSet = new CopyOnWriteArraySet<danmakuChat>();
+    private static CopyOnWriteArraySet<WebScoket> webSocketSet = new CopyOnWriteArraySet<WebScoket>();
 
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
     //标识
     private int roomId;
     
+    private HttpSession httpSession;
+    @Autowired
+    private ResolverFactory resolverFactory;
+    
     public static synchronized int getOnlineCount() {
         return onlineCount;
     }
 
     public static synchronized void addOnlineCount() {
-        danmakuChat.onlineCount++;
+        WebScoket.onlineCount++;
     }
 
     public static synchronized void subOnlineCount() {
-        danmakuChat.onlineCount--;
+        WebScoket.onlineCount--;
     }
 
     /**
@@ -50,9 +51,10 @@ public class danmakuChat {
      * @param session  可选的参数。session为与某个客户端的连接会话，需要通过它来给客户端发送数据
      */
     @OnOpen
-    public void onOpen(@PathParam("roomId") int roomId , Session session){
+    public void onOpen(@PathParam("roomId") int roomId , Session session,EndpointConfig config){
         this.session = session;
         this.roomId = roomId;
+        this.httpSession =(HttpSession) config.getUserProperties().get(HttpSession.class.getName());
         webSocketSet.add(this);     //加入set中
         addOnlineCount();           //在线数加1
         System.out.println("有新连接加入！当前在线人数为" + getOnlineCount() + "roomId:" + roomId);
@@ -63,29 +65,22 @@ public class danmakuChat {
      */
     @OnClose
     public void onClose(){
+        RoomPopularity roomPopularity = RoomPopularity.getInstance();
+        roomPopularity.getRoomIdAndPopularity().get(this.roomId).deletepopulartyNow();
         webSocketSet.remove(this);  //从set中删除
-        subOnlineCount();           //在线数减1    
+        subOnlineCount();           //在线数减1
         System.out.println("有一连接关闭！当前在线人数为" + getOnlineCount());
     }
 
     /**
      * 收到客户端消息后调用的方法
      * @param message 客户端发送过来的消息
-     * @param session 可选的参数
+     * 
      */
     @OnMessage
-    public void onMessage(String message, Session session) {
+    public void onMessage(String message) {
         System.out.println("来自客户端的消息:" + message);
-
-        //群发消息
-        for(danmakuChat item: webSocketSet){
-            try {
-                item.sendMessage(message);
-            } catch (IOException e) {
-                e.printStackTrace();
-                continue;
-            }
-        }
+        resolverFactory.doAction(message,this);
     }
 
     /**
@@ -106,7 +101,26 @@ public class danmakuChat {
      */
     public void sendMessage(String message) throws IOException{
         this.session.getBasicRemote().sendText(message);
-        //this.session.getAsyncRemote().sendText(message);
+    }
+
+    public CopyOnWriteArraySet<WebScoket> getWebSocketSet() {
+        return webSocketSet;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public HttpSession getHttpSession() {
+        return httpSession;
     }
 }
 

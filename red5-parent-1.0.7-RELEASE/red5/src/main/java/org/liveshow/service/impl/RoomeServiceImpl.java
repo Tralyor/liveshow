@@ -1,11 +1,15 @@
 package org.liveshow.service.impl;
 
+import org.junit.Test;
 import org.liveshow.dao.RoomMapper;
+import org.liveshow.entity.CombinationEntity.RoomAndOnwer;
 import org.liveshow.entity.Room;
 import org.liveshow.entity.RoomExample;
 import org.liveshow.service.RoomService;
+import org.liveshow.surveillant.RoomPopularity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +27,7 @@ public class RoomeServiceImpl implements RoomService {
      * @return list 所有的房间信息
      */
     @Override
+    @Transactional
     public List<Room> findAllRoom() {
         RoomExample roomExample = new RoomExample();
         List<Room> list =  roomMapper.selectByExample(roomExample);
@@ -38,8 +43,9 @@ public class RoomeServiceImpl implements RoomService {
      * @return lists
      */
     @Override
-    public List<Room> findRecoRoom(int recoModule,int pageNo,int pageSize) {
-        List<Room> lists = roomMapper.findRecoRoom(recoModule,pageNo,pageSize);
+    @Transactional
+    public List<RoomAndOnwer> findRecoRoom(int recoModule, int pageNo, int pageSize) {
+        List<RoomAndOnwer> lists = roomMapper.findRecoRoom(recoModule,pageNo,pageSize);
         if (lists  == null || lists.size() == 0){
             return null;
         }
@@ -47,6 +53,13 @@ public class RoomeServiceImpl implements RoomService {
     }
 
     @Override
+    @Transactional
+    public RoomAndOnwer findRoomByIdWidhtOnwer(int roomId) {
+        return roomMapper.findRoomById(roomId);
+    }
+
+    @Override
+    @Transactional
     public Room findRoomById(int roomId) {
         RoomExample roomExample = new RoomExample();
         RoomExample.Criteria criteria = roomExample.createCriteria();
@@ -56,5 +69,27 @@ public class RoomeServiceImpl implements RoomService {
             return null;
         }
         return rooms.get(0);
+    }
+
+    @Override
+    public int changeRoomState(int roomId, int state) {
+        Room room = findRoomById(roomId);
+        if (state == 0)
+            room.setSwitchJudge(false);
+        else
+            room.setSwitchJudge(true);
+        roomMapper.updateByPrimaryKeySelective(room);
+        return 0;
+    }
+
+    @Override
+    public void changeMostPop(int roomId) {
+        Room  room = roomMapper.selectByPrimaryKey(roomId);
+        RoomPopularity roomPopularity = RoomPopularity.getInstance();
+        int people = roomPopularity.getRoomIdAndPopularity().get(roomId).getGetPopulartyMax();
+        if (room.getMostPopular() < people) {
+            room.setMostPopular(people);
+            roomMapper.updateByPrimaryKey(room);
+        }
     }
 }

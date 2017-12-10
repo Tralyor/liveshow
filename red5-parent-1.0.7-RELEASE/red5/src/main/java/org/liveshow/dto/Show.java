@@ -4,11 +4,23 @@ package org.liveshow.dto;
  * Created by Cjn on 2017/11/30.
  */
 public class Show {
-    public Object data;
-    public int state;
-    public String message;
+    private Object data;
+    private int state;
+    private String message;
 
-    public Object getData() {
+    public Show()
+	{
+
+	}
+
+	public Show(Object data, int state, String message)
+	{
+		this.data = data;
+		this.state = state;
+		this.message = message;
+	}
+
+	public Object getData() {
         return data;
     }
 

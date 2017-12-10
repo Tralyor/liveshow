@@ -20,4 +20,9 @@ public class RecommendHomeServiceImplTest {
     public void findAllRecHome(){
         recommendHomeService.findAllRecHome();
     }
+    
+    @Test
+    public void insert(){
+        recommendHomeService.addRecoRoom(4,2);
+    }
 }

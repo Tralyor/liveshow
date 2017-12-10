@@ -5,11 +5,13 @@ import org.liveshow.dao.PartMapper;
 import org.liveshow.dao.RecommendModuleMapper;
 import org.liveshow.dto.Show;
 import org.liveshow.entity.CombinationEntity.RecommendModulePresent;
+import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.RecommendModule;
 import org.liveshow.service.RecommendModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,8 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
         }else{
             type = true;
         }
+
+        int status = recommendModuleMapper.confirmById(id);
         if (moduleId.equals("empty")){
             if(recommendModuleMapper.confirmById(id) == 0){
                 show.setState(0);
@@ -85,8 +89,9 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
      * @return List<Module> limit 3
      */
     @Override
-    public List<Module> findRecoModul() {
-        List<Module> lists =  recommendModuleMapper.findRecoModule();
+    @Transactional
+    public List<RecommendModulAndInfo> findRecoModul() {
+        List<RecommendModulAndInfo> lists =  recommendModuleMapper.findRecoModule();
         if (lists == null || lists.size() == 0){
             return null;
         }

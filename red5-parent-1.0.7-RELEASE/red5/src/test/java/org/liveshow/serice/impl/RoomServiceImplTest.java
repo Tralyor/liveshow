@@ -25,4 +25,9 @@ public class RoomServiceImplTest {
     public void findRoomById(){
         roomService.findRoomById(1);
     }
+    
+    @Test
+    public void changeRoomState(){
+        roomService.changeRoomState(1,0);
+    }
 }

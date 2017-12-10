@@ -1,6 +1,7 @@
 package org.liveshow.dao;
 
 import org.apache.ibatis.annotations.Param;
+import org.liveshow.dto.PersonalFollowingDTO;
 import org.liveshow.entity.User;
 import org.liveshow.entity.UserExample;
 
@@ -28,4 +29,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User selectUserByPasswordAndIdOrLoginName(User user);
+
+    List<PersonalFollowingDTO> selectFollowingByUserId(int id);
 }

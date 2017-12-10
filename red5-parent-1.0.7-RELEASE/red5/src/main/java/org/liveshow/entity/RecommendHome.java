@@ -7,10 +7,13 @@ public class RecommendHome {
 
     private Integer time;
 
-    public RecommendHome(Integer id, Integer roomId, Integer time) {
+    private Integer managerId;
+
+    public RecommendHome(Integer id, Integer roomId, Integer time, Integer managerId) {
         this.id = id;
         this.roomId = roomId;
         this.time = time;
+        this.managerId = managerId;
     }
 
     public RecommendHome() {
@@ -39,5 +42,13 @@ public class RecommendHome {
 
     public void setTime(Integer time) {
         this.time = time;
+    }
+
+    public Integer getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
     }
 }

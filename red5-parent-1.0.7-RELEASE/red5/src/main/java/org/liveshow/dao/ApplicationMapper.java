@@ -28,4 +28,6 @@ public interface ApplicationMapper {
     int updateByPrimaryKeySelective(Application record);
 
     int updateByPrimaryKey(Application record);
+
+    int countPassStateByUserId(int userId);
 }

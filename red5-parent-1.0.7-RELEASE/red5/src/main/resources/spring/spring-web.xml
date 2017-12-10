@@ -45,8 +45,8 @@
           p:defaultEncoding="utf-8" />
 
     <context:component-scan base-package="org.liveshow.controller"/>
-    <!--<mvc:interceptors>-->
-        <!--<bean class="org.obsidian.scss.interceptor.AllInterceptor"/>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <bean class="org.liveshow.interceptor.AllInterceptor"/>
+    </mvc:interceptors>
 
 </beans>

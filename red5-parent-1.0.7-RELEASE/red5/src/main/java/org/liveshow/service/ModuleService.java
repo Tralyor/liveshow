@@ -71,4 +71,6 @@ public interface ModuleService {
      */
     Show moveModule(int id);
 
+    
+    Module findModuleById(int moduleId);
 }
