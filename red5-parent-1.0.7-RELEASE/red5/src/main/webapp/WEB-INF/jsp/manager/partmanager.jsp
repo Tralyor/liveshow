@@ -5,22 +5,14 @@
   Time: 13:11
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" %>
+<%@ include file="../common/header.jsp" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>nav</title>
-    <link rel="stylesheet" type="text/css" href="../../../static/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../static/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../static/plugins/metisMenu/metisMenu.css">
-    <link rel="stylesheet" type="text/css" href="../../../static/css/tz/partmangercss.css">
-    <link rel="stylesheet" type="text/css" href="../../../static/css/tz/nav.css">
-    <script type="text/javascript" src="../../../static/js/plugins/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../../../static/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../../static/plugins/metisMenu/metisMenu.min.js"></script>
-    <script src="../../../static/plugins/layer/layer.js"></script>
+    <%@ include file="common/resoures.jsp"%>
+    <link rel="stylesheet" type="text/css" href="/static/css/manager/partmangercss.css">
 </head>
 <body onload="init()">
 <div>
@@ -283,4 +275,4 @@
         </form>
     </div>
 </template>
-<script type="text/javascript" src="../../../static/js/tz/partmanagerjs.js"></script>
+<script type="text/javascript" src="/static/js/tz/partmanagerjs.js"></script>

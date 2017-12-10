@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>blockade-host</title>
     <%@ include file="common/resoures.jsp"%>
+    <link rel="stylesheet" type="text/css" href="/static/css/manager/blockade.css"/>
 </head>
 <body>
 <!--头部和侧边固定导航栏-->
