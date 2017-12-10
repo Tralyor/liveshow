@@ -31,15 +31,15 @@
                             <a href="blockadeHost.jsp">主播封禁</a>
                         </li>
                         <li>
-                            <a href="blockadeVisitor.html">游客封禁</a>
+                            <a href="blockadeVisitor.jsp">游客封禁</a>
                         </li>
                         <li>
-                            <a href="blockadeOverview.html">封禁概览</a>
+                            <a href="blockadeOverview.jsp">封禁概览</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="superAdmin.html"><span class="glyphicon glyphicon-star"></span>&nbsp;&nbsp;&nbsp;&nbsp;超管管理</a>
+                    <a href="superAdmin.jsp"><span class="glyphicon glyphicon-star"></span>&nbsp;&nbsp;&nbsp;&nbsp;超管管理</a>
                 </li>
                 <li>
                     <a href="#"><span class="glyphicon glyphicon-align-left"></span>&nbsp;&nbsp;&nbsp;&nbsp;绩效</a>

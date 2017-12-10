@@ -1,20 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" %>
+<%@ include file="../common/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>blockade-visitor</title>
-    <link rel="stylesheet" type="text/css" href="../static/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/plugins/metisMenu/metisMenu.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/blockade.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap-datetimepicker.min.css">
-    <script type="text/javascript" src="../static/js/plugins/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../static/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../static/plugins/metisMenu/metisMenu.min.js"></script>
-    <!--<script src="../static/js/locals/bootstrap-datetimepicker.fr.js"></script>-->
-    <!--<script src="../static/js/locals/bootstrap-datetimepicker.zh-CN.js"></script>-->
-    <!--<script src="../static/js/bootstrap-datetimepicker.js"></script>-->
+    <%@ include file="common/resoures.jsp"%>
+    <link rel="stylesheet" type="text/css" href="/static/css/manager/blockade.css"/>
 </head>
 <body>
 <!--头部和侧边固定导航栏-->
@@ -43,15 +35,15 @@
                             <a href="blockadeHost.jsp">主播封禁</a>
                         </li>
                         <li>
-                            <a href="blockadeVisitor.html">游客封禁</a>
+                            <a href="blockadeVisitor.jsp">游客封禁</a>
                         </li>
                         <li>
-                            <a href="blockadeOverview.html">封禁概览</a>
+                            <a href="blockadeOverview.jsp">封禁概览</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="superAdmin.html"><span class="glyphicon glyphicon-star"></span>&nbsp;&nbsp;&nbsp;&nbsp;超管管理</a>
+                    <a href="superAdmin.jsp"><span class="glyphicon glyphicon-star"></span>&nbsp;&nbsp;&nbsp;&nbsp;超管管理</a>
                 </li>
                 <li>
                     <a href="#"><span class="glyphicon glyphicon-align-left"></span>&nbsp;&nbsp;&nbsp;&nbsp;绩效</a>
