@@ -298,4 +298,25 @@
 		WHERE user_id = #{userId}
 		AND pass_state = 1
 	</select>
+
+	<resultMap id="ApplicationInfos" type="org.liveshow.entity.CombinationEntity.ApplicationInfo">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="realName" column="real_name"/>
+		<result property="idcardId" column="idcard_id"/>
+		<result property="idcardPhoto" column="idcard_photo"/>
+		<result property="applyTime" column="apply_time"/>
+		<result property="nickName" column="nick_name"/>
+	</resultMap>
+
+	<select id="selectApplication" resultMap="ApplicationInfos">
+		SELECT a.id AS id, a.user_id AS user_id, a.real_name AS real_name, a.idcard_id AS idcard_id, a.idcard_photo AS idcard_photo, a.apply_time AS apply_time, b.nick_name AS nick_name
+		FROM application AS a, USER AS b
+		WHERE a.pass_state IS NULL AND a.user_id = b.id AND a.apply_time &lt; #{endTime} AND a.apply_time &gt; #{startTime} ORDER BY apply_time;
+	</select>
+
+	<update id="updateApplicationInfo">
+		UPDATE application SET pass_state = #{passState}, manager_id = #{managerId} WHERE id = #{id};
+	</update>
+
 </mapper>

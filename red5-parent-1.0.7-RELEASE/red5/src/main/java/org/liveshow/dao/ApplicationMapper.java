@@ -3,6 +3,7 @@ package org.liveshow.dao;
 import org.apache.ibatis.annotations.Param;
 import org.liveshow.entity.Application;
 import org.liveshow.entity.ApplicationExample;
+import org.liveshow.entity.CombinationEntity.ApplicationInfo;
 
 import java.util.List;
 
@@ -30,4 +31,22 @@ public interface ApplicationMapper {
     int updateByPrimaryKey(Application record);
 
     int countPassStateByUserId(int userId);
+
+    /**
+     * 查询指定日期的主播申请记录
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    List<ApplicationInfo> selectApplication(@Param("startTime") int startTime, @Param("endTime") int endTime);
+
+    /**
+     * 更新申请的审核状态
+     * @param id
+     * @param passState
+     * @param managerId
+     * @return
+     */
+    int updateApplicationInfo(@Param("id") int id, @Param("passState") Boolean passState, @Param("managerId") int managerId);
+
 }

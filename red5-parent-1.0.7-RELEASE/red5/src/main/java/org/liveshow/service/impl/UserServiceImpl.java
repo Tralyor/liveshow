@@ -155,6 +155,7 @@ public class UserServiceImpl implements UserService {
 	}
 
     @Override
+	@Transactional
     public Show overviewInfo() {
         HashMap<String, Object> hashMap = new HashMap<String, Object>();
         RoomPopularity roomPopularity = RoomPopularity.getInstance();
@@ -213,4 +214,46 @@ public class UserServiceImpl implements UserService {
         }
         return lists.get(0);
     }
+
+	@Override
+	@Transactional
+	public Show doRegister(String loginName, String password, String nickName) {
+    	Show show = new Show();
+    	User user = new User();
+    	int loginNameState = userMapper.confirmLoginName(loginName);
+    	int nickNameState = userMapper.confirmNickName(nickName);
+    	if (loginNameState != 0){
+    		show.setState(0);
+    		show.setMessage("该用户名已被注册");
+		}else if(nickNameState != 0){
+			show.setState(0);
+			show.setMessage("该昵称已被注册");
+		}else {
+			user.setType(0);
+			user.setLoginName(loginName);
+			user.setPassword(password);
+			user.setNickName(nickName);
+			userMapper.insert(user);
+			show.setMessage("注册成功");
+			show.setState(1);
+		}
+		return show;
+	}
+
+	@Override
+	@Transactional
+	public Show adminLogin(String loginName, String password) {
+    	Show show = new Show();
+    	if(loginName.equals("admin") && password.equals("123456")){
+    		show.setMessage("登录成功");
+    		show.setState(1);
+		}else if(loginName.equals("boss") && password.equals("123456")){
+			show.setMessage("登录成功");
+			show.setState(1);
+		}else {
+			show.setMessage("用户名或密码错误");
+			show.setState(0);
+		}
+		return show;
+	}
 }

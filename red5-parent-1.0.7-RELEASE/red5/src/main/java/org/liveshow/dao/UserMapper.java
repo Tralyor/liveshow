@@ -33,4 +33,27 @@ public interface UserMapper {
     User selectUserByPasswordAndIdOrLoginName(User user);
 
     List<PersonalFollowingDTO> selectFollowingByUserId(int id);
+
+    /**
+     * 检查登录名是否重复
+     * @param loginName
+     * @return
+     */
+    int confirmLoginName(String loginName);
+
+    /**
+     * 检查昵称是否重复
+     * @param nickName
+     * @return
+     */
+    int confirmNickName(String nickName);
+
+    /**
+     * 更新用户身份
+     * @param id
+     * @param type
+     * @return
+     */
+    int updateTypeById(@Param("id") int id, @Param("type") int type);
+
 }

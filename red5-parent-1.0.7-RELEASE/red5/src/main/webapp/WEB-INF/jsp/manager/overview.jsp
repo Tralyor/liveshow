@@ -10,14 +10,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>nav</title>
+    <title>概览</title>
     <%@ include file="common/resoures.jsp"%>
     <link rel="stylesheet" type="text/css" href="/static/css/manager/overviewcss.css">
 </head>
 <body>
-<div>
-    <%@ include file="common/topNavAndSide.jsp"%>
-</div>
+<%@ include file="common/topNavAndSide.jsp"%>
 <div class="container">
     <div class="row" id="title">
         <div class="col-md-5 col-md-offset-3">

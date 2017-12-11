@@ -13,6 +13,17 @@
       <arg column="manager_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
+
+  <resultMap id="DarkRoomInfos" type="org.liveshow.entity.CombinationEntity.DarkRoomInfo">
+    <id property="id" column="id"/>
+    <result property="roomId" column="room_id"/>
+    <result property="reason" column="reason"/>
+    <result property="hours" column="hours"/>
+    <result property="time" column="time"/>
+    <result property="photo" column="photo"/>
+    <result property="nickName" column="nick_name"/>
+  </resultMap>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -261,4 +272,21 @@
   <select id="isDarkRoom" resultType="org.liveshow.entity.DarkroomRoom">
     SELECT * FROM darkroom_room a WHERE a.room_id = 1 AND a.time + a.hours > unix_timestamp(now())
   </select>
+
+  <select id="selectDarkRoomInfo" resultMap="DarkRoomInfos">
+    SELECT a.id AS id, a.room_id AS room_id, a.reason AS reason, a.hours AS hours, a.time AS time, a.photo AS photo, c.nick_name AS nick_name
+    FROM darkroom_room AS a, room AS b, USER AS c
+    WHERE a.state = 0 AND a.room_id = b.id AND b.user_id = c.id AND time &lt; 9999999999 AND time &gt; 1 ORDER BY TIME DESC;
+  </select>
+
+  <select id="selectDarkRoomInfoByNickName" resultType="org.liveshow.entity.CombinationEntity.DarkRoomInfo">
+    SELECT a.id AS id, a.room_id AS roomId, a.reason AS reason, a.hours AS hours, a.time AS time, a.photo AS photo, c.nick_name AS nickName
+    FROM darkroom_room AS a, room AS b, USER AS c
+    WHERE a.room_id = b.id AND b.user_id = c.id AND c.nick_name = #{nickName};
+  </select>
+
+  <update id="updateDarkRoomState">
+    UPDATE darkroom_room SET state = 1, manager_id = #{managerId} WHERE id = #{id};
+  </update>
+
 </mapper>

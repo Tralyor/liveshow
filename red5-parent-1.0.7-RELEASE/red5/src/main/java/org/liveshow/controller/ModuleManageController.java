@@ -31,15 +31,6 @@ public class ModuleManageController {
     @Autowired
     private PartService partService;
 
-    @RequestMapping("/manager")
-    public String getAll(HttpServletRequest req,Model model){
-        List<Part> partList = partService.getAllPart();
-        List<Module> moduleList = moduleService.getAllModule();
-        model.addAttribute("partList", partList);
-        model.addAttribute("moduleList", moduleList);
-        return "manager/partmanager";
-    }
-
     @RequestMapping("/addmodule")
     @ResponseBody
     public Show addModule(@RequestParam("partId") int partId ,@RequestParam("name") String name,

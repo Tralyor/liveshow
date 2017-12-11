@@ -1,5 +1,6 @@
 package org.liveshow.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.liveshow.dto.PersonalChangePasswordDTO;
 import org.liveshow.dto.PersonalFollowingDTO;
 import org.liveshow.dto.PersonalProfileDTO;
@@ -56,5 +57,9 @@ public interface UserService {
 	List<PersonalFollowingDTO> getPersonFollowing(int id);
     
     User doLogin(String loginName,String password);
+
+    Show doRegister(String loginName, String password, String nickName);
+
+    Show adminLogin(String loginName, String password);
 
 }

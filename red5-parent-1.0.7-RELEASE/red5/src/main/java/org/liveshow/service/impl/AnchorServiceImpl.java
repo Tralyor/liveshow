@@ -8,6 +8,7 @@ import org.liveshow.entity.CombinationEntity.AnchorInfo;
 import org.liveshow.service.AnchorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class AnchorServiceImpl  implements AnchorService{
     private DanmakuMapper danmakuMapper;
 
     @Override
+    @Transactional
     public Show getAchorInfo(String userName) {
         Show show = new Show();
         if(anchorMapper.selectAnchorByName(userName) != 0){
@@ -67,6 +69,7 @@ public class AnchorServiceImpl  implements AnchorService{
     }
 
     @Override
+    @Transactional
     public Show getChartInfo(String userName, int startTime, int endTime) {
         Show show = new Show();
         int countDay = 0;

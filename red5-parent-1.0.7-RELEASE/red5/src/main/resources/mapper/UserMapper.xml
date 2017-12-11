@@ -261,4 +261,17 @@
 		AND
 			care.user_id = #{id}
 	</select>
+
+	<select id="confirmLoginName" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USER WHERE login_name = #{loginName};
+	</select>
+
+	<select id="confirmNickName" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USER WHERE nick_name = #{nickName};
+	</select>
+
+	<update id="updateTypeById">
+		UPDATE USER SET type = #{type} WHERE id = #{id};
+	</update>
+
 </mapper>

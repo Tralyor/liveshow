@@ -10,14 +10,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>nav</title>
+    <title>主播个人绩效查询</title>
     <%@ include file="common/resoures.jsp"%>
     <link rel="stylesheet" type="text/css" href="/static/css/manager/personalperformancecss.css">
 </head>
 <body>
-<div>
-    <%@ include file="common/topNavAndSide.jsp"%>
-</div>
+<%@ include file="common/topNavAndSide.jsp"%>
 <div class="container">
     <div class="row" id="title">
         <div class="col-md-5 col-md-offset-3">
