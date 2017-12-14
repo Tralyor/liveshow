@@ -49,6 +49,7 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
+    @Transactional
     public Show updatePart(int id, String name) {
         Show show = new Show();
         Part part = new Part();
@@ -61,6 +62,7 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
+    @Transactional
     public Show movePart(int id) {
         Show show = new Show();
         moduleMapper.deleteByPartId(id);
@@ -71,6 +73,7 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
+    @Transactional
     public Show addPart(String name) {
         Show show = new Show();
         Part part = new Part();

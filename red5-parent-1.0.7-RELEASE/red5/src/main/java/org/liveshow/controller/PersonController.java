@@ -39,6 +39,10 @@ public class PersonController
 	private PartService partService;
 	@Autowired
 	private DarkroomDanmakuService darkroomDanmakuService;
+	@Autowired
+	private ApplicationService applicationService;
+	@Autowired
+	private DarkroomRoomService darkroomRoomService;
 	ObjectMapper mapper = new ObjectMapper();
 
 	/**
@@ -465,4 +469,55 @@ public class PersonController
 			return "redirect:/user/login";
 		}
 	}
+
+	@RequestMapping(value = "/managerApplication", method = RequestMethod.GET)
+	public String managerApplication(HttpSession session, Model model)
+	{
+		User user = (User) session.getAttribute("user");
+		if (user != null )
+		{
+			int userId = user.getId();
+			logger.info("用户" + userId + "进入实名认证页面");
+			model.addAttribute("applications", applicationService.initApplication());
+			return "";
+		}
+		else
+		{
+			logger.info("未登录");
+			return "redirect:/user/login";
+		}
+	}
+
+	@RequestMapping(value = "/getApplicationInfo",method = RequestMethod.POST)
+	@ResponseBody
+	public Show getApplicationInfo(Integer startTime, Integer endTime){
+		return applicationService.getApplicationByDate(startTime, endTime);
+	}
+
+	@RequestMapping(value = "/checkApplication",method = RequestMethod.POST)
+	@ResponseBody
+	public Show checkApplication(int id, Boolean passState, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		return applicationService.checkApplication(id, passState,user.getId());
+	}
+
+	@RequestMapping(value = "/getDarkRoomInfoByDate", method = RequestMethod.POST)
+	@ResponseBody
+	public Show getDarkRoomInfo(Integer startTime, Integer endTime){
+		return darkroomRoomService.getDarkRoomInfoByDate(startTime, endTime);
+	}
+
+	@RequestMapping(value = "/getDarkRoomInfoByUserName")
+	@ResponseBody
+	public Show getDarkRoomInfoByUserName(String userName){
+		return darkroomRoomService.getDarkRoomInfoByUserName(userName);
+	}
+
+	@RequestMapping(value = "/undoDarkRoom",method = RequestMethod.POST)
+	@ResponseBody
+	public Show undoDarkRoom(int id, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		return darkroomRoomService.undoDarkRoom(id, user.getId());
+	}
+
 }

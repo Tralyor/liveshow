@@ -1,9 +1,12 @@
 package org.liveshow.service;
 
 import org.liveshow.dto.Show;
+
 import org.liveshow.dto.manager.DarkroomByDateDTO;
 import org.liveshow.dto.manager.DarkroomByModuleDTO;
 import org.liveshow.dto.manager.RoomMuteDTO;
+
+import org.liveshow.entity.CombinationEntity.DarkRoomInfo;
 
 import java.util.List;
 
@@ -35,4 +38,33 @@ public interface DarkroomRoomService {
 	 * @return
 	 */
 	List<DarkroomByDateDTO> getNumByDate();
+
+    /**
+     * 获取所有未解封的禁封直播间
+     * @return
+     */
+    List<DarkRoomInfo> initDarkRoomInfos();
+
+    /**
+     * 根据日期获取禁封直播间信息
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    Show getDarkRoomInfoByDate(Integer startTime, Integer endTime);
+
+    /**
+     * 根据主播用户名查询禁封直播间信息
+     * @param userName
+     * @return
+     */
+    Show getDarkRoomInfoByUserName(String userName);
+
+    /**
+     * 解封直播间
+     * @param id
+     * @param managerId
+     * @return
+     */
+    Show undoDarkRoom(int id, int managerId);
 }

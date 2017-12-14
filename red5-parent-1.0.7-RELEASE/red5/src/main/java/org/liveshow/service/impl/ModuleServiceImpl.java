@@ -32,11 +32,13 @@ public class ModuleServiceImpl  implements ModuleService{
     private PartMapper partMapper;
 
     @Override
+    @Transactional
     public List<Module> getAllModule() {
         return moduleMapper.selectAll();
     }
 
     @Override
+    @Transactional
     public Show getModuleAndPart() {
         Show show = new Show();
         HashMap<String, List> hashMap = new HashMap<String,List>();
@@ -59,7 +61,7 @@ public class ModuleServiceImpl  implements ModuleService{
     }
 
     @Override
-
+    @Transactional
     public Show addModule(int partId, String name, String description, String photo) {
         Show show = new Show();
         photo = "../../static/img/module/" + photo;
@@ -95,6 +97,7 @@ public class ModuleServiceImpl  implements ModuleService{
     }
 
     @Override
+    @Transactional
     public Show changeModuleName(int id, String name) {
         moduleMapper.updateNameById(id, name);
         Show show = new Show();
@@ -104,6 +107,7 @@ public class ModuleServiceImpl  implements ModuleService{
     }
 
     @Override
+    @Transactional
     public Show changeModuleDescription(int id, String description) {
         moduleMapper.updateDescriptionById(id, description);
         Show show = new Show();
@@ -113,6 +117,7 @@ public class ModuleServiceImpl  implements ModuleService{
     }
 
     @Override
+    @Transactional
     public Show changeModulePhoto(int id, String photo) {
         photo = "../../static/img/module/" + photo;
         moduleMapper.updatePhotoById(id, photo);
@@ -124,6 +129,7 @@ public class ModuleServiceImpl  implements ModuleService{
     }
 
     @Override
+    @Transactional
     public Show moveModule(int id) {
         Show show = new Show();
         moduleMapper.deleteByPrimaryKey(id);

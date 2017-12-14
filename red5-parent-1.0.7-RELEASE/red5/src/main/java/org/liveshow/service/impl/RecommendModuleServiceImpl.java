@@ -32,6 +32,7 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
     private ModuleMapper moduleMapper;
 
     @Override
+    @Transactional
     public Show handleRecommendModule(int id, String moduleId) {
         Show show = new Show();
         Boolean type;
@@ -75,6 +76,7 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
     }
 
     @Override
+    @Transactional
     public Show getAllRecommendModule() {
         List<RecommendModulePresent> recommendModulePresents = recommendModuleMapper.selectModulePresent();
         Show show = new Show();

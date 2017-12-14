@@ -25,6 +25,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Cjn on 2017/11/28.
@@ -41,6 +42,7 @@ public class LiveRecordServiceImpl  implements LiveRecordService{
     private LiveRecordMapper liveRecordMapper;
 
     @Override
+	@Transactional
     public Show getPartsPopulation(int startTime, int endTime) {
         Show show = new Show();
         int countDay = (endTime - startTime) / 86400;

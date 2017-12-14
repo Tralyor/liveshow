@@ -43,4 +43,16 @@ public class UserController {
         }
         return show;
     }
+
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    public String register(){
+        return "show/register";
+    }
+
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @ResponseBody
+    public Show doRegister(String loginName, String password, String nickName){
+        return userService.doRegister(loginName,password,nickName);
+    }
+
 }

@@ -26,16 +26,6 @@ public class PerformanceController {
     @Autowired
     private AnchorService anchorService;
 
-    @RequestMapping("/partinfo")
-    public String partInfo(){
-        return "manager/performance";
-    }
-
-    @RequestMapping("/anchor")
-    public String getInfo(){
-        return "manager/personalperformance";
-    }
-
     @RequestMapping("/part")
     @ResponseBody
     public Show getPartInfo(@RequestParam("startTime") int startTime, @RequestParam("endTime") int endTime){

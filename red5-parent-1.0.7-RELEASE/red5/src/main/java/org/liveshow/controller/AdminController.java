@@ -1,22 +1,28 @@
 package org.liveshow.controller;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.liveshow.dto.Show;
 import org.liveshow.dto.manager.*;
+import org.liveshow.entity.Part;
+import org.liveshow.entity.User;
 import org.liveshow.entity.Module;
 import org.liveshow.service.DarkroomDanmakuService;
 import org.liveshow.service.DarkroomRoomService;
 import org.liveshow.service.ModuleService;
+import org.liveshow.service.PartService;
+import org.liveshow.service.UserService;
 import org.liveshow.service.SupermanagerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
@@ -37,6 +43,10 @@ public class AdminController
 	private DarkroomDanmakuService darkroomDanmakuService;
 	@Autowired
 	private DarkroomRoomService darkroomRoomService;
+	@Autowired
+	private PartService partService;
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/blockadeHost", method = RequestMethod.GET)
 	public String enterBlockadeHost(Model model)
@@ -176,5 +186,55 @@ public class AdminController
 	{
 		logger.info("取消loginName为" + loginName + "的超管");
 		return supermanagerService.canelSuperManager(loginName);
+	}
+
+	@RequestMapping("/overview")
+	public String enterOverView(){
+		return "manager/overview";
+	}
+
+	@RequestMapping("/homepart")
+	public String enterHomePart(){
+		return "manager/homepart";
+	}
+
+	@RequestMapping("/manager")
+	public String enterPartManager(HttpServletRequest req, Model model){
+		List<Part> partList = partService.getAllPart();
+		List<Module> moduleList = moduleService.getAllModule();
+		model.addAttribute("partList", partList);
+		model.addAttribute("moduleList", moduleList);
+		return "manager/partmanager";
+	}
+
+	@RequestMapping("/performance/part")
+	public String enterPartPerformance(){
+		return "manager/performance";
+	}
+
+	@RequestMapping("/performance/anchor")
+	public String enterAnchorPerformance(){
+		return "manager/personalperformance";
+	}
+
+	@RequestMapping("/login")
+	public String login(){
+		return "/manager/login";
+	}
+
+	@RequestMapping("/doLogin")
+	@ResponseBody
+	public Show doLogin(@RequestParam("loginName") String loginName, @RequestParam("password") String password, HttpSession session){
+		Show show = new Show();
+		User user = userService.adminLogin(loginName, password);
+		if(user != null){
+			session.setAttribute("admin", user);
+			show.setState(1);
+			show.setMessage("登录成功");
+		}else {
+			show.setState(0);
+			show.setMessage("用户名或密码错误");
+		}
+		return show;
 	}
 }

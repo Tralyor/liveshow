@@ -39,11 +39,6 @@ public class RecommendModuleController {
         return recommendModuleService.handleRecommendModule(id, moduleId);
     }
 
-    @RequestMapping("/homepart")
-    public String getView(){
-        return "manager/homepart";
-    }
-
     @RequestMapping("/getPartAndModule")
     @ResponseBody
     public Show getPartAndModule(){

@@ -10,14 +10,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>nav</title>
+    <title>板块管理</title>
     <%@ include file="common/resoures.jsp"%>
     <link rel="stylesheet" type="text/css" href="/static/css/manager/partmangercss.css">
 </head>
 <body onload="init()">
-<div>
-    <%@ include file="common/topNavAndSide.jsp"%>
-</div>
+<%@ include file="common/topNavAndSide.jsp"%>
 <div class="container">
     <div class="row" id="title">
         <div class="col-md-5 col-md-offset-3">

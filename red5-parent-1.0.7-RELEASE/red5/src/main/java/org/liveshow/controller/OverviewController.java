@@ -23,12 +23,6 @@ public class OverviewController {
     @Autowired
     private UserService userService;
 
-
-    @RequestMapping("/charts")
-    public String getView(){
-         return "manager/overview";
-    }
-
     @RequestMapping("/chartsinfo")
     @ResponseBody
     public Show getChartsInfo(){

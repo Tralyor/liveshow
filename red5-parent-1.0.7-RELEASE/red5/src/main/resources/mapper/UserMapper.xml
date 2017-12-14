@@ -267,4 +267,24 @@
 		FROM user
 		WHERE user.login_name = #{loginName}
 	</select>
+
+	<select id="confirmLoginName" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USER WHERE login_name = #{loginName};
+	</select>
+
+	<select id="confirmNickName" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USER WHERE nick_name = #{nickName};
+	</select>
+
+	<update id="updateTypeById">
+		UPDATE USER SET type = #{type} WHERE id = #{id};
+	</update>
+
+	<select id="confirmPasswordAdmin" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USER WHERE login_name = #{loginName} AND PASSWORD = #{password} and type = 3;
+	</select>
+
+	<select id="selectUserByLoginName" resultType="org.liveshow.entity.User">
+		SELECT id, password, login_name AS loginName, nick_name AS nickName, type FROM USER WHERE login_name = #{loginName};
+	</select>
 </mapper>
