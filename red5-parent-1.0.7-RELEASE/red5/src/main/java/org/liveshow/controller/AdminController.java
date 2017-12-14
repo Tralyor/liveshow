@@ -4,6 +4,7 @@ import com.sun.org.apache.regexp.internal.RE;
 import org.liveshow.dto.Show;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.Part;
+import org.liveshow.entity.User;
 import org.liveshow.service.ModuleService;
 import org.liveshow.service.PartService;
 import org.liveshow.service.UserService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -96,8 +98,18 @@ public class AdminController
 
 	@RequestMapping("/doLogin")
 	@ResponseBody
-	public Show doLogin(@RequestParam("loginName") String loginName, @RequestParam("password") String password){
-		return userService.adminLogin(loginName, password);
+	public Show doLogin(@RequestParam("loginName") String loginName, @RequestParam("password") String password, HttpSession session){
+		Show show = new Show();
+		User user = userService.adminLogin(loginName, password);
+		if(user != null){
+			session.setAttribute("admin", user);
+			show.setState(1);
+			show.setMessage("登录成功");
+		}else {
+			show.setState(0);
+			show.setMessage("用户名或密码错误");
+		}
+		return show;
 	}
 
 }

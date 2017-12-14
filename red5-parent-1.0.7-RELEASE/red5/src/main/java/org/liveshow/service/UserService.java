@@ -60,6 +60,6 @@ public interface UserService {
 
     Show doRegister(String loginName, String password, String nickName);
 
-    Show adminLogin(String loginName, String password);
+    User adminLogin(String loginName, String password);
 
 }

@@ -56,4 +56,19 @@ public interface UserMapper {
      */
     int updateTypeById(@Param("id") int id, @Param("type") int type);
 
+    /**
+     * 判断用户名密码是否正确
+     * @param loginName
+     * @param password
+     * @return
+     */
+    int confirmPasswordAdmin(@Param("loginName") String loginName, @Param("password") String password);
+
+    /**
+     * 根据登录名获取用户信息
+     * @param loginName
+     * @return
+     */
+    User selectUserByLoginName(String loginName);
+
 }

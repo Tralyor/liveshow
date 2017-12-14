@@ -47,6 +47,15 @@
     <context:component-scan base-package="org.liveshow.controller"/>
     <mvc:interceptors>
         <bean class="org.liveshow.interceptor.AllInterceptor"/>
+        <mvc:interceptor>
+            <!--<mvc:mapping path="/admin/*"/>-->
+            <mvc:mapping path="/module/*"/>
+            <mvc:mapping path="/overview/*"/>
+            <mvc:mapping path="/part/*"/>
+            <mvc:mapping path="/performance/*"/>
+            <mvc:mapping path="/recommend/*"/>
+            <bean class="org.liveshow.interceptor.AdminInterceptor"/>
+        </mvc:interceptor>
     </mvc:interceptors>
 
 </beans>

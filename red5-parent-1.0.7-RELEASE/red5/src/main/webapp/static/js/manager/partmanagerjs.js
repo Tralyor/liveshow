@@ -1,6 +1,6 @@
-layui.use(['layer'], function()
-{
-    var layer = layui.layer;
+// layui.use(['layer'], function()
+// {
+//     var layer = layui.layer;
 
     $(function() {
         $('#side-menu').metisMenu();
@@ -331,4 +331,4 @@ layui.use(['layer'], function()
         });
     }
 
-});
+// });

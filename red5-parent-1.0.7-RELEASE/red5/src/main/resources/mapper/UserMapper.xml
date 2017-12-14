@@ -274,4 +274,12 @@
 		UPDATE USER SET type = #{type} WHERE id = #{id};
 	</update>
 
+	<select id="confirmPasswordAdmin" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USER WHERE login_name = #{loginName} AND PASSWORD = #{password} and type = 3;
+	</select>
+
+	<select id="selectUserByLoginName" resultType="org.liveshow.entity.User">
+		SELECT id, password, login_name AS loginName, nick_name AS nickName, type FROM USER WHERE login_name = #{loginName};
+	</select>
+
 </mapper>

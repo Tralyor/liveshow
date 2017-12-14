@@ -242,18 +242,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public Show adminLogin(String loginName, String password) {
+	public User adminLogin(String loginName, String password) {
     	Show show = new Show();
-    	if(loginName.equals("admin") && password.equals("123456")){
-    		show.setMessage("登录成功");
-    		show.setState(1);
-		}else if(loginName.equals("boss") && password.equals("123456")){
-			show.setMessage("登录成功");
-			show.setState(1);
+    	int i = userMapper.confirmPasswordAdmin(loginName, password);
+    	if(i != 0){
+    		return userMapper.selectUserByLoginName(loginName);
 		}else {
-			show.setMessage("用户名或密码错误");
-			show.setState(0);
+    		return null;
 		}
-		return show;
 	}
 }
