@@ -1,238 +1,240 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.liveshow.dao.SupermanagerMapper" >
-  <resultMap id="BaseResultMap" type="org.liveshow.entity.Supermanager" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="module_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="idcard_id" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="telephone" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
-    </constructor>
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+<mapper namespace="org.liveshow.dao.SupermanagerMapper">
+	<resultMap id="BaseResultMap" type="org.liveshow.entity.Supermanager">
+		<constructor>
+			<idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+			<arg column="module_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="idcard_id" jdbcType="VARCHAR" javaType="java.lang.String"/>
+			<arg column="telephone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+			<arg column="address" jdbcType="VARCHAR" javaType="java.lang.String"/>
+		</constructor>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")"
+									         separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")"
+									         separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
     id, user_id, name, module_id, idcard_id, telephone, address
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.liveshow.entity.SupermanagerExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from supermanager
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from supermanager
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+	<select id="selectByExample" resultMap="BaseResultMap" parameterType="org.liveshow.entity.SupermanagerExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List"/>
+		from supermanager
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause"/>
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List"/>
+		from supermanager
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from supermanager
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.liveshow.entity.SupermanagerExample" >
-    delete from supermanager
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="org.liveshow.entity.Supermanager" >
-    insert into supermanager (id, user_id, name, 
+	<delete id="deleteByExample" parameterType="org.liveshow.entity.SupermanagerExample">
+		delete from supermanager
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause"/>
+		</if>
+	</delete>
+	<insert id="insert" parameterType="org.liveshow.entity.Supermanager">
+    insert into supermanager (user_id, name,
       module_id, idcard_id, telephone, 
       address)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
       #{moduleId,jdbcType=INTEGER}, #{idcardId,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="org.liveshow.entity.Supermanager" >
-    insert into supermanager
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="moduleId != null" >
-        module_id,
-      </if>
-      <if test="idcardId != null" >
-        idcard_id,
-      </if>
-      <if test="telephone != null" >
-        telephone,
-      </if>
-      <if test="address != null" >
-        address,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="moduleId != null" >
-        #{moduleId,jdbcType=INTEGER},
-      </if>
-      <if test="idcardId != null" >
-        #{idcardId,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null" >
-        #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="org.liveshow.entity.SupermanagerExample" resultType="java.lang.Integer" >
-    select count(*) from supermanager
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update supermanager
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moduleId != null" >
-        module_id = #{record.moduleId,jdbcType=INTEGER},
-      </if>
-      <if test="record.idcardId != null" >
-        idcard_id = #{record.idcardId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.telephone != null" >
-        telephone = #{record.telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.address != null" >
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update supermanager
-    set id = #{record.id,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      module_id = #{record.moduleId,jdbcType=INTEGER},
-      idcard_id = #{record.idcardId,jdbcType=VARCHAR},
-      telephone = #{record.telephone,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.liveshow.entity.Supermanager" >
-    update supermanager
-    <set >
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="moduleId != null" >
-        module_id = #{moduleId,jdbcType=INTEGER},
-      </if>
-      <if test="idcardId != null" >
-        idcard_id = #{idcardId,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null" >
-        telephone = #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.liveshow.entity.Supermanager" >
+	<insert id="insertSelective" parameterType="org.liveshow.entity.Supermanager">
+		insert into supermanager
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="moduleId != null">
+				module_id,
+			</if>
+			<if test="idcardId != null">
+				idcard_id,
+			</if>
+			<if test="telephone != null">
+				telephone,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="moduleId != null">
+				#{moduleId,jdbcType=INTEGER},
+			</if>
+			<if test="idcardId != null">
+				#{idcardId,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="org.liveshow.entity.SupermanagerExample" resultType="java.lang.Integer">
+		select count(*) from supermanager
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause"/>
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update supermanager
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.userId != null">
+				user_id = #{record.userId,jdbcType=INTEGER},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.moduleId != null">
+				module_id = #{record.moduleId,jdbcType=INTEGER},
+			</if>
+			<if test="record.idcardId != null">
+				idcard_id = #{record.idcardId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.telephone != null">
+				telephone = #{record.telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.address != null">
+				address = #{record.address,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause"/>
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update supermanager
+		set id = #{record.id,jdbcType=INTEGER},
+		user_id = #{record.userId,jdbcType=INTEGER},
+		name = #{record.name,jdbcType=VARCHAR},
+		module_id = #{record.moduleId,jdbcType=INTEGER},
+		idcard_id = #{record.idcardId,jdbcType=VARCHAR},
+		telephone = #{record.telephone,jdbcType=VARCHAR},
+		address = #{record.address,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause"/>
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="org.liveshow.entity.Supermanager">
+		update supermanager
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="moduleId != null">
+				module_id = #{moduleId,jdbcType=INTEGER},
+			</if>
+			<if test="idcardId != null">
+				idcard_id = #{idcardId,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.liveshow.entity.Supermanager">
     update supermanager
     set user_id = #{userId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -241,5 +243,94 @@
       telephone = #{telephone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
-  </update>
+  	</update>
+
+	<resultMap id="SuperManagerWithPerformance" type="org.liveshow.entity.CombinationEntity.SuperManagerWithPerformance">
+		<id column="s_id" property="managerId"/>
+		<result column="name" property="realName"/>
+		<result column="login_name" property="loginName"/>
+		<result column="module_id" property="moduleId"/>
+		<result column="module_name" property="name"/>
+		<result column="idcard_id" property="idNum"/>
+		<result column="telephone" property="tel"/>
+		<result column="address" property="address"/>
+		<association property="roomNum"  column="user_id" select="selectRoomNum"/>
+		<association property="falseRoomNum" column="user_id" select="selectFalseRoomNum"/>
+	</resultMap>
+
+	<select id="selectAllSuperManager" resultMap="SuperManagerWithPerformance">
+		SELECT
+			s.id s_id,
+			s.user_id,
+			s.`name`,
+			s.idcard_id,
+			s.telephone,
+			s.address,
+			m.id module_id,
+			m.`name` module_name,
+			u.login_name
+		FROM
+			`user` u,
+			module m,
+			supermanager s
+		WHERE
+			s.user_id = u.id
+		AND s.module_id = m.id
+	</select>
+
+	<select id="selectRoomNum" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			darkroom_room
+		WHERE
+			manager_id = #{id}
+	</select>
+
+	<select id="selectFalseRoomNum" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			darkroom_room d
+		WHERE
+			d.state = 1
+		AND
+			d.manager_id = #{id}
+	</select>
+
+	<select id="selectSuperManagerByModuleId" parameterType="java.lang.Integer" resultMap="SuperManagerWithPerformance">
+		SELECT
+			s.id s_id,
+			s.user_id,
+			s.`name`,
+			s.idcard_id,
+			s.telephone,
+			s.address,
+			m.id module_id,
+			m.`name` module_name,
+			u.login_name
+		FROM
+			`user` u,
+			module m,
+			supermanager s
+		<where>
+			s.user_id = u.id
+			AND s.module_id = m.id
+			<if test="moduleId != 0">
+				AND m.id = #{moduleId}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectByLoginName" resultMap="BaseResultMap">
+		SELECT
+			s.*
+		FROM
+			supermanager s,
+			`user` u
+		WHERE
+			s.user_id = u.id
+		AND
+			u.login_name = #{loginName}
+	</select>
 </mapper>

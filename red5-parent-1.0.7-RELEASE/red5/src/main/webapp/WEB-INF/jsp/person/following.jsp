@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" reason="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" reason="ie=edge">
     <title>template</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/user.css" />
@@ -216,7 +216,7 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <div class="user-following-type">
-                                                    <a href="/directory/module/${following.moduleId}">${following.moduleName}</a>
+                                                    <a href="/directory/module/${following.moduleId}">${following.name}</a>
                                                     <a href="javascript:;" class="user-following-unfollowing" room-id="${following.roomId}">取消关注</a>
                                                 </div>
                                             </div>

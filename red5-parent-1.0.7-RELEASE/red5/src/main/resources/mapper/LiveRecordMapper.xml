@@ -7,7 +7,7 @@
 			<arg column="room_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
 			<arg column="start_time" jdbcType="INTEGER" javaType="java.lang.Integer"/>
 			<arg column="end_time" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-			<arg column="duration" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="endTime" jdbcType="INTEGER" javaType="java.lang.Integer"/>
 			<arg column="population" jdbcType="INTEGER" javaType="java.lang.Integer"/>
 		</constructor>
 	</resultMap>
@@ -72,7 +72,7 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-    id, room_id, start_time, end_time, duration, population
+    id, room_id, start_time, end_time, endTime, population
   </sql>
 	<select id="selectByExample" resultMap="BaseResultMap" parameterType="org.liveshow.entity.LiveRecordExample">
 		select
@@ -106,10 +106,10 @@
 	</delete>
 	<insert id="insert" parameterType="org.liveshow.entity.LiveRecord">
     insert into live_record (id, room_id, start_time, 
-      end_time, duration, population
+      end_time, endTime, population
       )
     values (#{id,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}, #{startTime,jdbcType=INTEGER}, 
-      #{endTime,jdbcType=INTEGER}, #{duration,jdbcType=INTEGER}, #{population,jdbcType=INTEGER}
+      #{endTime,jdbcType=INTEGER}, #{endTime,jdbcType=INTEGER}, #{population,jdbcType=INTEGER}
       )
   </insert>
 	<insert id="insertSelective" parameterType="org.liveshow.entity.LiveRecord">
@@ -127,8 +127,8 @@
 			<if test="endTime != null">
 				end_time,
 			</if>
-			<if test="duration != null">
-				duration,
+			<if test="endTime != null">
+				endTime,
 			</if>
 			<if test="population != null">
 				population,
@@ -147,8 +147,8 @@
 			<if test="endTime != null">
 				#{endTime,jdbcType=INTEGER},
 			</if>
-			<if test="duration != null">
-				#{duration,jdbcType=INTEGER},
+			<if test="endTime != null">
+				#{endTime,jdbcType=INTEGER},
 			</if>
 			<if test="population != null">
 				#{population,jdbcType=INTEGER},
@@ -176,8 +176,8 @@
 			<if test="record.endTime != null">
 				end_time = #{record.endTime,jdbcType=INTEGER},
 			</if>
-			<if test="record.duration != null">
-				duration = #{record.duration,jdbcType=INTEGER},
+			<if test="record.endTime != null">
+				endTime = #{record.endTime,jdbcType=INTEGER},
 			</if>
 			<if test="record.population != null">
 				population = #{record.population,jdbcType=INTEGER},
@@ -193,7 +193,7 @@
 		room_id = #{record.roomId,jdbcType=INTEGER},
 		start_time = #{record.startTime,jdbcType=INTEGER},
 		end_time = #{record.endTime,jdbcType=INTEGER},
-		duration = #{record.duration,jdbcType=INTEGER},
+		endTime = #{record.endTime,jdbcType=INTEGER},
 		population = #{record.population,jdbcType=INTEGER}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause"/>
@@ -211,8 +211,8 @@
 			<if test="endTime != null">
 				end_time = #{endTime,jdbcType=INTEGER},
 			</if>
-			<if test="duration != null">
-				duration = #{duration,jdbcType=INTEGER},
+			<if test="endTime != null">
+				endTime = #{endTime,jdbcType=INTEGER},
 			</if>
 			<if test="population != null">
 				population = #{population,jdbcType=INTEGER},
@@ -225,7 +225,7 @@
     set room_id = #{roomId,jdbcType=INTEGER},
       start_time = #{startTime,jdbcType=INTEGER},
       end_time = #{endTime,jdbcType=INTEGER},
-      duration = #{duration,jdbcType=INTEGER},
+      endTime = #{endTime,jdbcType=INTEGER},
       population = #{population,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -235,7 +235,7 @@
   </select>
 
   <select id="selectWholeDuration" resultType="java.lang.Integer">
-    SELECT SUM(duration) FROM live_record AS a, USER AS b, room AS c WHERE b.id = c.user_id AND c.id = a.room_id AND b.nick_name = #{userName};
+    SELECT SUM(endTime) FROM live_record AS a, USER AS b, room AS c WHERE b.id = c.user_id AND c.id = a.room_id AND b.nick_name = #{userName};
   </select>
 
   <select id="countTimes" resultType="java.lang.Integer">

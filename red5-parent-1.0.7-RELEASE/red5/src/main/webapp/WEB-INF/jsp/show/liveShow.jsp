@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
     <title>Document</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/liveshow.css">
@@ -31,7 +32,6 @@
 </head>
 <body>
 <script type="text/javascript" src="/play/js/swfobject.js"></script>
-<<<<<<< HEAD
 <nav class="navbar navbar-inverse navbar-fixed-top live-shadow" role="navigation">
     <div class="container">
         <div class="row">
@@ -250,10 +250,8 @@
         </div>
     </div>
 </div>
-=======
 <jsp:include page="../common/topNav.jsp"></jsp:include>
 <jsp:include page="../common/leftNav.jsp"></jsp:include>
->>>>>>> be2251db797ba0d7a4fd18ca4d45782dc14be28c
 <div id="main">
     <div id="controlBar" style="width: 100%;height: 60px;margin-bottom: 10px">
         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
@@ -531,13 +529,13 @@
 <%--发送弹幕--%>
 <script>
     //    发送弹幕
-     function sendBarrage(danmakuId,nickName,content,userId){
+     function sendBarrage(danmakuId,nickName,reason,userId){
          var item = {
             // img: '/static/img/cute.png', //图片
              userId:userId,
              danmakuId:danmakuId,
              nickName:nickName,
-             info: content, //文字
+             info: reason, //文字
              href: '#', //链接 
              close: false, //显示关闭按钮 
              speed: 6, //延迟,单位秒,默认6 
@@ -559,7 +557,7 @@
     $("#seal").click(function () {
         layer.open({
             title: "managerBan",
-            content: $("#managerBan").html(),
+            reason: $("#managerBan").html(),
             yes: function(index, layero){
                 fsubmit();
                 websocket.send(JSON.stringify(createDarkRoom()));
@@ -575,7 +573,7 @@
         if(type == "1"){
             layer.open({
                 title: "弹幕封禁",
-                content: $("#anchorBan").html(),
+                reason: $("#anchorBan").html(),
                 success:function(layero, index){
                     $('input[name="nickName"]').val(dataInfo.nickName);
                     $("input[name='danmakuId']").val(dataInfo.danmakuId);
@@ -704,7 +702,7 @@ $("#recommend").click(function(){
 
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
-        websocket = new WebSocket("ws://localhost:8080/WebScoket/" + 1); //房间号 
+        websocket = new WebSocket("ws://localhost:8080/WebScoket/" + ${room.id}); //房间号
     }
     else {
         alert('Not support websocket');
@@ -725,8 +723,8 @@ $("#recommend").click(function(){
         var msg = JSON.parse(event.data);
         console.log(msg);
         if(msg.type == "chat"){
-            chatMessage(msg.content.nickName,msg.content.content);
-            sendBarrage(msg.content.id,msg.content.nickName,msg.content.content,msg.content.userId);
+            chatMessage(msg.reason.nickName,msg.reason.reason);
+            sendBarrage(msg.reason.id,msg.reason.nickName,msg.reason.reason,msg.reason.userId);
         }else if(msg.type == "darkDanmaku"){
             isDark = 1;
             alert("你已经被主播封印了");
@@ -772,14 +770,14 @@ $("#recommend").click(function(){
 
    
 
-    function createChatMsg(content){
+    function createChatMsg(reason){
         var message = {
             type:"chat",
-            content:{
+            reason:{
                 id:null,
                 userId:"${sessionScope.user.id}",
                 roomId:"${room.id}",
-                content:content,
+                reason:reason,
                 nickName:"${sessionScope.user.nickName}"
             }
         }
@@ -789,7 +787,7 @@ $("#recommend").click(function(){
     function createDarkDanmaku(id,hours,userId){
         var message = {
             type:"darkDanmaku",
-            content:{
+            reason:{
                 userId:userId,
                 danmakuId:id,
                 hours:hours
@@ -801,7 +799,7 @@ $("#recommend").click(function(){
     function createDarkRoom(){
         var message = {
             type:"darkRoom",
-            content:{
+            reason:{
                 id:"${room.id}"
             }
         }

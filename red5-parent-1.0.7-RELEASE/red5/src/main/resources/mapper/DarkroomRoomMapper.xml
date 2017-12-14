@@ -259,6 +259,113 @@
   </update>
   
   <select id="isDarkRoom" resultType="org.liveshow.entity.DarkroomRoom">
-    SELECT * FROM darkroom_room a WHERE a.room_id = 1 AND a.time + a.hours > unix_timestamp(now())
+    SELECT *
+    FROM darkroom_room a
+    WHERE
+    	a.room_id = 1
+    AND a.time + a.hours > unix_timestamp(now())
   </select>
+
+	<select id="selectDarkRoomByManagerDarkroomRoom" resultType="org.liveshow.entity.CombinationEntity.ManagerDarkroomRoom">
+		SELECT
+			dr.id "darkroomRoomId",
+			u.nick_name "nickName",
+			a.real_name "realName",
+			r.id "roomId",
+			m.id "moduleId",
+			m.name "name",
+			dr.reason "reason",
+			dr.photo "photo",
+			dr.time "startTime",
+			dr.hours "duration",
+			dr.state "state",
+			operate.nick_name "operateName"
+		FROM
+			darkroom_room dr,
+			room r,
+			`user` u,
+			`user` operate,
+			application a,
+			`module` m
+		<where>
+				dr.room_id = r.id
+			AND
+				r.user_id = u.id
+			AND
+				r.module_id = m.id
+			AND
+				a.user_id = u.id
+			AND
+				a.pass_state = 1
+			AND
+				dr.manager_id = operate.id
+			<if test="moduleId != 0">
+				AND
+					m.id = #{moduleId}
+			</if>
+			AND
+				dr.time > #{startTime}
+			<if test="endTime != 0">
+				AND
+					#{endTime} > dr.time + dr.hours
+			</if>
+			<if test="state == true">
+				AND
+				(
+					dr.time + dr.hours &lt; unix_timestamp(now())
+				OR
+					dr.state = 1
+				)
+			</if>
+			<if test="state == false">
+				AND
+					dr.time + dr.hours > unix_timestamp(now())
+				AND
+					dr.state = 0
+			</if>
+		</where>
+	</select>
+
+	<select id="countDarkRoomNumByModule" resultType="org.liveshow.entity.CombinationEntity.ManagerDarkroomNumByModule">
+    	SELECT
+			m.id "moduleId",
+			m.`name` "name",
+			IFNULL(tmp.value, 0) "value"
+		FROM
+			module m
+		LEFT JOIN (
+			SELECT
+				r.module_id,
+				COUNT(*) value
+			FROM
+				darkroom_room dr
+			LEFT JOIN room r ON dr.room_id = r.id
+			WHERE
+				dr.time + dr.hours > unix_timestamp(now())
+			AND dr.state = 0
+			GROUP BY
+				dr.room_id
+		) tmp ON tmp.module_id = m.id
+		GROUP BY
+			m.`name`
+	</select>
+
+	<select id="countDarkRoomNumByDate" resultType="org.liveshow.entity.CombinationEntity.ManagerDarkroomNumByDate">
+		SELECT
+			DATE_FORMAT(
+				DATE_ADD(NOW(), INTERVAL #{i} DAY),
+				'%Y-%m-%d'
+			) "date",
+			COUNT(*) 'num'
+		FROM
+			darkroom_room dd
+		WHERE
+			DATE_FORMAT(
+				from_unixtime(dd.time),
+				'%Y-%m-%d'
+			) = DATE_FORMAT(
+				DATE_ADD(NOW(), INTERVAL #{i} DAY),
+				'%Y-%m-%d'
+			)
+	</select>
 </mapper>

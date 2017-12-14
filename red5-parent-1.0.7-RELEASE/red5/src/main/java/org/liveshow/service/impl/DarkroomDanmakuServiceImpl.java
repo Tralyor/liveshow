@@ -3,12 +3,21 @@ package org.liveshow.service.impl;
 import org.liveshow.dao.DarkroomDanmakuMapper;
 import org.liveshow.dto.PersonalMuteDTO;
 import org.liveshow.dto.Show;
+import org.liveshow.dto.manager.DarkroomByDateDTO;
+import org.liveshow.dto.manager.DarkroomByModuleDTO;
+import org.liveshow.dto.manager.MuteDTO;
+import org.liveshow.entity.CombinationEntity.ManagerDarkroomDanma;
+import org.liveshow.entity.CombinationEntity.ManagerDarkroomNumByDate;
+import org.liveshow.entity.CombinationEntity.ManagerDarkroomNumByModule;
 import org.liveshow.entity.Danmaku;
 import org.liveshow.entity.DarkroomDanmaku;
 import org.liveshow.entity.User;
 import org.liveshow.service.DarkroomDanmakuService;
 import org.liveshow.util.TimeEnum;
 import org.liveshow.util.TimeTool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +30,9 @@ import java.util.List;
 
 @Service
 public class DarkroomDanmakuServiceImpl implements DarkroomDanmakuService {
-    
-    @Autowired
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	@Autowired
     private DarkroomDanmakuMapper darkroomDanmakuMapper;
     
     @Override
@@ -43,14 +53,14 @@ public class DarkroomDanmakuServiceImpl implements DarkroomDanmakuService {
 	@Override
 	public List<PersonalMuteDTO> getNotExpiredMute(int userId)
 	{
-		List<DarkroomDanmaku> darkroomDanmakuList = darkroomDanmakuMapper.selectNotExpiredByUserId(userId);
+		List<DarkroomDanmaku> darkroomDanmakuList = darkroomDanmakuMapper.selectExpiredByUserId(userId, false);
 		return entityList2PersonalMuteDTOList(darkroomDanmakuList);
 	}
 
 	@Override
 	public List<PersonalMuteDTO> getExpireMute(int userId)
 	{
-		List<DarkroomDanmaku> darkroomDanmakuList = darkroomDanmakuMapper.selectExpiredByUserId(userId);
+		List<DarkroomDanmaku> darkroomDanmakuList = darkroomDanmakuMapper.selectExpiredByUserId(userId, true);
 		return entityList2PersonalMuteDTOList(darkroomDanmakuList);
 	}
 
@@ -66,6 +76,68 @@ public class DarkroomDanmakuServiceImpl implements DarkroomDanmakuService {
 		{
 			return new Show(null, 0, "撤销失败！");
 		}
+	}
+
+	@Override
+	public Show searchMute(int moduleId, boolean state)
+	{
+		List<ManagerDarkroomDanma> managerDarkroomDanmaList =
+				darkroomDanmakuMapper.selectManagerMuteByModuleIdAndState(moduleId, state);
+		return new Show(entityList2MuteDTOList(managerDarkroomDanmaList), 1, "获取成功");
+	}
+
+	@Override
+	public List<DarkroomByModuleDTO> getNumByModule()
+	{
+		logger.info("获取每个模块被封禁的游客数");
+		List<DarkroomByModuleDTO> darkroomByModuleDTOList = new ArrayList<>();
+		logger.info("转换entity到DTO");
+		List<ManagerDarkroomNumByModule> managerDarkroomNumByModuleList =
+				darkroomDanmakuMapper.countDarkDanmakuNumByModule();
+		for (ManagerDarkroomNumByModule m : managerDarkroomNumByModuleList)
+		{
+			DarkroomByModuleDTO tmp = new DarkroomByModuleDTO();
+			BeanUtils.copyProperties(m, tmp);
+			darkroomByModuleDTOList.add(tmp);
+		}
+		return darkroomByModuleDTOList;
+	}
+
+	@Override
+	public List<DarkroomByDateDTO> getNumByDate()
+	{
+		logger.info("获取近7天每天被封禁的游客数量");
+		List<DarkroomByDateDTO> darkroomByDateDTOList = new ArrayList<>();
+		logger.info("转换entity到DTO");
+		for (int i = 7; i >= 1; i--)
+		{
+			ManagerDarkroomNumByDate managerDarkroomNumByDate = darkroomDanmakuMapper.countDarkDanmakuNumByDate(-i);
+			DarkroomByDateDTO tmp = new DarkroomByDateDTO();
+			BeanUtils.copyProperties(managerDarkroomNumByDate, tmp);
+			darkroomByDateDTOList.add(tmp);
+		}
+		return darkroomByDateDTOList;
+	}
+
+	private MuteDTO entity2MuteDTO(ManagerDarkroomDanma managerDarkroomDanma)
+	{
+		String format = "yyyy-MM-dd HH:mm";
+		long endTimeLong = managerDarkroomDanma.getStartTime() + managerDarkroomDanma.getDuration();
+		return new MuteDTO(managerDarkroomDanma.getDarkRoomDanmaId(), managerDarkroomDanma.getLoginName(),
+				managerDarkroomDanma.getNickName(), managerDarkroomDanma.getRoomId(),
+				managerDarkroomDanma.getModuleName(), managerDarkroomDanma.getDanmaContent(),
+				TimeTool.getDateFormat(managerDarkroomDanma.getStartTime(), format),
+				TimeTool.getDateFormat(endTimeLong, format), managerDarkroomDanma.isState());
+	}
+
+	private List<MuteDTO> entityList2MuteDTOList(List<ManagerDarkroomDanma> managerDarkroomDanmaList)
+	{
+		List<MuteDTO> muteDTOList = new ArrayList<>();
+		for (ManagerDarkroomDanma d : managerDarkroomDanmaList)
+		{
+			muteDTOList.add(entity2MuteDTO(d));
+		}
+		return muteDTOList;
 	}
 
 	private PersonalMuteDTO entity2PersonalMuteDTO(DarkroomDanmaku darkroomDanmaku)

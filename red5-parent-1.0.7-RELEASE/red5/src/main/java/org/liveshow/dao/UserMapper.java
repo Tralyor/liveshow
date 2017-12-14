@@ -33,4 +33,11 @@ public interface UserMapper {
     User selectUserByPasswordAndIdOrLoginName(User user);
 
     List<PersonalFollowingDTO> selectFollowingByUserId(int id);
+
+	/**
+	 * 根据用户名查询用户
+	 * @param loginName
+	 * @return
+	 */
+	User selectByLoginName(String loginName);
 }

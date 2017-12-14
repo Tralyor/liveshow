@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" reason="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" reason="ie=edge">
     <title>template</title>
     <%@ include file="../common/resources.jsp" %>
     <link rel="stylesheet" href="/static/css/user/user.css"/>
@@ -241,15 +241,11 @@
                                         <c:forEach items="${personalLiveRecordDTOList}" var="liveRecord">
                                             <tr>
                                                 <td>${liveRecord.startTime}&nbsp;&nbsp;---&nbsp;&nbsp;${liveRecord.endTime}</td>
-                                                <td style="width: 164px;">${liveRecord.duration}分钟</td>
+                                                <td style="width: 164px;">${liveRecord.endTime}分钟</td>
                                             </tr>
                                         </c:forEach>
                                     </c:otherwise>
                                 </c:choose>
-                                <%--<tr>--%>
-                                <%--<td>2017/11/27 16:11---2017/11/27 16:30</td>--%>
-                                <%--<td>19分钟</td>--%>
-                                <%--</tr>--%>
                                 </tbody>
                             </table>
                         </div>
@@ -316,7 +312,7 @@
                             $liveRecordTbody.append(
                                 "<tr>" +
                                 "<td>" + tmp.startTime + "&nbsp;&nbsp;---&nbsp;&nbsp;" + tmp.endTime + "</td>" +
-                                "<td style=\"width: 164px;\">" + tmp.duration + "分钟</td>" +
+                                "<td style=\"width: 164px;\">" + tmp.endTime + "分钟</td>" +
                                 "</tr>"
                             );
                         }

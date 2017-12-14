@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" reason="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" reason="ie=edge">
     <title>template</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/user.css" />
@@ -258,7 +258,7 @@
                                     <div class="col-sm-4">
                                         <ol class="class-detail form-control-static">
                                             <li id="partLi">${personalLiveSettingDTO.partName}</li>
-                                            <li id="moduleLi">${personalLiveSettingDTO.moduleName}</li>
+                                            <li id="moduleLi">${personalLiveSettingDTO.name}</li>
                                         </ol>
                                     </div>
                                     <div class="col-sm-3">
@@ -317,10 +317,10 @@
                                 <c:forEach items="${part.moduleDTOList}" var="module">
                                     <c:choose>
                                         <c:when test="${module.moduleId == personalLiveSettingDTO.moduleId}">
-                                            <option value="${module.moduleId}" selected>${module.moduleName}</option>
+                                            <option value="${module.moduleId}" selected>${module.name}</option>
                                         </c:when>
                                         <c:otherwise>
-                                            <option value="${module.moduleId}">${module.moduleName}</option>
+                                            <option value="${module.moduleId}">${module.name}</option>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>
@@ -338,7 +338,7 @@
     $("#changeType").click(function () {
         layer.open({
             title: '',
-            content: $("#changeTypeContext").html(),
+            reason: $("#changeTypeContext").html(),
             area: '400px',
             btnAlign: 'c',
             yes: function (index, layero) {
@@ -372,7 +372,7 @@
                     {
                         var module = moduleList[i];
                         $moduleSelect.append(
-                            "<option value='" + module.moduleId + "'>" + module.moduleName + "</option>"
+                            "<option value='" + module.moduleId + "'>" + module.name + "</option>"
                         );
                     }
 

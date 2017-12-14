@@ -298,4 +298,11 @@
 		WHERE user_id = #{userId}
 		AND pass_state = 1
 	</select>
+
+	<select id="selectByUserId" resultMap="BaseResultMap">
+		SELECT *
+		FROM application
+		WHERE
+			application.user_id = #{userId}
+	</select>
 </mapper>

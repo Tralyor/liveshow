@@ -7,6 +7,7 @@
 --%>
 <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/static/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/static/plugins/layui/css/layui.css"/>
 <link rel="stylesheet" type="text/css" href="/static/plugins/metisMenu/metisMenu.css">
 <link rel="stylesheet" type="text/css" href="/static/css/manager/nav.css">
 <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap-datetimepicker.min.css">
@@ -16,4 +17,4 @@
 <script src="/static/plugins/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/static/plugins/bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript" src="/static/js/plugins/echarts.min.js"></script>
-<script src="/static/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="/static/plugins/layui/layui.js"></script>
