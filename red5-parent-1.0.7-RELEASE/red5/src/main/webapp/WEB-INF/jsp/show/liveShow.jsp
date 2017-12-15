@@ -151,6 +151,7 @@
                 <option>720</option>
                 <option>100000000000000</option>
             </select>
+        </div>
     </form>
 </template>
 
