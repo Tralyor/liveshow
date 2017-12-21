@@ -482,7 +482,7 @@
      *右侧视频里表边框
      * @type {number}
      */
-    var num = 0;
+    var value = 0;
     $(".divs").mouseover(function()
     {
         $(this).css("border", "solid 2px #FF7701");
@@ -490,7 +490,7 @@
     });
     $(".divs").mouseleave(function()
     {
-        if($(this).attr('name') != num)
+        if($(this).attr('name') != value)
         {
             $(this).children("div").children("span").css("display", "none");
             $(this).css("border", "none");
@@ -498,7 +498,7 @@
     })
     $(".divs").click(function()
     {
-        num = $(this).attr('name');
+        value = $(this).attr('name');
         clearBorder();
         $(this).css("border", "solid 2px #FF7701");
         $(this).children("div").children("span").css("display", "block");

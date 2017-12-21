@@ -6,10 +6,10 @@
 
 .page-header div
 {
-    width: 22.5%;
+    width: 14%;
     padding-bottom: 9px;
     display: inline-block;
-    font-size: 36px;
+    font-size: 30px;
     text-align: center;
     border-bottom: 3px solid #000000;
 }
@@ -30,7 +30,7 @@
     position: relative;
     display: block;
     padding: 13px 0px;
-    padding-left: 28px;
+    padding-left: 16px;
     color: #555555;
     height: 49px;
     line-height: 22px;
@@ -41,7 +41,7 @@
 .user-side-ul li a.li-children
 {
     padding: 0px;
-    padding-left: 28px;
+    padding-left: 16px;
     height: 40px;
     line-height: 40px;
 }
@@ -100,20 +100,185 @@
     vertical-align: middle;
 }
 
+.user-setting
+{
+    position: relative;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.user-setting .user-setting-word
+{
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.user-setting .user-setting-word h3
+{
+    margin-top: 0px;
+    font-weight: bold;
+}
+
+/* .user-setting .user-setting-btn */
+.user-setting a
+{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+
 
 /* 用户关注 */
 .user-following-main
 {
-    display: inline-block;
+    /* display: inline-block; */
+    clear: both;
     margin: 0 auto;
-    width: 98%;
+    width: 100%;
+    overflow: hidden;
 }
 
-.user-following
+.user-following-main .user-following
 {
+    float: left;
     display: inline-block;
+    margin-bottom: 20px;
     width: 48%;
     height: 120px;
-    background-color: #337ab7;
+    background-color: #f7f7f7;
     /* border-bottom: 1px solid #eee; */
+}
+
+.user-following-main .user-following:nth-child(2n - 1)
+{
+	margin-right: 5px;
+}
+
+.user-following-main .user-following:nth-child(2n)
+{
+	margin-left: 5px;
+}
+
+.user-following-container
+{
+    float: left;
+    padding: 5px;;
+}
+
+.user-following-container .user-following-left,
+.user-following-container .user-following-right
+{
+    display: inline-block;
+    float: left;
+}
+
+.user-following-container .user-following-left
+{
+    padding-top: 5px;
+    vertical-align: middle;
+}
+
+.user-following-container .user-following-right
+{
+    padding-left: 5px;
+	padding-top: 5px;
+}
+
+.user-following-right .user-following-title
+{
+    margin-bottom: 10px;
+    font-size: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.user-following-title a:hover
+{
+    color: #FEA01E;
+}
+
+.user-following-right .user-following-name,
+.user-following-right .user-following-state
+{
+    font-size: 12px;
+}
+
+.user-following-right .user-following-type
+{
+    position: relative;
+    font-size: 12px;
+    margin-top: 18px;
+}
+
+.user-following-right .user-following-type a
+{
+    color: #F76300;
+}
+
+.user-following-right .user-following-type a.user-following-unfollowing
+{
+    position: absolute;
+    right: 5px;
+    display: none;
+}
+
+.user-following:hover a.user-following-unfollowing
+{
+    display: inline;
+}
+
+/* 直播设置 */
+ol.class-detail
+{
+    margin: 0px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+ol.class-detail li
+{
+    display: inline;
+}
+
+ol.class-detail li + li::before
+{
+    padding: 0px 5px 0px 2px;
+    content: ">";
+}
+
+/* 直播设置 > 添加管理员 */
+.user-header
+{
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.user-header .user-header-tit
+{
+    margin: 0px;
+    vertical-align: middle;
+    font-size: 25px;
+    float: left;
+}
+
+.user-header .user-header-add
+{
+    float: right;
+}
+
+
+/* 实名认证 */
+.thumbnail .caption
+{
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.thumbnail img
+{
+	width: 227px;
+	height: 130px;
 }

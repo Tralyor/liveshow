@@ -7,10 +7,11 @@ import java.util.Date;
 /**
  * Created by Cjn on 2017/11/30.
  */
-public class timeTool {
-    public static String getDateFormat(int  timestamp, String type){
+public class TimeTool
+{
+    public static String getDateFormat(long timestamp, String type){
         SimpleDateFormat ft = new SimpleDateFormat (type);
-        String d = ft.format(timestamp);
+        String d = ft.format(timestamp * 1000);
         return d;
     }
     public static Date StringToDate(int timestamp,String type) throws ParseException {

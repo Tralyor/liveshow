@@ -5,6 +5,8 @@ public class Module {
 
     private Integer partId;
 
+    private Part part;
+
     private String name;
 
     private String description;
@@ -39,7 +41,17 @@ public class Module {
         this.partId = partId;
     }
 
-    public String getName() {
+	public Part getPart()
+	{
+		return part;
+	}
+
+	public void setPart(Part part)
+	{
+		this.part = part;
+	}
+
+	public String getName() {
         return name;
     }
 

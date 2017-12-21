@@ -2,7 +2,7 @@ package org.liveshow.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.liveshow.entity.CombinationEntity.RoomAndOnwer;
+import org.liveshow.entity.CombinationEntity.RoomAndOwner;
 import org.liveshow.entity.Room;
 import org.liveshow.entity.RoomExample;
 
@@ -28,8 +28,24 @@ public interface RoomMapper {
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
-    
-    List<RoomAndOnwer> findRecoRoom(@Param("moduleId") int moduleId , @Param("pageNo") int pageNo, @Param("pageSize") int pageSize);
-    
-    RoomAndOnwer findRoomById(int roomId);
+
+    /**
+     * 获取所有房间
+     * @return
+     */
+    List<Room> getAllRoom();
+
+    /**
+     * 获取所有某板块的房间
+     * @return
+     */
+    List<Room> getRoomByPart(int partId);
+
+    Room selectByUserIdWithModule(int userId);
+
+    List<RoomAndOwner> findRecoRoom(@Param("moduleId") int moduleId , @Param("pageNo") int pageNo, @Param("pageSize") int pageSize);
+
+    RoomAndOwner findRoomById(int roomId);
+
+    int updateRoomWithoutSwitchJudge(Room room);
 }

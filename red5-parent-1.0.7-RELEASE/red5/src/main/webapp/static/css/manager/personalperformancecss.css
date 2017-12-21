@@ -1,0 +1,47 @@
+.container {
+	position: absolute;
+	top: 70px;
+	width: 100%;
+}
+.btn {
+	width: 100%;
+}
+.row {
+	margin-top: 20px;
+}
+.table {
+	width: 98%;
+	margin: 0 auto;
+}
+.table td{
+	height: 40px;
+	text-align: center;
+}
+#chart{
+	width: 98%;
+	margin: 0 auto;
+	height: 300px;
+}
+.partdiv{
+	border: 1px solid  	#F0F0F0;
+	box-shadow: 5px 5px 5px  	#d0d0d0;
+	padding-bottom: 40px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+.chartdiv{
+	margin-top: 60px;
+	box-shadow: 10px 10px 5px  	#888888;
+}
+#title{
+    font-weight: bold;
+    width: 80%;
+    height: 40px;
+    margin-top: 40px;
+}
+blockquote{
+    border-color: #4a77a9;
+}
+blockquote p {
+	font-size: 24px;
+}

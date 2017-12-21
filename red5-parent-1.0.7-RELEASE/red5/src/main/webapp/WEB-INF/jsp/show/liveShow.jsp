@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
     <title>Document</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/liveshow.css">
@@ -31,6 +32,224 @@
 </head>
 <body>
 <script type="text/javascript" src="/play/js/swfobject.js"></script>
+<nav class="navbar navbar-inverse navbar-fixed-top live-shadow" role="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="navbar-header">
+                    <!-- <a class="navbar-brand" href="#">菜鸟教程</a> -->
+                    <div style="line-height: 50px;">
+                        <img src="../static/img/tmp.png" alt="">
+                    </div>
+                </div>
+
+                <!-- 左边部分 -->
+                <ul class="nav navbar-nav live-left">
+                    <li class="">
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            分类
+                            <b class="live-caret"></b>
+                        </a>
+                        <div class="live-nav">
+                            <div class="live-shadow live-border live-border-radius">
+                                <div class="anim">
+                                    <div class="class-main">
+                                        <div class="list-wrap">
+                                            <h4>热门分类</h4>
+                                            <ul class="live-btns">
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="list-wrap">
+                                            <h4>热门分类</h4>
+                                            <ul class="live-btns">
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">主机游戏</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">直播</a>
+                    </li>
+                </ul>
+
+                <!-- 右边部分 -->
+                <!-- <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-user"></span> 注册
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-log-in"></span> 登录
+                        </a>
+                    </li>
+                </ul> -->
+                <div class="nav navbar-nav navbar-right">
+                    <div class="live-user">
+                        <div class="live-user-img">
+                            <img src="../static/img/logo.jpg" alt="">
+                            <div class="live-nav">
+                                <div class="live-shadow live-border live-border-radius">
+                                    <div class="anim">
+                                        <div class="user-main">
+                                            <div class="user-out">
+                                                <a href="#">退出</a>
+                                            </div>
+                                            <div class="user-pic">
+                                                <img src="../static/img/logo.jpg" alt="">
+                                            </div>
+                                            <div class="user-btns">
+                                                <button class="btn btn-large btn-primary btn-block" type="button">个人中心</button>
+                                                <button class="btn btn-large btn-primary btn-block" type="button">我的关注</button>
+                                                <button class="btn btn-large btn-primary btn-block" type="button">直播设置</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="live-side">
+    <div class="live-side-scroll">
+        <div class="live-viewport">
+            <!-- 按钮区域 -->
+            <div class="live-side-btns">
+                <button class="btn btn-large btn-primary btn-block" type="button">全部直播</button>
+                <button class="btn btn-large btn-primary btn-block" type="button">全部分类</button>
+            </div>
+
+            <!-- 游戏推荐区域 -->
+            <div class="live-side-recommend">
+                <div class="live-side-title">
+                    <ul>
+                        <li>栏目</li>
+                    </ul>
+                </div>
+                <div class="list-wrap">
+                    <div>
+                        <i></i>
+                        <span>热门游戏</span>
+                    </div>
+                    <ul class="live-btns">
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-wrap">
+                    <div>
+                        <i></i>
+                        <span>热门游戏</span>
+                    </div>
+                    <ul class="live-btns">
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-wrap">
+                    <div>
+                        <i></i>
+                        <span>热门游戏</span>
+                    </div>
+                    <ul class="live-btns">
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-wrap">
+                    <div>
+                        <i></i>
+                        <span>热门游戏</span>
+                    </div>
+                    <ul class="live-btns">
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                        <li>
+                            <a href="#">某某板块</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <jsp:include page="../common/topNav.jsp"></jsp:include>
 <jsp:include page="../common/leftNav.jsp"></jsp:include>
 <div id="main">
@@ -310,13 +529,13 @@
 <%--发送弹幕--%>
 <script>
     //    发送弹幕
-     function sendBarrage(danmakuId,nickName,content,userId){
+     function sendBarrage(danmakuId,nickName,reason,userId){
          var item = {
             // img: '/static/img/cute.png', //图片
              userId:userId,
              danmakuId:danmakuId,
              nickName:nickName,
-             info: content, //文字
+             info: reason, //文字
              href: '#', //链接 
              close: false, //显示关闭按钮 
              speed: 6, //延迟,单位秒,默认6 
@@ -338,7 +557,7 @@
     $("#seal").click(function () {
         layer.open({
             title: "managerBan",
-            content: $("#managerBan").html(),
+            reason: $("#managerBan").html(),
             yes: function(index, layero){
                 fsubmit();
                 websocket.send(JSON.stringify(createDarkRoom()));
@@ -354,7 +573,7 @@
         if(type == "1"){
             layer.open({
                 title: "弹幕封禁",
-                content: $("#anchorBan").html(),
+                reason: $("#anchorBan").html(),
                 success:function(layero, index){
                     $('input[name="nickName"]').val(dataInfo.nickName);
                     $("input[name='danmakuId']").val(dataInfo.danmakuId);
@@ -483,7 +702,7 @@ $("#recommend").click(function(){
 
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
-        websocket = new WebSocket("ws://localhost:8080/WebScoket/" + 1); //房间号 
+        websocket = new WebSocket("ws://localhost:8080/WebScoket/" + ${room.id}); //房间号
     }
     else {
         alert('Not support websocket');
@@ -504,8 +723,8 @@ $("#recommend").click(function(){
         var msg = JSON.parse(event.data);
         console.log(msg);
         if(msg.type == "chat"){
-            chatMessage(msg.content.nickName,msg.content.content);
-            sendBarrage(msg.content.id,msg.content.nickName,msg.content.content,msg.content.userId);
+            chatMessage(msg.reason.nickName,msg.reason.reason);
+            sendBarrage(msg.reason.id,msg.reason.nickName,msg.reason.reason,msg.reason.userId);
         }else if(msg.type == "darkDanmaku"){
             isDark = 1;
             alert("你已经被主播封印了");
@@ -551,14 +770,14 @@ $("#recommend").click(function(){
 
    
 
-    function createChatMsg(content){
+    function createChatMsg(reason){
         var message = {
             type:"chat",
-            content:{
+            reason:{
                 id:null,
                 userId:"${sessionScope.user.id}",
                 roomId:"${room.id}",
-                content:content,
+                reason:reason,
                 nickName:"${sessionScope.user.nickName}"
             }
         }
@@ -568,7 +787,7 @@ $("#recommend").click(function(){
     function createDarkDanmaku(id,hours,userId){
         var message = {
             type:"darkDanmaku",
-            content:{
+            reason:{
                 userId:userId,
                 danmakuId:id,
                 hours:hours
@@ -580,7 +799,7 @@ $("#recommend").click(function(){
     function createDarkRoom(){
         var message = {
             type:"darkRoom",
-            content:{
+            reason:{
                 id:"${room.id}"
             }
         }

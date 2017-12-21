@@ -1,5 +1,6 @@
 package org.liveshow.service;
 
+import org.liveshow.dto.Show;
 import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
 import org.liveshow.entity.Module;
 
@@ -21,14 +22,15 @@ public interface RecommendModuleService {
      * @param moduleId
      * @return
      */
-    int handleRecommendModule(int id, String moduleId);
+    Show handleRecommendModule(int id, String moduleId);
 
     /**
      * 获取当前所存储的推荐模块
      *
      * @return
      */
-    List<RecommendModule> getAllRecommendModule();
+    Show getAllRecommendModule();
+
 
     List<RecommendModulAndInfo> findRecoModul();
 

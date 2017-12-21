@@ -3,7 +3,7 @@ package org.liveshow.controller;
 import org.liveshow.dto.Show;
 import org.liveshow.entity.User;
 import org.liveshow.service.UserService;
-import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +43,16 @@ public class UserController {
         }
         return show;
     }
-   
-    
+
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    public String register(){
+        return "show/register";
+    }
+
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @ResponseBody
+    public Show doRegister(String loginName, String password, String nickName){
+        return userService.doRegister(loginName,password,nickName);
+    }
+
 }

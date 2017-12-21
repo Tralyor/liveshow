@@ -5,6 +5,8 @@ public class DarkroomDanmaku {
 
     private Integer danmakuId;
 
+    private Danmaku danmaku;
+
     private Integer hours;
 
     private Integer time;
@@ -39,7 +41,17 @@ public class DarkroomDanmaku {
         this.danmakuId = danmakuId;
     }
 
-    public Integer getHours() {
+	public Danmaku getDanmaku()
+	{
+		return danmaku;
+	}
+
+	public void setDanmaku(Danmaku danmaku)
+	{
+		this.danmaku = danmaku;
+	}
+
+	public Integer getHours() {
         return hours;
     }
 

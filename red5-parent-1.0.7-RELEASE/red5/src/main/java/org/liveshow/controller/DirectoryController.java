@@ -2,10 +2,9 @@ package org.liveshow.controller;
 
 import org.liveshow.dto.Show;
 import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
-import org.liveshow.entity.CombinationEntity.RoomAndOnwer;
+import org.liveshow.entity.CombinationEntity.RoomAndOwner;
 import org.liveshow.entity.Module;
 import org.liveshow.entity.Part;
-import org.liveshow.entity.Room;
 import org.liveshow.service.ModuleService;
 import org.liveshow.service.PartService;
 import org.liveshow.service.RecommendModuleService;
@@ -55,7 +54,7 @@ public class DirectoryController {
     
     @RequestMapping("/module/{moduleId}")
     public String videoDirectory(@PathVariable int moduleId , Model model){
-        List<RoomAndOnwer> room = roomService.findRecoRoom(moduleId,0,20);
+        List<RoomAndOwner> room = roomService.findRecoRoom(moduleId,0,20);
         RoomPopularity roomPopularity = RoomPopularity.getInstance();
         List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
         List<Module> allModules =  moduleService.findModuleByPartId(0);
@@ -71,7 +70,7 @@ public class DirectoryController {
     @RequestMapping("/video/page")
     @ResponseBody
     public Show videoDirectory(int moduleId , int pageNo, int pageSize){
-        List<RoomAndOnwer> room = roomService.findRecoRoom(moduleId,pageNo,pageSize);
+        List<RoomAndOwner> room = roomService.findRecoRoom(moduleId,pageNo,pageSize);
         Show show = new Show();
         if (room ==null){
             show.setState(0);

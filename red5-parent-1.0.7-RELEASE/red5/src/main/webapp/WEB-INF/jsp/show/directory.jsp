@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          reason="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" reason="ie=edge">
     <title>Document</title>
     <%@ include file="../common/resources.jsp"%>
     <style>
@@ -107,7 +107,7 @@
                 </ul>
             </div>
 
-            <div id="content">
+            <div id="reason">
                 <c:forEach items="${allModules}" var="module" >
                     <div class="unit">
                         <div><img src="${module.photo}" alt=""></div>
@@ -187,10 +187,10 @@
             dataType:"json",
             data: "typeNum=" + parseInt($(this).attr("name")),
             success: function(data){
-               $("#content").empty();
+               $("#reason").empty();
                for(var i = 0 ; i < data.length ; i++){
                     var str = "<div class=\"unit\"> <div><img src=\"" + data[i]["photo"]+  "\" alt=\"\"></div> <div class=\"unit-span\" style=\"text-align: center;color: #7E7E7E\"><span>" + data[i]["name"] + "</span></div> </div>";
-                   $("#content") .append(str);              
+                   $("#reason") .append(str);
                }
             }
         });
