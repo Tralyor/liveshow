@@ -550,7 +550,7 @@ $("button").click(function(){
             dataType:"json",
             data: "roomId=${room.id}&state="+s,
             success: function(data){
-                alert(data.message);
+                websocket.send(JSON.stringify(createChatMsg(s)));
             }
         });
     }
@@ -629,6 +629,12 @@ $("#recommend").click(function(){
         }else if(msg.type=="darkRoom"){
             createFlash(_width, _height, null, _rtmpIp);
             alert("该直播间已经被封");
+        }else if (msg.type == 'showState'){
+            if(msg.content.state == 0){
+                $("#state").html("主播不在家");
+            }else if (msg.content.state == 1){
+                $("#state").html("正在直播");
+            }
         }
         
     };
@@ -703,6 +709,17 @@ $("#recommend").click(function(){
         }
         return message;
     }
+
+    function showState(state){
+        var message = {
+            type:"showState",
+            content:{
+                state:state
+            }
+        }
+        return message;
+    }
+
 
     
 function fsubmit(){
