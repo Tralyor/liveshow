@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.liveshow.entity.Application;
 import org.liveshow.entity.ApplicationExample;
 import org.liveshow.entity.CombinationEntity.ApplicationInfo;
+import org.liveshow.entity.CombinationEntity.CardState;
 
 import java.util.List;
 
@@ -54,5 +55,5 @@ public interface ApplicationMapper {
      */
     int updateApplicationInfo(@Param("id") int id, @Param("passState") Boolean passState, @Param("managerId") int managerId);
 
-	Boolean selectPassStateByUserId(int userId);
+	CardState selectPassStateByUserId(int userId);
 }

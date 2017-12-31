@@ -37,5 +37,5 @@ public interface ApplicationService {
 	 */
     boolean addApplication(PersonalApplicationDTO personalApplicationDTO);
 
-    Boolean checkApplication(int uid);
+    PersonalApplicationDTO isApplication(int uid);
 }

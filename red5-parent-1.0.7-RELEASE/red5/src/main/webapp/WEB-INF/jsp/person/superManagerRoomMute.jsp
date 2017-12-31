@@ -13,122 +13,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top live-shadow" role="navigation">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="navbar-header">
-                    <!-- <a class="navbar-brand" href="#">菜鸟教程</a> -->
-                    <div style="line-height: 50px;">
-                        <img src="../../static/img/tmp.png" alt="">
-                    </div>
-                </div>
-
-                <!-- 左边部分 -->
-                <ul class="nav navbar-nav live-left">
-                    <li class="">
-                        <a href="#">首页</a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            分类
-                            <b class="live-caret"></b>
-                        </a>
-                        <div class="live-nav">
-                            <div class="live-shadow live-border live-border-radius">
-                                <div class="anim">
-                                    <div class="class-main">
-                                        <div class="list-wrap">
-                                            <h4>热门分类</h4>
-                                            <ul class="live-btns">
-                                                <li>
-                                                    <a href="#">主机游戏</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">主机游戏</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">主机游戏</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">主机游戏</a>
-                                                </li>
-                                            </ul>
-                                            <h4>热门分类</h4>
-                                            <ul class="live-btns">
-                                                <li>
-                                                    <a href="#">主机游戏</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">主机游戏</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">主机游戏</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">主机游戏</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">直播</a>
-                    </li>
-                </ul>
-
-                <!-- 右边部分 -->
-                <!-- <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-user"></span> 注册
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-log-in"></span> 登录
-                        </a>
-                    </li>
-                </ul> -->
-                <div class="nav navbar-nav navbar-right">
-                    <div class="live-user">
-                        <div class="live-user-img">
-                            <img src="../../static/img/logo.jpg" alt="">
-                            <div class="live-nav">
-                                <div class="live-shadow live-border live-border-radius">
-                                    <div class="anim">
-                                        <div class="user-main">
-                                            <div class="user-out">
-                                                <a href="#">退出</a>
-                                            </div>
-                                            <div class="user-pic">
-                                                <img src="../../static/img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="user-btns">
-                                                <button class="btn btn-large btn-primary btn-block" type="button">个人中心</button>
-                                                <button class="btn btn-large btn-primary btn-block" type="button">我的关注</button>
-                                                <button class="btn btn-large btn-primary btn-block" type="button">直播设置</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</nav>
+<jsp:include page="../common/topNav.jsp"></jsp:include>
 <div class="container live-container">
     <div class="row">
         <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10">
@@ -204,41 +89,45 @@
                             </li>
                             <li class="active">主播封禁</li>
                         </ol>
-                        <ul class="nav nav-tabs">
-                            <li>
-                                <a href="mute">
-                                    禁言名单
-                                </a>
-                            </li>
-                            <li class="active">
-                                <a href="#">
-                                    禁言记录
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="tab-reason">
-                            <div class="tab-pane fade in active">
-                                <div class="user-header">
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr class="active">
-                                            <td>封禁主播</td>
-                                            <td style="width: 250px;">封禁理由</td>
-                                            <td style="width: 150px;">封禁时间</td>
-                                            <td style="width: 100px;">封禁时长</td>
-                                            <td>图片证据</td>
-                                            <td>操作</td>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr class="active">
+                                <td>封禁主播</td>
+                                <td style="width: 230px;">封禁理由</td>
+                                <td style="width: 150px;">封禁时间</td>
+                                <td style="width: 100px;">封禁时长</td>
+                                <td>图片证据</td>
+                                <td>操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:choose>
+                                <c:when test="${empty darkroomRoom}">
+                                    <tr>
+                                        <td colspan="7" style="text-align: center;">
+                                            暂无封禁记录
+                                        </td>
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${darkroomRoom}" var="room">
+                                        <tr>
+                                            <td style="vertical-align: middle;">${room.nickName}</td>
+                                            <td style="vertical-align: middle;">${room.reason}</td>
+                                            <td style="vertical-align: middle;">${room.time}</td>
+                                            <td style="vertical-align: middle;">${room.hours}</td>
+                                            <td>
+                                                <button class="btn btn-info btn-xs" name="photo" data-photo="${room.photo}">查看</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-defaule btn-xs">解封</button>
+                                            </td>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -246,7 +135,25 @@
     </div>
 </div>
 </body>
+<template id="showPic">
+    <div class="col-lg-10 col-lg-offset-1">
+        <img src="" id="photo"/>
+    </div>
+</template>
 <%@ include file="../common/resources-foot.jsp" %>
 <script type="text/javascript" src="/static/js/user/common.js"></script>
+<script type="text/javascript">
+    $("button[name='photo']").click(function() {
+        layer.open({
+            title: "查看图片证据",
+            content: $("#showPic").html(),
+            btn: [],
+            area: "800px",
+            offset: "200px"
+        });
+
+        $("#photo").attr("src", $(this).attr("data-photo"));
+    });
+</script>
 </html>
 

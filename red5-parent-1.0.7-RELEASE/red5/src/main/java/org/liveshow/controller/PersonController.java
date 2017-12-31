@@ -3,6 +3,7 @@ package org.liveshow.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.liveshow.dto.*;
+import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
 import org.liveshow.entity.User;
 import org.liveshow.service.*;
 import org.slf4j.Logger;
@@ -51,6 +52,8 @@ public class PersonController
 	private ApplicationService applicationService;
 	@Autowired
 	private DarkroomRoomService darkroomRoomService;
+	@Autowired
+	private RecommendModuleService recommendModuleService;
 	ObjectMapper mapper = new ObjectMapper();
 
 	/**
@@ -66,6 +69,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int id = user.getId();
 			List<PersonalFollowingDTO> personalFollowingDTOList = userService.getPersonFollowing(id);
 
@@ -78,7 +84,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录，跳转到登录页面");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -130,6 +136,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			List<PersonalLiveRecordDTO> personalLiveRecordDTOList = liveRecordService.getLiveRecordByUserId(userId);
 
@@ -142,7 +151,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录，跳转到登录页面");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -186,16 +195,21 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			PersonalLiveSettingDTO personalLiveSettingDTO = roomService.getPersonalLiveSetting(userId);
+			if (personalLiveSettingDTO != null)
+			{
+				logger.info("将直播设置放入model");
+				model.addAttribute("personalLiveSettingDTO", personalLiveSettingDTO);
 
-			logger.info("将直播设置放入model");
-			model.addAttribute("personalLiveSettingDTO", personalLiveSettingDTO);
-
-			List<PersonalLiveSettingPartDTO> personalLiveSettingPartDTOList = partService.getAllPartWithModuleList();
-			logger.info("将全部板块模块放入model");
-			model.addAttribute("personalLiveSettingPartDTOListJson", mapper.writeValueAsString(personalLiveSettingPartDTOList));
-			model.addAttribute("personalLiveSettingPartDTOList", personalLiveSettingPartDTOList);
+				List<PersonalLiveSettingPartDTO> personalLiveSettingPartDTOList = partService.getAllPartWithModuleList();
+				logger.info("将全部板块模块放入model");
+				model.addAttribute("personalLiveSettingPartDTOListJson", mapper.writeValueAsString(personalLiveSettingPartDTOList));
+				model.addAttribute("personalLiveSettingPartDTOList", personalLiveSettingPartDTOList);
+			}
 
 			logger.info("进入直播设置页面");
 			return "person/liveSetting";
@@ -203,7 +217,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -246,6 +260,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			List<PersonalMuteDTO> personalMuteDTOList = darkroomDanmakuService.getNotExpiredMute(userId);
 
@@ -258,7 +275,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -298,6 +315,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			List<PersonalMuteDTO> personalMuteDTOList = darkroomDanmakuService.getExpireMute(userId);
 
@@ -310,7 +330,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -326,10 +346,13 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			PersonalProfileDTO personalProfileDTO = userService.getPersonalProfile(userId);
 
-			logger.info("将禁言记录放入model");
+			logger.info("将个人信息放入model");
 			model.addAttribute("personalProfileDTO", personalProfileDTO);
 
 			logger.info("用户" + userId + "进入个人资料页面");
@@ -338,7 +361,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -354,6 +377,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			logger.info("用户" + userId + "进入修改密码页面");
 
@@ -362,7 +388,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -403,6 +429,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			logger.info("用户" + userId + "进入修改昵称页面");
 			return "person/personChangeName";
@@ -410,7 +439,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -450,6 +479,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			logger.info("用户" + userId + "进入修改头像页面");
 			return "person/personChangePic";
@@ -457,7 +489,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -467,16 +499,19 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
-			PersonalProfileDTO personalProfileDTO = userService.getPersonalProfile(userId);
-			model.addAttribute("personalProfileDTO", personalProfileDTO);
+			PersonalApplicationDTO personalApplicationDTO = applicationService.isApplication(userId);
+			model.addAttribute("personalApplicationDTO", personalApplicationDTO);
 			logger.info("用户" + userId + "进入实名认证页面");
 			return "person/liveApplication";
 		}
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -568,22 +603,40 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null )
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
-			logger.info("用户" + userId + "进入管理员审核实名认证页面");
+			logger.info("用户" + userId + "进入超管审核实名认证页面");
 			model.addAttribute("applications", applicationService.initApplication());
 			return "person/superManagerApplication";
 		}
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
 	@RequestMapping(value = "/managerRoomMute", method = RequestMethod.GET)
-	public String managerRoomMute()
+	public String managerRoomMute(HttpSession session, Model model)
 	{
-		return "person/superManagerRoomMute";
+		User user = (User) session.getAttribute("user");
+		if (user != null )
+		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
+			int userId = user.getId();
+			logger.info("用户" + userId + "进入超管封禁主播页面");
+			model.addAttribute("darkroomRoom", darkroomRoomService.initDarkRoomInfos());
+			return "person/superManagerRoomMute";
+		}
+		else
+		{
+			logger.info("未登录");
+			return "redirect:/";
+		}
 	}
 
 	@RequestMapping(value = "/getApplicationInfo",method = RequestMethod.POST)

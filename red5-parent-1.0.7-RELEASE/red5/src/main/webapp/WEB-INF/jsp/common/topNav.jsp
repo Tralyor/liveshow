@@ -12,9 +12,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="navbar-header">
-                    <!-- <a class="navbar-brand" href="#">菜鸟教程</a> -->
                     <div style="line-height: 50px;">
-                        <img src="../static/img/tmp.png" alt="">
+                        <img style="height: 50px;" src="/static/img/logo/logo-0.png" alt="">
                     </div>
                 </div>
 
@@ -59,9 +58,6 @@
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <a href="#">直播</a>
-                    </li>
                 </ul>
 
                 <!-- 右边部分 -->
@@ -84,7 +80,7 @@
                         <div class="nav navbar-nav navbar-right">
                             <div class="live-user">
                                 <div class="live-user-img">
-                                    <img src="../static/img/logo.jpg" alt="">
+                                    <img src="/static/img/logo.jpg" alt="">
                                     <div class="live-nav">
                                         <div class="live-shadow live-border live-border-radius">
                                             <div class="anim">

@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Cjn on 2017/11/28.
@@ -75,6 +76,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 			room.setUserId(application.getUserId());
 			room.setSwitchJudge(false);
 			room.setMostPopular(0);
+
+			String code = "applicationId=" + id + UUID.randomUUID().toString();
+			room.setStreamCode(code);
+			room.setModuleId(1);
+
 			roomMapper.insert(room);
 			show.setState(1);
 			show.setMessage("操作成功");
@@ -83,6 +89,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 		}
 		catch (RuntimeException e)
 		{
+			e.printStackTrace();
 			return new Show(null, 0, "操作失败");
 		}
     }
@@ -129,8 +136,16 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public Boolean checkApplication(int uid)
+	public PersonalApplicationDTO isApplication(int uid)
 	{
-		return applicationMapper.selectPassStateByUserId(uid);
+		Application application = applicationMapper.selectByUserId(uid);
+		if (application != null)
+		{
+			PersonalApplicationDTO personalApplicationDTO = new PersonalApplicationDTO();
+			personalApplicationDTO.setPassState(application.getPassState());
+			return personalApplicationDTO;
+		}
+		return null;
 	}
+
 }

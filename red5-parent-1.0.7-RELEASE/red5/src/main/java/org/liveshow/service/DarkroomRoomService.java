@@ -2,6 +2,7 @@ package org.liveshow.service;
 
 import org.liveshow.dto.Show;
 
+import org.liveshow.dto.SuperManagerDarkroomRoomDTO;
 import org.liveshow.dto.manager.DarkroomByDateDTO;
 import org.liveshow.dto.manager.DarkroomByModuleDTO;
 import org.liveshow.dto.manager.RoomMuteDTO;
@@ -43,7 +44,7 @@ public interface DarkroomRoomService {
      * 获取所有未解封的禁封直播间
      * @return
      */
-    List<DarkRoomInfo> initDarkRoomInfos();
+    List<SuperManagerDarkroomRoomDTO> initDarkRoomInfos();
 
     /**
      * 根据日期获取禁封直播间信息
