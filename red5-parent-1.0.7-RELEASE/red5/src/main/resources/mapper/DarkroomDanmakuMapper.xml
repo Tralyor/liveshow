@@ -287,8 +287,8 @@
 			u.login_name "loginName",
 			u.nick_name "nickName",
 			d.room_id "roomId",
-			m.name "name",
-			d.reason "danmaContent",
+			m.name "moduleName",
+			d.content "danmaContent",
 			dd.time "startTime",
 			dd.hours "endTime",
 			dd.state "state"

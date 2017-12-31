@@ -7,9 +7,9 @@ public class PersonalProfileDTO
 {
 	private String nickName;
 	private String pic;
-	private boolean idCardState;
+	private Boolean idCardState;
 
-	public PersonalProfileDTO(String nickName, String pic, boolean idCardState)
+	public PersonalProfileDTO(String nickName, String pic, Boolean idCardState)
 	{
 		this.nickName = nickName;
 //		this.pic = pic;
@@ -44,12 +44,12 @@ public class PersonalProfileDTO
 		this.pic = pic;
 	}
 
-	public boolean isIdCardState()
+	public Boolean isIdCardState()
 	{
 		return idCardState;
 	}
 
-	public void setIdCardState(boolean idCardState)
+	public void setIdCardState(Boolean idCardState)
 	{
 		this.idCardState = idCardState;
 	}

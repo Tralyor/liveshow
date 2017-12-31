@@ -54,3 +54,16 @@ function preview(file, id)
             "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'";
     }
 }
+
+//显示登录框
+function showLogin()
+{
+    layui.use(['layer', function() {
+        var layer = layui.layer;
+        layer.open({
+            title: "",
+            content: $("#login").html(),
+
+        })
+    }])
+}

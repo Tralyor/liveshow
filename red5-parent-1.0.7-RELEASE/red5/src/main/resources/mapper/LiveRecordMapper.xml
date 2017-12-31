@@ -7,7 +7,7 @@
 			<arg column="room_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
 			<arg column="start_time" jdbcType="INTEGER" javaType="java.lang.Integer"/>
 			<arg column="end_time" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-			<arg column="endTime" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+			<arg column="duration" jdbcType="INTEGER" javaType="java.lang.Integer"/>
 			<arg column="population" jdbcType="INTEGER" javaType="java.lang.Integer"/>
 		</constructor>
 	</resultMap>

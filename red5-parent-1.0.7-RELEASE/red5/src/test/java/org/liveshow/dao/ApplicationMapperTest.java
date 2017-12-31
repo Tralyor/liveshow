@@ -23,7 +23,7 @@ public class ApplicationMapperTest
 	@Test
 	public void selectPassStateByUserId() throws Exception
 	{
-		System.out.println(applicationMapper.countPassStateByUserId(1));
+		System.out.println(applicationMapper.selectPassStateByUserId(1));
 	}
 
 }

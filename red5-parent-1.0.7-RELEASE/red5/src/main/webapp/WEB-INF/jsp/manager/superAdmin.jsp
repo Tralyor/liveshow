@@ -60,7 +60,7 @@
                     <td>${superManager.idNum}</td>
                     <td>${superManager.tel}</td>
                     <%--<td>${superManager.address}</td>--%>
-                    <td>${superManager.name}</td>
+                    <td>${superManager.moduleName}</td>
                     <td>${superManager.roomNum}</td>
                     <td>${superManager.falseProportion}</td>
                     <td>

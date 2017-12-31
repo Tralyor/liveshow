@@ -216,7 +216,7 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <div class="user-following-type">
-                                                    <a href="/directory/module/${following.moduleId}">${following.name}</a>
+                                                    <a href="/directory/module/${following.moduleId}">${following.moduleName}</a>
                                                     <a href="javascript:;" class="user-following-unfollowing" room-id="${following.roomId}">取消关注</a>
                                                 </div>
                                             </div>

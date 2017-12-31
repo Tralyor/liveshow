@@ -215,24 +215,37 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <c:choose>
-                                            <c:when test="${personalProfileDTO.idCardState}">
+                                            <c:when test="${empty personalProfileDTO.isIdCardState()}">
                                                 <div class="user-setting">
                                                     <i class="fa fa-user-o fa-5x"></i>
                                                     <div class="user-setting-word">
                                                         <h3>实名认证</h3>
-                                                        <span>已认证</span>
+                                                        <span>正在审核</span>
                                                     </div>
                                                 </div>
                                             </c:when>
                                             <c:otherwise>
-                                                <div class="user-setting">
-                                                    <i class="fa fa-user-o fa-5x"></i>
-                                                    <div class="user-setting-word">
-                                                        <h3>实名认证</h3>
-                                                        <span>认证后可进行直播</span>
-                                                    </div>
-                                                    <a href="application" class="btn btn-default">实名认证</a>
-                                                </div>
+                                                <c:choose>
+                                                    <c:when test="${personalProfileDTO.isIdCardState()}">
+                                                        <div class="user-setting">
+                                                            <i class="fa fa-user-o fa-5x"></i>
+                                                            <div class="user-setting-word">
+                                                                <h3>实名认证</h3>
+                                                                <span>已认证</span>
+                                                            </div>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="user-setting">
+                                                            <i class="fa fa-user-o fa-5x"></i>
+                                                            <div class="user-setting-word">
+                                                                <h3>实名认证</h3>
+                                                                <span>认证后可进行直播</span>
+                                                            </div>
+                                                            <a href="application" class="btn btn-default">实名认证</a>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
