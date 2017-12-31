@@ -34,6 +34,13 @@ public interface UserMapper {
 
     List<PersonalFollowingDTO> selectFollowingByUserId(int id);
 
+	/**
+	 * 根据用户名查询用户
+	 * @param loginName
+	 * @return
+	 */
+	User selectByLoginName(String loginName);
+
     /**
      * 检查登录名是否重复
      * @param loginName
@@ -70,5 +77,4 @@ public interface UserMapper {
      * @return
      */
     User selectUserByLoginName(String loginName);
-
 }

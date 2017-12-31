@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" reason="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" reason="ie=edge">
     <title>template</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/user.css" />
@@ -183,63 +183,141 @@
                                 <i class="fa fa-tv fa-fw"></i> &nbsp;
                                 <li class="active">直播申请</li>
                             </ol>
-                            <form action="#" class="form-horizontal" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label for="realName" class="col-sm-2 control-label">真实姓名：</label>
-                                    <div class="col-sm-10">
-                                        <input id="realName" type="text" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">证件类型：</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control">
-                                            <option>身份证</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="idcardId" class="col-sm-2 control-label">证件号码：</label>
-                                    <div class="col-sm-10">
-                                        <input id="idcardId" type="text" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-4">
-                                        <div class="thumbnail" style="border: none;">
-                                            <img src="/static/img/img1.png" id="headheldPassport">
-                                            <div class="caption">
-                                                <span style="line-height: 34px;">手持证件照（2M内）</span>
-                                                <label class="btn btn-default pt-r" for="headheldPassportInput">点击上传</label>
-                                                <input type="file" id="headheldPassportInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
+                            <c:choose>
+                                <c:when test="${empty personalProfileDTO.isIdCardState()}">
+                                    <form id="application" action="#" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="realName" class="col-sm-2 control-label">真实姓名：</label>
+                                            <div class="col-sm-10">
+                                                <input id="realName" name="realName" type="text" required class="form-control" />
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="thumbnail" style="border: none;">
-                                            <img src="/static/img/img2.png" id="passportFront">
-                                            <div class="caption">
-                                                <span style="line-height: 34px;">证件正面照（2M内）</span>
-                                                <label class="btn btn-default pt-r" for="passportFrontInput">点击上传</label>
-                                                <input type="file" id="passportFrontInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">证件类型：</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="passportType">
+                                                    <option>身份证</option>
+                                                </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="thumbnail" style="border: none;">
-                                            <img src="/static/img/img3.png" id="passportBack">
-                                            <div class="caption">
-                                                <span style="line-height: 34px;">证件背面照（2M内）</span>
-                                                <label class="btn btn-default pt-r" for="passportBackInput">点击上传</label>
-                                                <input type="file" id="passportBackInput" accept="image/png, image/jpeg, image/jpg" style="display:none;">
+                                        <div class="form-group">
+                                            <label for="idcardId" class="col-sm-2 control-label">证件号码：</label>
+                                            <div class="col-sm-10">
+                                                <input id="idcardId" name="idcardId" required type="text" class="form-control" />
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group" style="text-align: center;">
-                                    <button type="submit" class="btn btn-default">提交</button>
-                                </div>
-                            </form>
+                                        <div class="form-group">
+                                            <div class="col-lg-4">
+                                                <div class="thumbnail" style="border: none;">
+                                                    <img src="/static/img/img1.png" id="headheldPassport">
+                                                    <div class="caption">
+                                                        <span style="line-height: 34px;">手持证件照（2M内）</span>
+                                                        <label class="btn btn-default pt-r" for="headheldPassportInput">点击上传</label>
+                                                        <input type="file" required name="headheldPassport" id="headheldPassportInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="thumbnail" style="border: none;">
+                                                    <img src="/static/img/img3.png" id="passportFront">
+                                                    <div class="caption">
+                                                        <span style="line-height: 34px;">证件正面照（2M内）</span>
+                                                        <label class="btn btn-default pt-r" for="passportFrontInput">点击上传</label>
+                                                        <input type="file" required name="passportFront" id="passportFrontInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="thumbnail" style="border: none;">
+                                                    <img src="/static/img/img2.png" id="passportBack">
+                                                    <div class="caption">
+                                                        <span style="line-height: 34px;">证件背面照（2M内）</span>
+                                                        <label class="btn btn-default pt-r" for="passportBackInput">点击上传</label>
+                                                        <input type="file" required name="passportBack" id="passportBackInput" accept="image/png, image/jpeg, image/jpg" style="display:none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="text-align: center;">
+                                            <button type="button" id="ajaxSubmit" class="btn btn-default">提交</button>
+                                        </div>
+                                    </form>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:choose>
+                                        <c:when test="${personalProfileDTO.isIdCardState()}">
+                                            <div style="text-align: center;color: green;">
+                                                <i class="fa fa-check-circle-o fa-3x" style="vertical-align: middle;"></i>
+                                                <span style="line-height: 3em;display: inline-block;position:relative;">已认证</span>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="panel panel-default">
+                                                <div class="panel-body bg-danger">
+                                                    认证失败
+                                                </div>
+                                            </div>
+                                            <form id="application" action="#" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <label for="realName" class="col-sm-2 control-label">真实姓名：</label>
+                                                    <div class="col-sm-10">
+                                                        <input id="realName" name="realName" type="text" required class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">证件类型：</label>
+                                                    <div class="col-sm-10">
+                                                        <select class="form-control" name="passportType">
+                                                            <option>身份证</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="idcardId" class="col-sm-2 control-label">证件号码：</label>
+                                                    <div class="col-sm-10">
+                                                        <input id="idcardId" name="idcardId" required type="text" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-4">
+                                                        <div class="thumbnail" style="border: none;">
+                                                            <img src="/static/img/img1.png" id="headheldPassport">
+                                                            <div class="caption">
+                                                                <span style="line-height: 34px;">手持证件照（2M内）</span>
+                                                                <label class="btn btn-default pt-r" for="headheldPassportInput">点击上传</label>
+                                                                <input type="file" required name="headheldPassport" id="headheldPassportInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="thumbnail" style="border: none;">
+                                                            <img src="/static/img/img3.png" id="passportFront">
+                                                            <div class="caption">
+                                                                <span style="line-height: 34px;">证件正面照（2M内）</span>
+                                                                <label class="btn btn-default pt-r" for="passportFrontInput">点击上传</label>
+                                                                <input type="file" required name="passportFront" id="passportFrontInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="thumbnail" style="border: none;">
+                                                            <img src="/static/img/img2.png" id="passportBack">
+                                                            <div class="caption">
+                                                                <span style="line-height: 34px;">证件背面照（2M内）</span>
+                                                                <label class="btn btn-default pt-r" for="passportBackInput">点击上传</label>
+                                                                <input type="file" required name="passportBack" id="passportBackInput" accept="image/png, image/jpeg, image/jpg" style="display:none;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="text-align: center;">
+                                                    <button type="button" id="ajaxSubmit" class="btn btn-default">提交</button>
+                                                </div>
+                                            </form>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
@@ -263,6 +341,26 @@
     $("#passportBackInput").change(function()
     {
         preview(this, "passportBack");
+    });
+
+    $("#ajaxSubmit").one(function() {
+        layer.msg('上传中，请稍等', {
+            icon: 16
+            ,shade: 0.01
+        });
+
+        var options = {
+            url: "submitApplication",
+            type: "post",
+            dataType: "json",
+            success: function(show) {
+                layer.closeAll('loading');
+                layerMsg(show, flush);
+            }
+        };
+
+
+        $("#application").ajaxSubmit(options);
     })
 </script>
 </html>

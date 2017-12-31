@@ -262,6 +262,12 @@
 			care.user_id = #{id}
 	</select>
 
+	<select id="selectByLoginName" resultMap="BaseResultMap">
+		SELECT *
+		FROM user
+		WHERE user.login_name = #{loginName}
+	</select>
+
 	<select id="confirmLoginName" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM USER WHERE login_name = #{loginName};
 	</select>
@@ -281,5 +287,4 @@
 	<select id="selectUserByLoginName" resultType="org.liveshow.entity.User">
 		SELECT id, password, login_name AS loginName, nick_name AS nickName, type FROM USER WHERE login_name = #{loginName};
 	</select>
-
 </mapper>

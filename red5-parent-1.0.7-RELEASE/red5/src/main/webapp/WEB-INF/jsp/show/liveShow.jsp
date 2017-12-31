@@ -31,7 +31,6 @@
 </head>
 <body>
 <script type="text/javascript" src="/play/js/swfobject.js"></script>
-<<<<<<< HEAD
 <nav class="navbar navbar-inverse navbar-fixed-top live-shadow" role="navigation">
     <div class="container">
         <div class="row">
@@ -150,110 +149,8 @@
         </div>
     </div>
 </nav>
-<div class="live-side">
-    <div class="live-side-scroll">
-        <div class="live-viewport">
-            <!-- 按钮区域 -->
-            <div class="live-side-btns">
-                <button class="btn btn-large btn-primary btn-block" type="button">全部直播</button>
-                <button class="btn btn-large btn-primary btn-block" type="button">全部分类</button>
-            </div>
-
-            <!-- 游戏推荐区域 -->
-            <div class="live-side-recommend">
-                <div class="live-side-title">
-                    <ul>
-                        <li>栏目</li>
-                    </ul>
-                </div>
-                <div class="list-wrap">
-                    <div>
-                        <i></i>
-                        <span>热门游戏</span>
-                    </div>
-                    <ul class="live-btns">
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list-wrap">
-                    <div>
-                        <i></i>
-                        <span>热门游戏</span>
-                    </div>
-                    <ul class="live-btns">
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list-wrap">
-                    <div>
-                        <i></i>
-                        <span>热门游戏</span>
-                    </div>
-                    <ul class="live-btns">
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list-wrap">
-                    <div>
-                        <i></i>
-                        <span>热门游戏</span>
-                    </div>
-                    <ul class="live-btns">
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-=======
 <jsp:include page="../common/topNav.jsp"></jsp:include>
 <jsp:include page="../common/leftNav.jsp"></jsp:include>
->>>>>>> be2251db797ba0d7a4fd18ca4d45782dc14be28c
 <div id="main">
     <div id="controlBar" style="width: 100%;height: 60px;margin-bottom: 10px">
         <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
@@ -571,7 +468,6 @@
     $(".video").on('click','div[id^=barrage_]',function () {
         var str = $(this).attr("name");
         var dataInfo = JSON.parse(str.toString());
-        
         if(type == "1"){
             layer.open({
                 title: "弹幕封禁",
@@ -704,7 +600,7 @@ $("#recommend").click(function(){
 
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
-        websocket = new WebSocket("ws://localhost:8080/WebScoket/" + 1); //房间号 
+        websocket = new WebSocket("ws://"+webIp+":8080/WebScoket/" + ${room.id}); //房间号
     }
     else {
         alert('Not support websocket');

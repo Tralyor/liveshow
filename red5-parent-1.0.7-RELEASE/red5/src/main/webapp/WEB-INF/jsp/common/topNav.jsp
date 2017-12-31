@@ -6,9 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ include file="../common/header.jsp"%>
 <nav class="navbar navbar-inverse navbar-fixed-top live-shadow" role="navigation">
     <div class="container">
         <div class="row">
@@ -23,10 +21,10 @@
                 <!-- 左边部分 -->
                 <ul class="nav navbar-nav live-left">
                     <li class="">
-                        <a href="#">首页</a>
+                        <a href="/">首页</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/directory/part">
                             分类
                             <b class="live-caret"></b>
                         </a>
@@ -40,7 +38,7 @@
                                                 <c:forEach var="modules" items="${modules}">
                                                     <c:if test="${modules.type == true}">
                                                         <li>
-                                                            <a href="#"><c:out value="${modules.name}"></c:out></a>
+                                                            <a href="/directory/module/${modules.id}"><c:out value="${modules.name}"></c:out></a>
                                                         </li>
                                                     </c:if>
                                                 </c:forEach>
@@ -50,7 +48,7 @@
                                                 <c:forEach var="modules" items="${modules}">
                                                     <c:if test="${modules.type == false}">
                                                         <li>
-                                                            <a href="#"><c:out value="${modules.name}"></c:out></a>
+                                                            <a href="/directory/module/${modules.id}"><c:out value="${modules.name}"></c:out></a>
                                                         </li>
                                                     </c:if>
                                                 </c:forEach>
@@ -67,47 +65,47 @@
                 </ul>
 
                 <!-- 右边部分 -->
-                <!-- <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">
+                        <a href="javascript:;" id="registerA">
                             <span class="glyphicon glyphicon-user"></span> 注册
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="javascript:;" id="loginA">
                             <span class="glyphicon glyphicon-log-in"></span> 登录
                         </a>
                     </li>
-                </ul> -->
-                <div class="nav navbar-nav navbar-right">
-                    <div class="live-user">
-                        <div class="live-user-img">
-                            <img src="../static/img/logo.jpg" alt="">
-                            <div class="live-nav">
-                                <div class="live-shadow live-border live-border-radius">
-                                    <div class="anim">
-                                        <div class="user-main">
-                                            <div class="user-out">
-                                                <a href="#">退出</a>
-                                            </div>
-                                            <div class="user-pic">
-                                                <img src="../static/img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="user-btns">
-                                                <button class="btn btn-large btn-primary btn-block" type="button">个人中心
-                                                </button>
-                                                <button class="btn btn-large btn-primary btn-block" type="button">我的关注
-                                                </button>
-                                                <button class="btn btn-large btn-primary btn-block" type="button">直播设置
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </ul>
+                <%--<div class="nav navbar-nav navbar-right">--%>
+                    <%--<div class="live-user">--%>
+                        <%--<div class="live-user-img">--%>
+                            <%--<img src="../static/img/logo.jpg" alt="">--%>
+                            <%--<div class="live-nav">--%>
+                                <%--<div class="live-shadow live-border live-border-radius">--%>
+                                    <%--<div class="anim">--%>
+                                        <%--<div class="user-main">--%>
+                                            <%--<div class="user-out">--%>
+                                                <%--<a href="#">退出</a>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="user-pic">--%>
+                                                <%--<img src="../static/img/logo.jpg" alt="">--%>
+                                            <%--</div>--%>
+                                            <%--<div class="user-btns">--%>
+                                                <%--<button class="btn btn-large btn-primary btn-block" type="button">个人中心--%>
+                                                <%--</button>--%>
+                                                <%--<button class="btn btn-large btn-primary btn-block" type="button">我的关注--%>
+                                                <%--</button>--%>
+                                                <%--<button class="btn btn-large btn-primary btn-block" type="button">直播设置--%>
+                                                <%--</button>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">

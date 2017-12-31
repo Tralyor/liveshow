@@ -4,12 +4,14 @@ import org.liveshow.dao.AnchorMapper;
 import org.liveshow.dao.ApplicationMapper;
 import org.liveshow.dao.RoomMapper;
 import org.liveshow.dao.UserMapper;
+import org.liveshow.dto.PersonalApplicationDTO;
 import org.liveshow.dto.Show;
 import org.liveshow.entity.Anchor;
 import org.liveshow.entity.Application;
 import org.liveshow.entity.CombinationEntity.ApplicationInfo;
 import org.liveshow.entity.Room;
 import org.liveshow.service.ApplicationService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,4 +88,30 @@ public class ApplicationServiceImpl implements ApplicationService {
     public List<ApplicationInfo> initApplication() {
         return applicationMapper.selectApplication(Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
+
+	@Override
+	public boolean addApplication(PersonalApplicationDTO personalApplicationDTO)
+	{
+		Application application = new Application();
+		BeanUtils.copyProperties(personalApplicationDTO, application);
+		application.setIdcardPhoto(personalApplicationDTO.getHeadheldPassport() + ";"
+				 + personalApplicationDTO.getPassportFront() + ";"
+				 + personalApplicationDTO.getPassportBack());
+		application.setApplyTime((int) System.currentTimeMillis() / 1000);
+		int res = applicationMapper.insertSelective(application);
+		if (res != 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean checkApplication(int uid)
+	{
+		return applicationMapper.selectPassStateByUserId(uid);
+	}
 }

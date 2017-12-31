@@ -1,5 +1,6 @@
 package org.liveshow.service;
 
+import org.liveshow.dto.PersonalApplicationDTO;
 import org.liveshow.dto.Show;
 import org.liveshow.entity.CombinationEntity.ApplicationInfo;
 
@@ -29,4 +30,12 @@ public interface ApplicationService {
 
     List<ApplicationInfo> initApplication();
 
+	/**
+	 * 加入新的审核
+	 * @param personalApplicationDTO
+	 * @return
+	 */
+    boolean addApplication(PersonalApplicationDTO personalApplicationDTO);
+
+    Boolean checkApplication(int uid);
 }

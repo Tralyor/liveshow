@@ -7,4 +7,5 @@
 --%>
 <script src="/static/js/plugins/html5shiv.min.js"></script>
 <script src="/static/js/plugins/popper.min.js"></script>
-<script src="/static/js/user/person.js"></script>
+<script src="/static/js/user/common.js"></script>
+<script src="/static/plugins/bootstrap/js/bootstrap-datetimepicker.min.js"></script>

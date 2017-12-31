@@ -60,11 +60,7 @@ public class UserServiceImpl implements UserService {
 	public PersonalProfileDTO getPersonalProfile(int id)
 	{
 		logger.info("获取id：" + id + "的个人资料");
-		boolean idCardState = false;
-		if (applicationMapper.countPassStateByUserId(id) == 1)
-		{
-			idCardState = true;
-		}
+		Boolean idCardState = applicationMapper.selectPassStateByUserId(id);
 		logger.info("id：" + id + "实名状态" + idCardState);
 		return entity2PersonalProfileDTO(userMapper.selectByPrimaryKey(id), idCardState);
 	}
@@ -149,7 +145,7 @@ public class UserServiceImpl implements UserService {
 		return personalFollowingDTOList;
 	}
 
-	private PersonalProfileDTO entity2PersonalProfileDTO(User user, boolean idCardState)
+	private PersonalProfileDTO entity2PersonalProfileDTO(User user, Boolean idCardState)
 	{
 		return new PersonalProfileDTO(user.getNickName(), "", idCardState);
 	}

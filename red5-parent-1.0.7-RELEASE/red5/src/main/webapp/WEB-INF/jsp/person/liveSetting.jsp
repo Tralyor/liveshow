@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" reason="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" reason="ie=edge">
     <title>template</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/user.css" />
@@ -339,7 +339,7 @@
         layer.open({
             title: '',
             content: $("#changeTypeContext").html(),
-            area: '400px',
+            area: ['400px'],
             btnAlign: 'c',
             yes: function (index, layero) {
                 var newPartName = $("#part").find("option:selected").text();

@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" reason="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" reason="ie=edge">
     <title>template</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/user.css" />
@@ -198,7 +198,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <div class="tab-content">
+                            <div class="tab-reason">
                                 <div class="tab-pane fade in active">
                                     <div class="user-header">
                                         <!-- <button class="btn btn-default user-header-add" id="addMute">添加</button> -->

@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          reason="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" reason="ie=edge">
     <title>Document</title>
     <%@ include file="../common/resources.jsp"%>
     <style>
@@ -117,7 +117,7 @@
     <div style="padding: 15px;">
         <div id="mainBody">
             <div  style="width:1000px;border-bottom: solid 1px #dddddd;margin-bottom: 15px;padding-left: 12px;">
-                <h1 style="display: inline-block">直播修场</h1>
+                <h1 style="display: inline-block">${module.name}</h1>
                
             </div>
 
