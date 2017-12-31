@@ -58,7 +58,7 @@ public class LiveRecordServiceImpl  implements LiveRecordService{
                 }else{
                     temp[n] = liveRecordMapper.selectPartPopulationByDate(partList.get(i).getId(), m, m + 86400);
                 }
-                m += startTime;
+                m += 86400;
             }
             map.put(partList.get(i).getName(), temp);
         }
