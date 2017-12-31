@@ -76,10 +76,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 			room.setUserId(application.getUserId());
 			room.setSwitchJudge(false);
 			room.setMostPopular(0);
-
-			String code = "applicationId=" + id + UUID.randomUUID().toString();
-			room.setStreamCode(code);
 			room.setModuleId(1);
+			room.setPhoto("/static/img/logo/logo-2.png");
+
+			String code = "applicationId=" + id + "&" + UUID.randomUUID().toString();
+			room.setStreamCode(code);
 
 			roomMapper.insert(room);
 			show.setState(1);

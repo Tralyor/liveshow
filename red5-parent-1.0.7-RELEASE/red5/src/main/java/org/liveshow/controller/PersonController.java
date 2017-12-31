@@ -249,6 +249,91 @@ public class PersonController
 	}
 
 	/**
+	 * 进入修改直播间封面页面
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/changeCover", method = RequestMethod.GET)
+	public String enterChangeCover(HttpSession session, Model model)
+	{
+		User user = (User) session.getAttribute("user");
+		if (user != null)
+		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
+			int userId = user.getId();
+			PersonalLiveSettingDTO personalLiveSettingDTO = roomService.getPersonalLiveSetting(userId);
+			logger.info("将有关信息放入model");
+			model.addAttribute("roomId", personalLiveSettingDTO.getRoomId());
+			model.addAttribute("cover", personalLiveSettingDTO.getPhoto());
+
+			logger.info("进入直播设置页面");
+			return "person/liveSettingChangeCover";
+		}
+		else
+		{
+			logger.info("未登录");
+			return "redirect:/";
+		}
+	}
+
+	@RequestMapping(value = "/changeCover", method = RequestMethod.POST)
+	@ResponseBody
+	public Show changeCover(HttpSession session, HttpServletRequest request)
+	{
+		User user = (User) session.getAttribute("user");
+
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
+		/**构建图片保存的目录**/
+		String logoPathDir = "/cover/"+ dateformat.format(new Date()) + "/" + user.getId();
+		System.out.println(logoPathDir);
+		/**得到图片保存目录的真实路径**/
+		String logoRealPathDir = multipartHttpServletRequest.getSession().getServletContext().getRealPath(logoPathDir);
+		/**根据真实路径创建目录**/
+		File logoSaveFile = new File(logoRealPathDir);
+		if(!logoSaveFile.exists())
+			logoSaveFile.mkdirs();
+
+		PersonalLiveSettingDTO personalLiveSettingDTO = new PersonalLiveSettingDTO();
+
+		int roomId = Integer.parseInt(multipartHttpServletRequest.getParameter("roomId"));
+		MultipartFile multipartFile = multipartHttpServletRequest.getFile("cover");
+
+		if (!multipartFile.isEmpty())
+		{
+			/**获取文件的后缀**/
+			String suffix = multipartFile.getOriginalFilename().substring
+					(multipartFile.getOriginalFilename().lastIndexOf("."));
+			/**使用UUID生成文件名称**/
+			String logImageName = UUID.randomUUID().toString()+ suffix;//构建文件名称
+			//				String logImageName = multipartFile.getOriginalFilename();
+			/**拼成完整的文件保存路径加文件**/
+			String fileName = logoRealPathDir + File.separator + logImageName;
+			File file = new File(fileName);
+
+			try {
+				multipartFile.transferTo(file);
+				String path = logoPathDir + File.separator + logImageName;
+				personalLiveSettingDTO.setRoomId(roomId);
+				personalLiveSettingDTO.setPhoto(path);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		else
+		{
+			return new Show(null, 0, "图片未选择");
+		}
+
+		return roomService.updateLiveSetting(personalLiveSettingDTO);
+	}
+
+	/**
 	 * 进入禁言名单页面
 	 * @param session
 	 * @param model
@@ -515,6 +600,12 @@ public class PersonController
 		}
 	}
 
+	/**
+	 * 提交申请，上传图片
+	 * @param session
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/submitApplication", method = RequestMethod.POST)
 	@ResponseBody
 	public Show submitApplication(HttpSession session, HttpServletRequest request)
@@ -525,7 +616,7 @@ public class PersonController
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
 		/**构建图片保存的目录**/
-		String logoPathDir = "/application"+ dateformat.format(new Date()) + "/" + user.getId();
+		String logoPathDir = "/application/"+ dateformat.format(new Date()) + "/" + user.getId();
 		System.out.println(logoPathDir);
 		/**得到图片保存目录的真实路径**/
 		String logoRealPathDir = multipartHttpServletRequest.getSession().getServletContext().getRealPath(logoPathDir);
@@ -583,17 +674,17 @@ public class PersonController
 			}
 			else
 			{
-				return new Show(null, 0, "有图片未选择");
+				return new Show(null, 0, "图片未选择");
 			}
 		}
 
 		if (applicationService.addApplication(personalApplicationDTO))
 		{
-			return new Show(null, 1, "上传成功！");
+			return new Show(null, 1, "提交成功！");
 		}
 		else
 		{
-			return new Show(null, 0, "上传失败！");
+			return new Show(null, 0, "提交失败！");
 		}
 	}
 

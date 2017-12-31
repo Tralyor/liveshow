@@ -274,6 +274,6 @@
 
 
         $("#application").ajaxSubmit(options);
-    })
+    });
 </script>
 </html>

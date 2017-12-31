@@ -126,10 +126,10 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">直播封面：</label>
                                             <div class="col-sm-6">
-                                                <img src="${personalLiveSettingDTO.photo}" alt="">
+                                                <img src="${personalLiveSettingDTO.photo}" style="width: 400px;">
                                             </div>
                                             <div class="col-sm-2">
-                                                <button type="button" class="btn btn-default" role="button">修改</button>
+                                                <a href="/person/changeCover" class="btn btn-default">修改</a>
                                             </div>
                                         </div>
 
