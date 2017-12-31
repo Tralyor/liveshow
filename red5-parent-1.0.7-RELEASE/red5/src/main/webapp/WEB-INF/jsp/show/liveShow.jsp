@@ -253,7 +253,7 @@
 <template id="anchorBan">
     <form enctype="multipart/form-data;charset=utf-8">
         <div class="form-group">
-            <label  class="control-label">用户编号</label>
+            <label  class="control-label">弹幕编号</label>
             <input type="text" name="danmakuId" readonly="readonly">
         </div>
         <div class="form-group">
@@ -550,7 +550,7 @@ $("button").click(function(){
             dataType:"json",
             data: "roomId=${room.id}&state="+s,
             success: function(data){
-                websocket.send(JSON.stringify(createChatMsg(s)));
+                websocket.send(JSON.stringify(showState(s)));
             }
         });
     }
@@ -631,9 +631,14 @@ $("#recommend").click(function(){
             alert("该直播间已经被封");
         }else if (msg.type == 'showState'){
             if(msg.content.state == 0){
+
                 $("#state").html("主播不在家");
+                createFlash(_width, _height, null, _rtmpIp);
+                alert("主播不在家咯");
             }else if (msg.content.state == 1){
+                createFlash(_width, _height, _stream, _rtmpIp);
                 $("#state").html("正在直播");
+                alert("主播来咯")
             }
         }
         

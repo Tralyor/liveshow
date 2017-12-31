@@ -7,10 +7,11 @@ import org.liveshow.chat.WebScoket;
 import org.liveshow.chat.content.DarkRoomContent;
 import org.liveshow.chat.content.ShowStateContent;
 import org.liveshow.dto.Show;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-
+@Service
 public class ShowStateResolver implements  ContentResolver{
     @Override
     public void resolve(String msgJson, WebScoket webScoket) {
