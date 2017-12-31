@@ -4,7 +4,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-	<meta name="renderer" content="webkit">
     <title>Document</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/liveshow.css">
@@ -150,106 +149,6 @@
         </div>
     </div>
 </nav>
-<div class="live-side">
-    <div class="live-side-scroll">
-        <div class="live-viewport">
-            <!-- 按钮区域 -->
-            <div class="live-side-btns">
-                <button class="btn btn-large btn-primary btn-block" type="button">全部直播</button>
-                <button class="btn btn-large btn-primary btn-block" type="button">全部分类</button>
-            </div>
-
-            <!-- 游戏推荐区域 -->
-            <div class="live-side-recommend">
-                <div class="live-side-title">
-                    <ul>
-                        <li>栏目</li>
-                    </ul>
-                </div>
-                <div class="list-wrap">
-                    <div>
-                        <i></i>
-                        <span>热门游戏</span>
-                    </div>
-                    <ul class="live-btns">
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list-wrap">
-                    <div>
-                        <i></i>
-                        <span>热门游戏</span>
-                    </div>
-                    <ul class="live-btns">
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list-wrap">
-                    <div>
-                        <i></i>
-                        <span>热门游戏</span>
-                    </div>
-                    <ul class="live-btns">
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list-wrap">
-                    <div>
-                        <i></i>
-                        <span>热门游戏</span>
-                    </div>
-                    <ul class="live-btns">
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                        <li>
-                            <a href="#">某某板块</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <jsp:include page="../common/topNav.jsp"></jsp:include>
 <jsp:include page="../common/leftNav.jsp"></jsp:include>
 <div id="main">
@@ -529,13 +428,13 @@
 <%--发送弹幕--%>
 <script>
     //    发送弹幕
-     function sendBarrage(danmakuId,nickName,reason,userId){
+     function sendBarrage(danmakuId,nickName,content,userId){
          var item = {
             // img: '/static/img/cute.png', //图片
              userId:userId,
              danmakuId:danmakuId,
              nickName:nickName,
-             info: reason, //文字
+             info: content, //文字
              href: '#', //链接 
              close: false, //显示关闭按钮 
              speed: 6, //延迟,单位秒,默认6 
@@ -557,7 +456,7 @@
     $("#seal").click(function () {
         layer.open({
             title: "managerBan",
-            reason: $("#managerBan").html(),
+            content: $("#managerBan").html(),
             yes: function(index, layero){
                 fsubmit();
                 websocket.send(JSON.stringify(createDarkRoom()));
@@ -569,11 +468,10 @@
     $(".video").on('click','div[id^=barrage_]',function () {
         var str = $(this).attr("name");
         var dataInfo = JSON.parse(str.toString());
-        
         if(type == "1"){
             layer.open({
                 title: "弹幕封禁",
-                reason: $("#anchorBan").html(),
+                content: $("#anchorBan").html(),
                 success:function(layero, index){
                     $('input[name="nickName"]').val(dataInfo.nickName);
                     $("input[name='danmakuId']").val(dataInfo.danmakuId);
@@ -702,7 +600,7 @@ $("#recommend").click(function(){
 
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
-        websocket = new WebSocket("ws://localhost:8080/WebScoket/" + ${room.id}); //房间号
+        websocket = new WebSocket("ws://"+webIp+":8080/WebScoket/" + ${room.id}); //房间号
     }
     else {
         alert('Not support websocket');
@@ -723,8 +621,8 @@ $("#recommend").click(function(){
         var msg = JSON.parse(event.data);
         console.log(msg);
         if(msg.type == "chat"){
-            chatMessage(msg.reason.nickName,msg.reason.reason);
-            sendBarrage(msg.reason.id,msg.reason.nickName,msg.reason.reason,msg.reason.userId);
+            chatMessage(msg.content.nickName,msg.content.content);
+            sendBarrage(msg.content.id,msg.content.nickName,msg.content.content,msg.content.userId);
         }else if(msg.type == "darkDanmaku"){
             isDark = 1;
             alert("你已经被主播封印了");
@@ -770,14 +668,14 @@ $("#recommend").click(function(){
 
    
 
-    function createChatMsg(reason){
+    function createChatMsg(content){
         var message = {
             type:"chat",
-            reason:{
+            content:{
                 id:null,
                 userId:"${sessionScope.user.id}",
                 roomId:"${room.id}",
-                reason:reason,
+                content:content,
                 nickName:"${sessionScope.user.nickName}"
             }
         }
@@ -787,7 +685,7 @@ $("#recommend").click(function(){
     function createDarkDanmaku(id,hours,userId){
         var message = {
             type:"darkDanmaku",
-            reason:{
+            content:{
                 userId:userId,
                 danmakuId:id,
                 hours:hours
@@ -799,7 +697,7 @@ $("#recommend").click(function(){
     function createDarkRoom(){
         var message = {
             type:"darkRoom",
-            reason:{
+            content:{
                 id:"${room.id}"
             }
         }

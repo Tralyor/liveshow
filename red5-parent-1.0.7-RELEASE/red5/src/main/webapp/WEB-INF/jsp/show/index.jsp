@@ -201,7 +201,7 @@
                     <div id="footRec">
                         <div class="footDivBig">
                             <h3>
-                                <a href="" name="tagA" style="color: black">
+                                <a href="/directory/module/${modules[0].id}" name="tagA" style="color: black">
                                     <i><img src="/static/img/indexClassIcon.png" alt=""></i>
                                     <span>${modules[0].name}</span>
                                 </a>
@@ -209,7 +209,9 @@
                             <hr style="color: #F3F4F8">
                             <div style="width: 100%; margin-top: -15px">
                                 <c:forEach var="room" items="${reco1}">
-                                    <div class="showVideo"><img class="imgStyle" src="${room.photo}" alt="">
+                                    <a href="/liveShow/index/${room.id}">
+                                    <div class="showVideo">
+                                       <img class="imgStyle" src="${room.photo}" alt="">
                                         <div class="playIcon">
                                             <div style="width: 40px;margin: 0 auto;">
                                                 <img src="/static/img/play.png" style="height: 100%;width: 100%" alt="">
@@ -217,6 +219,7 @@
                                         </div>
                                         <div class="textDiv">${room.name}</div>
                                     </div>
+                                    </a>
                                 </c:forEach>
                                 <%--<div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">--%>
                                     <%--<div class="playIcon">--%>
@@ -254,7 +257,7 @@
                         </div>
                         <div class="footDivBig">
                             <h3>
-                                <a href="" name="tagA" style="color: black">
+                                <a href="/directory/module/${modules[1].id}" name="tagA" style="color: black">
                                     <i><img src="/static/img/indexClassIcon.png" alt=""></i>
                                     <span>${modules[1].name}</span>
                                 </a>
@@ -262,6 +265,7 @@
                             <hr style="color: #F3F4F8">
                             <div style="width: 100%; margin-top: -15px">
                                 <c:forEach var="room" items="${reco2}">
+                                    <a href="/liveShow/index/${room.id}">
                                     <div class="showVideo"><img class="imgStyle" src="${room.photo}" alt="">
                                         <div class="playIcon">
                                             <div style="width: 40px;margin: 0 auto;">
@@ -270,6 +274,7 @@
                                         </div>
                                         <div class="textDiv">${room.name}</div>
                                     </div>
+                                    </a>
                                 </c:forEach>
                                 <%--<div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">--%>
                                     <%--<div class="playIcon">--%>
@@ -307,7 +312,7 @@
                         </div>
                         <div class="footDivBig">
                             <h3>
-                                <a href="" name="tagA" style="color: black">
+                                <a href="/directory/module/${modules[2].id}" name="tagA" style="color: black">
                                     <i><img src="/static/img/indexClassIcon.png" alt=""></i>
                                     <span>${modules[2].name}</span>
                                 </a>
@@ -315,6 +320,7 @@
                             <hr style="color: #F3F4F8">
                             <div style="width: 100%; margin-top: -15px">
                                 <c:forEach var="room" items="${reco3}">
+                                    <a href="/liveShow/index/${room.id}">
                                     <div class="showVideo"><img class="imgStyle" src="${room.photo}" alt="">
                                         <div class="playIcon">
                                             <div style="width: 40px;margin: 0 auto;">
@@ -323,6 +329,7 @@
                                         </div>
                                         <div class="textDiv">${room.name}</div>
                                     </div>
+                                    </a>
                                 </c:forEach>
                                 <%--<div class="showVideo"><img class="imgStyle" src="/static/img/test2.png" alt="">--%>
                                     <%--<div class="playIcon">--%>

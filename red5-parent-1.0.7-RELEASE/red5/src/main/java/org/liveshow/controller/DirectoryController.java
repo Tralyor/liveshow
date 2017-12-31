@@ -59,6 +59,10 @@ public class DirectoryController {
         List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
         List<Module> allModules =  moduleService.findModuleByPartId(0);
         List<Part> parts = partService.findAllPart();
+
+        Module module = moduleService.findModuleById(moduleId);
+
+        model.addAttribute("module",module);
         model.addAttribute("modules",modules);
         model.addAttribute("allModules",allModules);
         model.addAttribute("parts",parts);

@@ -122,7 +122,7 @@
                 {field:'loginName', title:'账号'},
                 {field:'nickName', title:'昵称'},
                 {field:'roomId', title:'房间号'},
-                {field:'name', title:'所属板块'},
+                {field:'moduleName', title:'所属板块'},
                 {field:'danmaContent', title:'弹幕内容'},
                 {field:'startTime', title:'开始时间'},
                 {field:'endTime', title:'结束时间'},
