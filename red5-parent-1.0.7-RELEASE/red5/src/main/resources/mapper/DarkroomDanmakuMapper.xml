@@ -226,7 +226,7 @@
 		AND
 			b.id = c.danmaku_id
 		AND
-			(c.time + c.hours > unix_timestamp(now()) OR state = 0)
+			(c.time + c.hours > unix_timestamp(now()) AND state = 0)
 		AND
 		 	a.id = #{userId}
 		AND

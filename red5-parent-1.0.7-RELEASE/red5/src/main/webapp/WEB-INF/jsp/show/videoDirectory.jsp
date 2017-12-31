@@ -124,6 +124,7 @@
             <div>
                 
                 <c:forEach var="room" items="${room}">
+                    <a href="/liveShow/index/${room.id}">
                     <div class="showVideo"><img class="imgStyle" src="${room.photo}" alt="">
                         <div class="playIcon">
                             <div style="width: 40px;margin: 0 auto;">
@@ -137,6 +138,7 @@
                             </ul>
                         </div>
                     </div>
+                    </a>
                 </c:forEach>
                
              

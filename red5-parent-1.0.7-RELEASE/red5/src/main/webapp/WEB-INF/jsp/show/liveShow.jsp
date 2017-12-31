@@ -201,9 +201,7 @@
     <div id="chatBox">
         <div id="chatView">
             <ul class="ulDanmaku">
-                <li class="danmakuUser">
-                    <p><span>userName</span>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;主播玩的真棒</p>
-                </li>
+
             </ul>
         </div>
         <div id="chatSend">
@@ -239,7 +237,7 @@
                 <option>24</option>
                 <option>48</option>
                 <option>720</option>
-                <option>100000000000000</option>
+                <option>10000000</option>
             </select>
         </div>
         <div class="form-group">
