@@ -11,16 +11,16 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a><span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;&nbsp;&nbsp;概览</a>
+                    <a href="/admin/overview"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;&nbsp;&nbsp;概览</a>
                 </li>
                 <li>
                     <a href="#"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;&nbsp;&nbsp;&nbsp;板块管理</a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="">设置板块</a>
+                            <a href="/admin/manager">设置板块</a>
                         </li>
                         <li>
-                            <a href="">首页板块</a>
+                            <a href="/admin/homepart">首页板块</a>
                         </li>
                     </ul>
                 </li>
@@ -28,27 +28,27 @@
                     <a href="#"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;&nbsp;封禁管理</a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="blockadeHost.jsp">主播封禁</a>
+                            <a href="/admin/blockadeHost">主播禁封</a>
                         </li>
                         <li>
-                            <a href="blockadeVisitor.jsp">游客封禁</a>
+                            <a href="/admin/blockadeVisitor">游客禁封</a>
                         </li>
                         <li>
-                            <a href="blockadeOverview.jsp">封禁概览</a>
+                            <a href="/admin/blockadeOverview">禁封概览</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="superAdmin.jsp"><span class="glyphicon glyphicon-star"></span>&nbsp;&nbsp;&nbsp;&nbsp;超管管理</a>
+                    <a href="/admin/superAdmin"><span class="glyphicon glyphicon-star"></span>&nbsp;&nbsp;&nbsp;&nbsp;超管管理</a>
                 </li>
                 <li>
                     <a href="#"><span class="glyphicon glyphicon-align-left"></span>&nbsp;&nbsp;&nbsp;&nbsp;绩效</a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="">板块绩效</a>
+                            <a href="/admin/performance/part">板块绩效</a>
                         </li>
                         <li>
-                            <a href="">主播个人绩效</a>
+                            <a href="/admin/performance/anchor">主播个人绩效</a>
                         </li>
                     </ul>
                 </li>
