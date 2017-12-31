@@ -237,7 +237,7 @@
   </select>
 
   <select id="selectWholeDuration" resultType="java.lang.Integer">
-    SELECT SUM(endTime) FROM live_record AS a, USER AS b, room AS c WHERE b.id = c.user_id AND c.id = a.room_id AND b.nick_name = #{userName};
+    SELECT SUM(duration) FROM live_record AS a, USER AS b, room AS c WHERE b.id = c.user_id AND c.id = a.room_id AND b.nick_name = #{userName};
   </select>
 
   <select id="countTimes" resultType="java.lang.Integer">

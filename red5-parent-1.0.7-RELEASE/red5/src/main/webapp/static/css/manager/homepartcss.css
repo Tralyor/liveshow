@@ -6,14 +6,15 @@
 #choosediv {
 	margin-top: 20px;
 	min-width: 1000px;
-	height: 700px;
+	height: 900px;
 	background-color: #FCFCFC;
+	margin-bottom: 60px;
 }
 #choosediv h5{
 	padding: 0px;
 	position: absolute;
 	width: 90%;
-	top: 350px;
+	top: 460px;
 	left: 5%;
 	border-bottom: 3px solid #ADADAD;
 	margin: 0px;
@@ -31,7 +32,7 @@
 	width: 60%;
 }
 #headtip2 {
-	margin-top: 30px;
+	margin-top: 100px;
 }
 .divrow {
 	height: 350px;

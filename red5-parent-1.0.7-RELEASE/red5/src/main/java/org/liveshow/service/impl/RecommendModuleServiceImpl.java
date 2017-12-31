@@ -36,7 +36,7 @@ public class RecommendModuleServiceImpl implements RecommendModuleService {
     public Show handleRecommendModule(int id, String moduleId) {
         Show show = new Show();
         Boolean type;
-        if (id < 5){
+        if (id < 7){
             type = false;
         }else{
             type = true;
