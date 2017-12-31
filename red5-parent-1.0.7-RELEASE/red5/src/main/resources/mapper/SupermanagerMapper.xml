@@ -250,7 +250,7 @@
 		<result column="name" property="realName"/>
 		<result column="login_name" property="loginName"/>
 		<result column="module_id" property="moduleId"/>
-		<result column="module_name" property="name"/>
+		<result column="module_name" property="moduleName"/>
 		<result column="idcard_id" property="idNum"/>
 		<result column="telephone" property="tel"/>
 		<result column="address" property="address"/>
@@ -262,7 +262,7 @@
 		SELECT
 			s.id s_id,
 			s.user_id,
-			s.`name`,
+			s.`name` ,
 			s.idcard_id,
 			s.telephone,
 			s.address,

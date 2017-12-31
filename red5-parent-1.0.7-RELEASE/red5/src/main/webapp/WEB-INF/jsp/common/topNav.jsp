@@ -21,10 +21,10 @@
                 <!-- 左边部分 -->
                 <ul class="nav navbar-nav live-left">
                     <li class="">
-                        <a href="#">首页</a>
+                        <a href="/">首页</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/directory/part">
                             分类
                             <b class="live-caret"></b>
                         </a>
@@ -38,7 +38,7 @@
                                                 <c:forEach var="modules" items="${modules}">
                                                     <c:if test="${modules.type == true}">
                                                         <li>
-                                                            <a href="#"><c:out value="${modules.name}"></c:out></a>
+                                                            <a href="/directory/module/${modules.id}"><c:out value="${modules.name}"></c:out></a>
                                                         </li>
                                                     </c:if>
                                                 </c:forEach>
@@ -48,7 +48,7 @@
                                                 <c:forEach var="modules" items="${modules}">
                                                     <c:if test="${modules.type == false}">
                                                         <li>
-                                                            <a href="#"><c:out value="${modules.name}"></c:out></a>
+                                                            <a href="/directory/module/${modules.id}"><c:out value="${modules.name}"></c:out></a>
                                                         </li>
                                                     </c:if>
                                                 </c:forEach>

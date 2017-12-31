@@ -12,8 +12,8 @@
         <div class="live-viewport">
             <!-- 按钮区域 -->
             <div class="live-side-btns">
-                <button class="btn btn-large btn-primary btn-block" type="button">全部直播</button>
-                <button class="btn btn-large btn-primary btn-block" type="button">全部分类</button>
+                <a class="btn btn-large btn-primary btn-block" type="button">全部直播</a>
+                <a href="/directory/part" class="btn btn-large btn-primary btn-block" type="button">全部分类</a>
             </div>
 
             <!-- 游戏推荐区域 -->
@@ -35,7 +35,7 @@
                         <c:forEach items="${allModules}" var="module">
                            <c:if test="${module.partId eq part.id}">
                                <li>
-                                   <a href="#">${module.name}</a>
+                                   <a href="/directory/module/${module.id}">${module.name}</a>
                                </li>
                            </c:if>
                         </c:forEach>

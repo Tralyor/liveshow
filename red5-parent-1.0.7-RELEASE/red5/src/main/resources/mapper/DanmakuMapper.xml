@@ -216,6 +216,6 @@
   </select>
 
   <insert  parameterType="org.liveshow.entity.Danmaku" id="addDanmaku"  useGeneratedKeys="true" keyProperty="id" >
-    INSERT INTO danmaku(user_id,room_id,reason,`time`) VALUES(#{userId},#{roomId},#{reason},#{time})
+    INSERT INTO danmaku(user_id,room_id,content,`time`) VALUES(#{userId},#{roomId},#{content},#{time})
   </insert>
 </mapper>

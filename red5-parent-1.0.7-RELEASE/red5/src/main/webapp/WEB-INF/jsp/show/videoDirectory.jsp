@@ -117,7 +117,7 @@
     <div style="padding: 15px;">
         <div id="mainBody">
             <div  style="width:1000px;border-bottom: solid 1px #dddddd;margin-bottom: 15px;padding-left: 12px;">
-                <h1 style="display: inline-block">直播修场</h1>
+                <h1 style="display: inline-block">${module.name}</h1>
                
             </div>
 
