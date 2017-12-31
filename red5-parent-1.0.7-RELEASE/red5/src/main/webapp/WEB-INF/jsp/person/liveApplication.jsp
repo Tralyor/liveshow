@@ -174,6 +174,24 @@
                                         <i class="fa fa-fw"></i> &nbsp;直播记录
                                     </a>
                                 </li>
+                                <c:if test="${sessionScope.user.type == 2}">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-tv fa-fw"></i> &nbsp;超管相关
+                                            <i class="live-caret"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/person/managerApplication" class="li-children">
+                                            <i class="fa fa-fw"></i> &nbsp;申请管理
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/person/managerRoomMute" class="li-children">
+                                            <i class="fa fa-fw"></i> &nbsp;主播封禁
+                                        </a>
+                                    </li>
+                                </c:if>
                             </ul>
                         </div>
                     </div>
@@ -185,63 +203,10 @@
                             </ol>
                             <c:choose>
                                 <c:when test="${empty personalProfileDTO.isIdCardState()}">
-                                    <form id="application" action="#" method="post" class="form-horizontal" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label for="realName" class="col-sm-2 control-label">真实姓名：</label>
-                                            <div class="col-sm-10">
-                                                <input id="realName" name="realName" type="text" required class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">证件类型：</label>
-                                            <div class="col-sm-10">
-                                                <select class="form-control" name="passportType">
-                                                    <option>身份证</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="idcardId" class="col-sm-2 control-label">证件号码：</label>
-                                            <div class="col-sm-10">
-                                                <input id="idcardId" name="idcardId" required type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg-4">
-                                                <div class="thumbnail" style="border: none;">
-                                                    <img src="/static/img/img1.png" id="headheldPassport">
-                                                    <div class="caption">
-                                                        <span style="line-height: 34px;">手持证件照（2M内）</span>
-                                                        <label class="btn btn-default pt-r" for="headheldPassportInput">点击上传</label>
-                                                        <input type="file" required name="headheldPassport" id="headheldPassportInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="thumbnail" style="border: none;">
-                                                    <img src="/static/img/img3.png" id="passportFront">
-                                                    <div class="caption">
-                                                        <span style="line-height: 34px;">证件正面照（2M内）</span>
-                                                        <label class="btn btn-default pt-r" for="passportFrontInput">点击上传</label>
-                                                        <input type="file" required name="passportFront" id="passportFrontInput" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="thumbnail" style="border: none;">
-                                                    <img src="/static/img/img2.png" id="passportBack">
-                                                    <div class="caption">
-                                                        <span style="line-height: 34px;">证件背面照（2M内）</span>
-                                                        <label class="btn btn-default pt-r" for="passportBackInput">点击上传</label>
-                                                        <input type="file" required name="passportBack" id="passportBackInput" accept="image/png, image/jpeg, image/jpg" style="display:none;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" style="text-align: center;">
-                                            <button type="button" id="ajaxSubmit" class="btn btn-default">提交</button>
-                                        </div>
-                                    </form>
+                                    <div style="text-align: center;color: orange;">
+                                        <i class="fa fa-exclamation-circle fa-3x" style="vertical-align: middle;"></i>
+                                        <span style="line-height: 3em;display: inline-block;position:relative;">正在审核</span>
+                                    </div>
                                 </c:when>
                                 <c:otherwise>
                                     <c:choose>

@@ -178,6 +178,24 @@
                                         <i class="fa fa-fw"></i> &nbsp;直播记录
                                     </a>
                                 </li>
+                                <c:if test="${sessionScope.user.type == 2}">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-tv fa-fw"></i> &nbsp;超管相关
+                                            <i class="live-caret"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/person/managerApplication" class="li-children">
+                                            <i class="fa fa-fw"></i> &nbsp;申请管理
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/person/managerRoomMute" class="li-children">
+                                            <i class="fa fa-fw"></i> &nbsp;主播封禁
+                                        </a>
+                                    </li>
+                                </c:if>
                             </ul>
                         </div>
                     </div>

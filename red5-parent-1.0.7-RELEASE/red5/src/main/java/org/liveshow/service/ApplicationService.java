@@ -28,7 +28,7 @@ public interface ApplicationService {
      */
     Show checkApplication(int id, Boolean passState, int managerId);
 
-    List<ApplicationInfo> initApplication();
+    List<PersonalApplicationDTO> initApplication();
 
 	/**
 	 * 加入新的审核

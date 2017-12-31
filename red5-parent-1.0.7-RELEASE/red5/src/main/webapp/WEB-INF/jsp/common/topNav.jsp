@@ -65,47 +65,50 @@
                 </ul>
 
                 <!-- 右边部分 -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="javascript:;" id="registerA">
-                            <span class="glyphicon glyphicon-user"></span> 注册
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" id="loginA">
-                            <span class="glyphicon glyphicon-log-in"></span> 登录
-                        </a>
-                    </li>
-                </ul>
-                <%--<div class="nav navbar-nav navbar-right">--%>
-                    <%--<div class="live-user">--%>
-                        <%--<div class="live-user-img">--%>
-                            <%--<img src="../static/img/logo.jpg" alt="">--%>
-                            <%--<div class="live-nav">--%>
-                                <%--<div class="live-shadow live-border live-border-radius">--%>
-                                    <%--<div class="anim">--%>
-                                        <%--<div class="user-main">--%>
-                                            <%--<div class="user-out">--%>
-                                                <%--<a href="#">退出</a>--%>
-                                            <%--</div>--%>
-                                            <%--<div class="user-pic">--%>
-                                                <%--<img src="../static/img/logo.jpg" alt="">--%>
-                                            <%--</div>--%>
-                                            <%--<div class="user-btns">--%>
-                                                <%--<button class="btn btn-large btn-primary btn-block" type="button">个人中心--%>
-                                                <%--</button>--%>
-                                                <%--<button class="btn btn-large btn-primary btn-block" type="button">我的关注--%>
-                                                <%--</button>--%>
-                                                <%--<button class="btn btn-large btn-primary btn-block" type="button">直播设置--%>
-                                                <%--</button>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+                <c:choose>
+                    <c:when test="${empty sessionScope.user}">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="javascript:;" id="loginA">
+                                    <span class="glyphicon glyphicon-log-in"></span> 登录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" id="registerA">
+                                    <span class="glyphicon glyphicon-user"></span> 注册
+                                </a>
+                            </li>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="nav navbar-nav navbar-right">
+                            <div class="live-user">
+                                <div class="live-user-img">
+                                    <img src="../static/img/logo.jpg" alt="">
+                                    <div class="live-nav">
+                                        <div class="live-shadow live-border live-border-radius">
+                                            <div class="anim">
+                                                <div class="user-main">
+                                                    <div class="user-out">
+                                                        <a href="/user/logout">退出</a>
+                                                    </div>
+                                                    <div class="user-pic">
+                                                        <img src="../static/img/logo.jpg" alt="">
+                                                    </div>
+                                                    <div class="user-btns">
+                                                        <a class="btn btn-large btn-primary btn-block" href="/person/">个人中心</a>
+                                                        <a class="btn btn-large btn-primary btn-block" href="/person/following">我的关注</a>
+                                                        <a class="btn btn-large btn-primary btn-block" href="/person/liveSetting">直播设置</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">

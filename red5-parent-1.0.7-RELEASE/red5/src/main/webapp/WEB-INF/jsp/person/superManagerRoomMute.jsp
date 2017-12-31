@@ -165,7 +165,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/person/liveSetting" class="li-children clicked">
+                                <a href="/person/liveSetting" class="li-children">
                                     <i class="fa fa-fw"></i> &nbsp;直播设置
                                 </a>
                             </li>
@@ -174,6 +174,24 @@
                                     <i class="fa fa-fw"></i> &nbsp;直播记录
                                 </a>
                             </li>
+                            <c:if test="${sessionScope.user.type == 2}">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-tv fa-fw"></i> &nbsp;超管相关
+                                        <i class="live-caret"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/person/managerApplication" class="li-children">
+                                        <i class="fa fa-fw"></i> &nbsp;申请管理
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/person/managerRoomMute" class="li-children clicked">
+                                        <i class="fa fa-fw"></i> &nbsp;主播封禁
+                                    </a>
+                                </li>
+                            </c:if>
                         </ul>
                     </div>
                 </div>
@@ -182,9 +200,9 @@
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-tv fa-fw"></i> &nbsp;
-                                <a href="#">直播设置</a>
+                                <a href="#">超管相关</a>
                             </li>
-                            <li class="active">禁言</li>
+                            <li class="active">主播封禁</li>
                         </ol>
                         <ul class="nav nav-tabs">
                             <li>

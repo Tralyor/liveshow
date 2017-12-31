@@ -569,15 +569,21 @@ public class PersonController
 		if (user != null )
 		{
 			int userId = user.getId();
-			logger.info("用户" + userId + "进入实名认证页面");
+			logger.info("用户" + userId + "进入管理员审核实名认证页面");
 			model.addAttribute("applications", applicationService.initApplication());
-			return "";
+			return "person/superManagerApplication";
 		}
 		else
 		{
 			logger.info("未登录");
 			return "redirect:/user/login";
 		}
+	}
+
+	@RequestMapping(value = "/managerRoomMute", method = RequestMethod.GET)
+	public String managerRoomMute()
+	{
+		return "person/superManagerRoomMute";
 	}
 
 	@RequestMapping(value = "/getApplicationInfo",method = RequestMethod.POST)

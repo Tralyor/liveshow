@@ -370,11 +370,7 @@
             </div>
         </div>
     </div>
-
-<template id="login">
-    
-</template>
-
+<%@ include file="../common/resources-foot.jsp"%>
 <script type="text/javascript" src="/static/js/config/rtmpConfig.js"></script>
 <script>
     var fatherWidth = $("#main").width();

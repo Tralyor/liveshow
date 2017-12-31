@@ -58,12 +58,52 @@ function preview(file, id)
 //显示登录框
 function showLogin()
 {
-    layui.use(['layer', function() {
-        var layer = layui.layer;
-        layer.open({
-            title: "",
-            content: $("#login").html(),
-
-        })
-    }])
+    layer.open({
+        title: "",
+        content: $("#loginDiv").html(),
+        area: ['500px', '500px'],
+        btn: [],
+    })
 }
+
+$(document).on("click", "ul.login-tab-title li", function() {
+    //第几个li
+    var index = $("ul.login-tab-title li").index(this);
+    //击中的选项卡添加class
+    $(this).addClass("login-this").siblings().removeClass("login-this");
+    //显示对应的内容
+    $(".login-tab-content").children(".login-tab-item").eq(index).addClass("login-show").siblings().removeClass("login-show");
+});
+
+$(document).on("click", "#loginA", function() {
+    showLogin();
+});
+
+$(document).on("click", "#registerA", function() {
+    showLogin();
+    $("ul.login-tab-title li").eq(1).click();
+});
+
+$(document).on("click", "#login", function() {
+    var loginName = $("#loginName").val();
+    var password = $("#password").val();
+
+    $.ajax({
+        url: "/user/login",
+        type: "post",
+        data: "loginName=" + loginName + "&password=" + password,
+        dataType: "json",
+        success: function(show) {
+            if(show.status == 0)
+            {
+                layerMsg(show, nothingDoFun);
+            }
+            else
+            {
+                layerMsg(show, flush);
+            }
+        }
+    });
+
+    return false;
+});

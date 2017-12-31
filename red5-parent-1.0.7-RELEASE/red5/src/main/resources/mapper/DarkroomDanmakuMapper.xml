@@ -238,7 +238,7 @@
 	<select id="selectExpiredByUserId" resultType="org.liveshow.entity.DarkroomDanmaku">
 		SELECT
 			u.nick_name "danmaku.user.nickName",
-			d.reason "danmaku.reason",
+			d.content "danmaku.content",
 			dd.id,
 			dd.hours,
 			dd.time,
@@ -267,7 +267,7 @@
 			</if>
 			<if test="userId != 0">
 				AND
-					r.user_id = #{userId}
+					d.user_id = #{userId}
 			</if>
 		</where>
 	</select>
