@@ -234,7 +234,7 @@
 		<result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
 		<result column="switch_judge" jdbcType="TINYINT" property="liveState"/>
 		<result column="module_id" jdbcType="INTEGER" property="moduleId"/>
-		<result column="module_name" jdbcType="VARCHAR" property="name"/>
+		<result column="module_name" jdbcType="VARCHAR" property="moduleName"/>
 	</resultMap>
 
 	<select id="selectFollowingByUserId" resultMap="following">

@@ -241,7 +241,7 @@
                                         <c:forEach items="${personalLiveRecordDTOList}" var="liveRecord">
                                             <tr>
                                                 <td>${liveRecord.startTime}&nbsp;&nbsp;---&nbsp;&nbsp;${liveRecord.endTime}</td>
-                                                <td style="width: 164px;">${liveRecord.endTime}分钟</td>
+                                                <td style="width: 164px;">${liveRecord.duration}分钟</td>
                                             </tr>
                                         </c:forEach>
                                     </c:otherwise>

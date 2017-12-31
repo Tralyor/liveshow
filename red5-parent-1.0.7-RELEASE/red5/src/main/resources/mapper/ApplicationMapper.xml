@@ -292,11 +292,11 @@
       manager_id = #{managerId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-	<select id="countPassStateByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-		SELECT COUNT(*)
-		FROM application
+	<select id="selectPassStateByUserId" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
+		SELECT pass_state
+		FROM `application`
 		WHERE user_id = #{userId}
-		AND pass_state = 1
+		ORDER BY apply_time DESC;
 	</select>
 
 	<select id="selectByUserId" resultMap="BaseResultMap">

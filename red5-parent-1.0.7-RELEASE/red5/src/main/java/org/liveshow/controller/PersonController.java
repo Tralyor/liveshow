@@ -14,9 +14,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by asus on 2017/12/8.
@@ -460,6 +468,8 @@ public class PersonController
 		if (user != null)
 		{
 			int userId = user.getId();
+			PersonalProfileDTO personalProfileDTO = userService.getPersonalProfile(userId);
+			model.addAttribute("personalProfileDTO", personalProfileDTO);
 			logger.info("用户" + userId + "进入实名认证页面");
 			return "person/liveApplication";
 		}
@@ -467,6 +477,88 @@ public class PersonController
 		{
 			logger.info("未登录");
 			return "redirect:/user/login";
+		}
+	}
+
+	@RequestMapping(value = "/submitApplication", method = RequestMethod.POST)
+	@ResponseBody
+	public Show submitApplication(HttpSession session, HttpServletRequest request)
+	{
+		String[] nameArray = {"headheldPassport", "passportFront", "passportBack"};
+		User user = (User) session.getAttribute("user");
+
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
+		/**构建图片保存的目录**/
+		String logoPathDir = "/application"+ dateformat.format(new Date()) + "/" + user.getId();
+		System.out.println(logoPathDir);
+		/**得到图片保存目录的真实路径**/
+		String logoRealPathDir = multipartHttpServletRequest.getSession().getServletContext().getRealPath(logoPathDir);
+		/**根据真实路径创建目录**/
+		File logoSaveFile = new File(logoRealPathDir);
+		if(!logoSaveFile.exists())
+			logoSaveFile.mkdirs();
+
+		PersonalApplicationDTO personalApplicationDTO = new PersonalApplicationDTO();
+
+		String realName = multipartHttpServletRequest.getParameter("realName");
+		String passportType = multipartHttpServletRequest.getParameter("passportType");
+		String idcardId = multipartHttpServletRequest.getParameter("idcardId");
+
+		personalApplicationDTO.setUserId(user.getId());
+		personalApplicationDTO.setRealName(realName);
+		personalApplicationDTO.setPassportType(passportType);
+		personalApplicationDTO.setIdcardId(idcardId);
+		/**页面控件的文件流**/
+		for (int i = 0; i < 3; i++)
+		{
+			MultipartFile multipartFile = multipartHttpServletRequest.getFile(nameArray[i]);
+			if (!multipartFile.isEmpty())
+			{
+				/**获取文件的后缀**/
+				String suffix = multipartFile.getOriginalFilename().substring
+						(multipartFile.getOriginalFilename().lastIndexOf("."));
+				/**使用UUID生成文件名称**/
+				String logImageName = UUID.randomUUID().toString()+ suffix;//构建文件名称
+//				String logImageName = multipartFile.getOriginalFilename();
+				/**拼成完整的文件保存路径加文件**/
+				String fileName = logoRealPathDir + File.separator + logImageName;
+				File file = new File(fileName);
+
+				try {
+					multipartFile.transferTo(file);
+					String path = logoPathDir + File.separator + logImageName;
+					if (i == 0)
+					{
+						personalApplicationDTO.setHeadheldPassport(path);
+					}
+					else if (i == 1)
+					{
+						personalApplicationDTO.setPassportFront(path);
+					}
+					else if (i == 2)
+					{
+						personalApplicationDTO.setPassportBack(path);
+					}
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				return new Show(null, 0, "有图片未选择");
+			}
+		}
+
+		if (applicationService.addApplication(personalApplicationDTO))
+		{
+			return new Show(null, 1, "上传成功！");
+		}
+		else
+		{
+			return new Show(null, 0, "上传失败！");
 		}
 	}
 

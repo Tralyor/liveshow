@@ -258,7 +258,7 @@
                                     <div class="col-sm-4">
                                         <ol class="class-detail form-control-static">
                                             <li id="partLi">${personalLiveSettingDTO.partName}</li>
-                                            <li id="moduleLi">${personalLiveSettingDTO.name}</li>
+                                            <li id="moduleLi">${personalLiveSettingDTO.moduleName}</li>
                                         </ol>
                                     </div>
                                     <div class="col-sm-3">
@@ -317,10 +317,10 @@
                                 <c:forEach items="${part.moduleDTOList}" var="module">
                                     <c:choose>
                                         <c:when test="${module.moduleId == personalLiveSettingDTO.moduleId}">
-                                            <option value="${module.moduleId}" selected>${module.name}</option>
+                                            <option value="${module.moduleId}" selected>${module.moduleName}</option>
                                         </c:when>
                                         <c:otherwise>
-                                            <option value="${module.moduleId}">${module.name}</option>
+                                            <option value="${module.moduleId}">${module.moduleName}</option>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>
@@ -338,8 +338,8 @@
     $("#changeType").click(function () {
         layer.open({
             title: '',
-            reason: $("#changeTypeContext").html(),
-            area: '400px',
+            content: $("#changeTypeContext").html(),
+            area: ['400px'],
             btnAlign: 'c',
             yes: function (index, layero) {
                 var newPartName = $("#part").find("option:selected").text();
@@ -372,7 +372,7 @@
                     {
                         var module = moduleList[i];
                         $moduleSelect.append(
-                            "<option value='" + module.moduleId + "'>" + module.name + "</option>"
+                            "<option value='" + module.moduleId + "'>" + module.moduleName + "</option>"
                         );
                     }
 

@@ -12,3 +12,4 @@
 <script type="text/javascript" src="/static/js/plugins/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
 <script src="/static/plugins/layer/layer.js"></script>
+<script src="/static/js/plugins/jquery.form.js"></script>

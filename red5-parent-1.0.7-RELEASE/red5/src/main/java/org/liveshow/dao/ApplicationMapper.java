@@ -30,8 +30,6 @@ public interface ApplicationMapper {
 
     int updateByPrimaryKey(Application record);
 
-    int countPassStateByUserId(int userId);
-
 	/**
 	 * 根据用户名查询
 	 * @param userId
@@ -55,4 +53,6 @@ public interface ApplicationMapper {
      * @return
      */
     int updateApplicationInfo(@Param("id") int id, @Param("passState") Boolean passState, @Param("managerId") int managerId);
+
+	Boolean selectPassStateByUserId(int userId);
 }
