@@ -109,10 +109,12 @@
 
             <div id="reason">
                 <c:forEach items="${allModules}" var="module" >
+                    <a href="/directory/module/${module.id}">
                     <div class="unit">
                         <div><img src="${module.photo}" alt=""></div>
                         <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>${module.name}</span></div>
                     </div>
+                    </a>
                 </c:forEach>
                 <div class="unit">
                     <div><img src="/static/img/class.jpg" alt=""></div>
