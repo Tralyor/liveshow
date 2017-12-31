@@ -204,7 +204,7 @@
   </update>
   
   <select id="findRecoModule" resultType="org.liveshow.entity.CombinationEntity.RecommendModulAndInfo">
-    SELECT a.*,type FROM module a,recommend_module b WHERE a.id = b.module_id ORDER BY b.reco_time DESC LIMIT 3
+    SELECT a.*,type FROM module a,recommend_module b WHERE a.id = b.module_id ORDER BY b.reco_time DESC LIMIT 8
   </select>
 
   <select id="selectModulePresent" resultMap="PresentModule">

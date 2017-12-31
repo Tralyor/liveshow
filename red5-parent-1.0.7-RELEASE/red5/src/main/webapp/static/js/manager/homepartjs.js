@@ -15,11 +15,11 @@ moduleValues[0][0] = "empty";
 
 function select_change(index,temp)
 {
+
     var module = document.getElementById("form" + temp).module;
     module.length = 0;
     module.length = moduleList[index].length;
-    for(var i=0;i<moduleList[index].length;i++)
-    {
+    for (var i = 0; i < moduleList[index].length; i++) {
         module.options[i].text = moduleList[index][i];
         module.options[i].value = moduleValues[index][i];
     }
@@ -65,7 +65,7 @@ function sendinfo() {
     });
 }
 function setInit() {
-    for(var n = 1;n < 9;n++){
+    for(var n = 1;n < 13;n++){
         var part = document.getElementById("form" + n).part;
         var module = document.getElementById("form" + n).module;
         part.length = partList.length;
@@ -101,24 +101,27 @@ function setPresent(formid,partid,moduleid){
 }
 
 function handleInfo(formid) {
-    var moduleId = document.getElementById("form" + formid).getElementsByTagName("select")[1].value;
-    $.ajax({
-        type : "post",
-        url : "/recommend/handleInfo",
-        dataType:"json",
-        data : {
-            "id" : formid,
-            "moduleId" : moduleId
-        },
-        success : function(data){
-            if(data.state == 0){
-                layer.open({
-                    title: '提示',
-                    content: data.message
-                });
-            }else{
-                layer.msg(data.message);
+    layui.use(['layer'], function() {
+        var layer = layui.layer;
+        var moduleId = document.getElementById("form" + formid).getElementsByTagName("select")[1].value;
+        $.ajax({
+            type: "post",
+            url: "/recommend/handleInfo",
+            dataType: "json",
+            data: {
+                "id": formid,
+                "moduleId": moduleId
+            },
+            success: function (data) {
+                if (data.state == 0) {
+                    layer.open({
+                        title: '提示',
+                        content: data.message
+                    });
+                } else {
+                    layer.msg(data.message);
+                }
             }
-        }
+        });
     });
 }
