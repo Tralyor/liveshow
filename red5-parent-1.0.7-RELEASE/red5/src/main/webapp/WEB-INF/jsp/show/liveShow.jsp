@@ -500,7 +500,11 @@
             data: "roomId=${room.id}",
             success: function(data){
                 if(data.state == 0){
-                    alert(data.message);
+                    layer.open({
+                        title: "信息",
+                        content: data.message,
+                    });
+                    // alert(data.message);
                 }else{
                     if(isCare == 1){
                         isCare=0;
@@ -556,7 +560,11 @@ $("#recommend").click(function(){
         dataType:"json",
         data: "roomId=${room.id}&managerId=${sessionScope.user.id}",
         success: function(data){
-            alert(data.message);
+            layer.open({
+                title: "信息",
+                content: data.message,
+            });
+            // alert(data.message);
         }
     });
 })
@@ -595,7 +603,11 @@ $("#recommend").click(function(){
         websocket = new WebSocket("ws://"+webIp+":8080/WebScoket/" + ${room.id}); //房间号
     }
     else {
-        alert('Not support websocket');
+        layer.open({
+            title: "信息",
+            content: "Not support websocket",
+        });
+        // alert('Not support websocket');
     }
 
     //连接发生错误的回调方法
@@ -617,20 +629,36 @@ $("#recommend").click(function(){
             sendBarrage(msg.content.id,msg.content.nickName,msg.content.content,msg.content.userId);
         }else if(msg.type == "darkDanmaku"){
             isDark = 1;
-            alert("你已经被主播封印了");
+            layer.open({
+                title: "信息",
+                content: "你已经被主播封印了",
+            });
+            // alert("你已经被主播封印了");
         }else if(msg.type=="darkRoom"){
             createFlash(_width, _height, null, _rtmpIp);
-            alert("该直播间已经被封");
+            layer.open({
+                title: "信息",
+                content: "该直播间已经被封",
+            });
+            // alert("该直播间已经被封");
         }else if (msg.type == 'showState'){
             if(msg.content.state == 0){
 
                 $("#state").html("主播不在家");
                 createFlash(_width, _height, null, _rtmpIp);
-                alert("主播不在家咯");
+                layer.open({
+                    title: "信息",
+                    content: "主播不在家咯",
+                });
+                // alert("主播不在家咯");
             }else if (msg.content.state == 1){
                 createFlash(_width, _height, _stream, _rtmpIp);
                 $("#state").html("正在直播");
-                alert("主播来咯")
+                layer.open({
+                    title: "信息",
+                    content: "主播来咯",
+                });
+                // alert("主播来咯")
             }
         }
         
@@ -657,17 +685,30 @@ $("#recommend").click(function(){
         var str = $("#sendContent").val();
         $("#sendContent").val("");
         if(type ==""){
-            alert("请先登录");
+            layer.open({
+                title: "信息",
+                content: "请先登录",
+            });
+            $("#loginA").click();
+            // alert("请先登录");
         }
         else if(isDark  == 1){
-            alert("已经被主播封印");
+            layer.open({
+                title: "信息",
+                content: "已经被主播封印",
+            });
+            // alert("已经被主播封印");
         }else if(str==""){
-            alert("请不要发空信息")
+            layer.open({
+                title: "信息",
+                content: "请不要发空信息",
+            });
+            // alert("请不要发空信息")
         }else{
             websocket.send(JSON.stringify(createChatMsg(str)));
         }
         
-    })
+    });
 
    
 
@@ -736,7 +777,11 @@ function fsubmit(){
             dataType:"json",
             data: "roomId=${room.id}&state="+0,
             success: function(data){
-                alert(data.message);
+                layer.open({
+                    title: "信息",
+                    content: data.message,
+                });
+                // alert(data.message);
             }
         });
         

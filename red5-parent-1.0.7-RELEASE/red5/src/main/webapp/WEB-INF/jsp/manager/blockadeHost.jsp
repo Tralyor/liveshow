@@ -113,7 +113,7 @@
 <!-- 点击取消弹出的模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-reason">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel" style="text-align: center">是否确定解封该主播</h4>
@@ -129,7 +129,7 @@
 <!-- 点击查看弹出的模态框（Modal） -->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-reason">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel2" style="text-align: center">封禁证据</h4>
@@ -148,11 +148,20 @@
 <template id="tool">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="width: 50px;">解封</button>
 </template>
+<template id="picBtn">
+    <button type="button" class="btn btn-primary" data-photo="{{d.photo}}" name="show" style="width: 50px;">查看</button>
+</template>
+<template id="showPic">
+    <div class="col-lg-10 col-lg-offset-1">
+        <img src="" id="photo"/>
+    </div>
+</template>
 <script src="/static/js/manager/managerCommon.js"></script>
 <script type="text/javascript">
     layui.use(['table', 'layer'], function()
     {
         var table = layui.table;
+        var layer = layui.layer;
 
         var tableIns = table.render({
             id: "darkroomRoomId",
@@ -172,7 +181,7 @@
                 {field:'roomId', title:'房间号'},
                 {field:'name', title:'所属板块'},
                 {field:'reason', title:'封禁理由'},
-                {field:'photo', title:'封禁证据'},
+                {field:'photo', title:'封禁证据', templet:'#picBtn'},
                 {field:'startTime', title:'开始时间'},
                 {field:'endTime', title:'结束时间'},
 //                {field:'state', title:'状态'},
@@ -198,6 +207,19 @@
                     "state": $("input[name='optionsRadiosinline']:checked").val()
                 }
             });
+        });
+
+        $(document).on("click", "button[name='show']", function(){
+            layer.open({
+                title: "查看图片证据",
+                content: $("#showPic").html(),
+                btn: [],
+                area: "800px",
+                offset: "200px"
+            });
+
+            console.log($(this).attr("data-photo"));
+            $("#photo").attr("src", $(this).attr("data-photo"));
         });
     });
 
