@@ -93,105 +93,114 @@
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">房间ID：</label>
-                                            <div class="col-sm-2">
-                                                <p class="form-control-static">${personalLiveSettingDTO.roomId}</p>
+                                    <c:choose>
+                                        <c:when test="${isDrakRoom == 0}">
+                                            <div style="text-align: center;color: red;">
+                                                <span style="line-height: 3em;display: inline-block;position:relative;">直播间已被封</span>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <a href="/liveShow/index/${personalLiveSettingDTO.roomId}" class="btn btn-default">进入直播间</a>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">房间标题：</label>
-                                            <div class="col-sm-5">
-                                                <input type="text" class="form-control" name="room" id="roomName" placeholder="房间标题" value="${personalLiveSettingDTO.roomName}">
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <button type="button" id="changeName" class="btn btn-default" role="button" disabled>修改</button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">房间公告：</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" name="room" id="notice" rows="4">${personalLiveSettingDTO.notice}</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="button" id="changeNotice" class="btn btn-default" disabled>修改</button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">直播封面：</label>
-                                            <div class="col-sm-6">
-                                                <img src="${personalLiveSettingDTO.photo}" style="width: 400px;">
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <a href="/person/changeCover" class="btn btn-default">修改</a>
-                                            </div>
-                                        </div>
-
-                                        <!-- 开始直播才有 -->
-                                        <c:if test="${personalLiveSettingDTO.liveState}">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">rtmp地址：</label>
-                                                <div class="col-sm-5">
-                                                    <input type="text" id="rtmp" class="form-control" value="rtmp://send3.douyu.com/live">
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <button type="button" class="btn btn-default" id="copyRtmp">复制</button>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">直播码：</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="streamCode" class="form-control" value="${personalLiveSettingDTO.streamCode}">
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <button type="button" class="btn btn-default" id="copyCode">复制</button>
-                                                </div>
-                                            </div>
-                                        </c:if>
-
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">房间设置：</label>
-                                            <div class="col-sm-10">
-                                                <!-- <a href="#" class="btn btn-default">管理员</a> -->
-                                                <a href="mute" target="_blank" class="btn btn-default">禁言名单</a>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">直播分类：</label>
-                                            <div class="col-sm-4">
-                                                <ol class="class-detail form-control-static">
-                                                    <li id="partLi">${personalLiveSettingDTO.partName}</li>
-                                                    <li id="moduleLi">${personalLiveSettingDTO.moduleName}</li>
-                                                </ol>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <button type="button" class="btn btn-default" role="button" id="changeType">修改</button>
-                                            </div>
-                                        </div>
-                                        <c:choose>
-                                            <c:when test="${personalLiveSettingDTO.liveState}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="form-horizontal">
                                                 <div class="form-group">
-                                                    <div class="col-sm-offset-2 col-sm-10">
-                                                        <button type="button" class="btn btn-primary" name="changeStatus" id="end">关闭直播</button>
+                                                    <label class="col-sm-2 control-label">房间ID：</label>
+                                                    <div class="col-sm-2">
+                                                        <p class="form-control-static">${personalLiveSettingDTO.roomId}</p>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <a href="/liveShow/index/${personalLiveSettingDTO.roomId}" class="btn btn-default">进入直播间</a>
                                                     </div>
                                                 </div>
-                                            </c:when>
-                                            <c:otherwise>
                                                 <div class="form-group">
-                                                    <div class="col-sm-offset-2 col-sm-10">
-                                                        <button type="button" class="btn btn-primary" name="changeStatus" id="start">开始直播</button>
+                                                    <label class="col-sm-2 control-label">房间标题：</label>
+                                                    <div class="col-sm-5">
+                                                        <input type="text" class="form-control" name="room" id="roomName" placeholder="房间标题" value="${personalLiveSettingDTO.roomName}">
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <button type="button" id="changeName" class="btn btn-default" role="button" disabled>修改</button>
                                                     </div>
                                                 </div>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">房间公告：</label>
+                                                    <div class="col-sm-9">
+                                                        <textarea class="form-control" name="room" id="notice" rows="4">${personalLiveSettingDTO.notice}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button type="button" id="changeNotice" class="btn btn-default" disabled>修改</button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">直播封面：</label>
+                                                    <div class="col-sm-6">
+                                                        <img src="${personalLiveSettingDTO.photo}" style="width: 400px;">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <a href="/person/changeCover" class="btn btn-default">修改</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- 开始直播才有 -->
+                                                <c:if test="${personalLiveSettingDTO.liveState}">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">rtmp地址：</label>
+                                                        <div class="col-sm-5">
+                                                            <input type="text" id="rtmp" class="form-control" value="rtmp://send3.douyu.com/live">
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <button type="button" class="btn btn-default" id="copyRtmp">复制</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">直播码：</label>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" id="streamCode" class="form-control" value="${personalLiveSettingDTO.streamCode}">
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <button type="button" class="btn btn-default" id="copyCode">复制</button>
+                                                        </div>
+                                                    </div>
+                                                </c:if>
+
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">房间设置：</label>
+                                                    <div class="col-sm-10">
+                                                        <!-- <a href="#" class="btn btn-default">管理员</a> -->
+                                                        <a href="mute" target="_blank" class="btn btn-default">禁言名单</a>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">直播分类：</label>
+                                                    <div class="col-sm-4">
+                                                        <ol class="class-detail form-control-static">
+                                                            <li id="partLi">${personalLiveSettingDTO.partName}</li>
+                                                            <li id="moduleLi">${personalLiveSettingDTO.moduleName}</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <button type="button" class="btn btn-default" role="button" id="changeType">修改</button>
+                                                    </div>
+                                                </div>
+                                                <c:choose>
+                                                    <c:when test="${personalLiveSettingDTO.liveState}">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-offset-2 col-sm-10">
+                                                                <button type="button" class="btn btn-primary" name="changeStatus" id="end">关闭直播</button>
+                                                            </div>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-offset-2 col-sm-10">
+                                                                <button type="button" class="btn btn-primary" name="changeStatus" id="start">开始直播</button>
+                                                            </div>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:otherwise>
                             </c:choose>
                         </div>

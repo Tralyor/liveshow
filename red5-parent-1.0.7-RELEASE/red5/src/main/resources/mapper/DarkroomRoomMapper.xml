@@ -275,7 +275,7 @@
     SELECT *
     FROM darkroom_room a
     WHERE
-    	a.room_id = 1
+    	a.room_id = #{roomId}
     AND a.time + a.hours > unix_timestamp(now())
   </select>
 

@@ -198,12 +198,18 @@ public class PersonController
 			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
 			model.addAttribute("modules",modules);
 
+
+
 			int userId = user.getId();
 			PersonalLiveSettingDTO personalLiveSettingDTO = roomService.getPersonalLiveSetting(userId);
 			if (personalLiveSettingDTO != null)
 			{
 				logger.info("将直播设置放入model");
 				model.addAttribute("personalLiveSettingDTO", personalLiveSettingDTO);
+
+				int roomId = personalLiveSettingDTO.getRoomId();
+				int re = darkroomRoomService.isDrakRoom(roomId);
+				model.addAttribute("isDrakRoom", re);
 
 				List<PersonalLiveSettingPartDTO> personalLiveSettingPartDTOList = partService.getAllPartWithModuleList();
 				logger.info("将全部板块模块放入model");
