@@ -116,51 +116,11 @@
                     </div>
                     </a>
                 </c:forEach>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-                <div class="unit">
-                    <div><img src="/static/img/class.jpg" alt=""></div>
-                    <div class="unit-span" style="text-align: center;color: #7E7E7E"><span>荒岛行动</span></div>
-                </div>
-
             </div>
         </div>
     </div>
 </div>
+<%@ include file="../common/resources-foot.jsp"%>
 <script>
     function clearTagCss()
     {

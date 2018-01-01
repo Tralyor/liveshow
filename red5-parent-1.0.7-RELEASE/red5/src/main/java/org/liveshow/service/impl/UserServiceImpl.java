@@ -62,15 +62,24 @@ public class UserServiceImpl implements UserService {
 	{
 		logger.info("获取id：" + id + "的个人资料");
 		Boolean idCardState;
-		CardState cardState = applicationMapper.selectPassStateByUserId(id).get(0);
-		if (cardState == null)
+		List<CardState> cardStateList = applicationMapper.selectPassStateByUserId(id);
+		if (cardStateList.size() > 0)
 		{
-			idCardState = false;
+			CardState cardState = applicationMapper.selectPassStateByUserId(id).get(0);
+			if (cardState == null)
+			{
+				idCardState = false;
+			}
+			else
+			{
+				idCardState = cardState.getIdcardstate();
+			}
 		}
 		else
 		{
-			idCardState = cardState.getIdcardstate();
+			idCardState = false;
 		}
+
 		logger.info("id：" + id + "实名状态" + idCardState);
 		return entity2PersonalProfileDTO(userMapper.selectByPrimaryKey(id), idCardState);
 	}

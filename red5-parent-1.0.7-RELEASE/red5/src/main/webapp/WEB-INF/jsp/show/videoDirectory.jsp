@@ -157,6 +157,7 @@
         <%--</tr>--%>
     <%--</c:forEach>--%>
 <%--</div>--%>
+<%@ include file="../common/resources-foot.jsp"%>
 <script>
     function clearTagCss() {
         var tag = $(".liStyle");

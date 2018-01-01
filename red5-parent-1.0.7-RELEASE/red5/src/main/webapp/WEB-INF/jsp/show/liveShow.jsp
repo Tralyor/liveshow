@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -271,16 +271,10 @@
     </form>
 </template>
 
-
-
-
-
-
-
+<%@ include file="../common/resources-foot.jsp"%>
 <script type="text/javascript" src="/static/barrage/static/js/tinycolor-0.9.15.min.js"></script>
 <script type="text/javascript" src="/static/barrage/dist/js/jquery.barrager.js"></script>
 <script type="text/javascript" src="/static/js/config/rtmpConfig.js"></script>
-<script type="text/javascript" src="/static/plugins/layer/layer.js"></script>
 <script>
 
     var type = "${sessionScope.user.type}";

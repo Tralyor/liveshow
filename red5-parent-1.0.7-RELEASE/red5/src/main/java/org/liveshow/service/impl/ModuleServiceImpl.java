@@ -64,7 +64,7 @@ public class ModuleServiceImpl  implements ModuleService{
     @Transactional
     public Show addModule(int partId, String name, String description, String photo) {
         Show show = new Show();
-        photo = "../../static/img/module/" + photo;
+        photo = "/static/img/module/" + photo;
         Module module = new Module();
         module.setPartId(partId);
         module.setName(name);
@@ -119,7 +119,7 @@ public class ModuleServiceImpl  implements ModuleService{
     @Override
     @Transactional
     public Show changeModulePhoto(int id, String photo) {
-        photo = "../../static/img/module/" + photo;
+        photo = "/static/img/module/" + photo;
         moduleMapper.updatePhotoById(id, photo);
         Show show = new Show();
         show.setState(1);
