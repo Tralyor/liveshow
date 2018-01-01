@@ -43,9 +43,9 @@
                 <th lay-data="{field:'loginName'}">账号</th>
                 <th lay-data="{field:'realName', width: 100}">超管姓名</th>
                 <th lay-data="{field:'idNum'}">身份证号码</th>
-                <th lay-data="{field:'tel', width: 150}">联系方式</th>
+                <%--<th lay-data="{field:'tel', width: 150}">联系方式</th>--%>
                 <%--<th lay-data="{field:'address'}">家庭住址</th>--%>
-                <th lay-data="{field:'name', width: 110}">管理板块</th>
+                <th lay-data="{field:'moduleName', width: 110}">管理板块</th>
                 <th lay-data="{field:'roomNum', width: 130, sort: true}">封禁直播间数</th>
                 <th lay-data="{field:'falseProportion', width: 130, sort: true}">直播间误封率</th>
                 <th lay-data="{field:'operate', width: 130, toolbar: '#tool', fixed: 'right'}">操作</th>
@@ -58,7 +58,7 @@
                     <td>${superManager.loginName}</td>
                     <td>${superManager.realName}</td>
                     <td>${superManager.idNum}</td>
-                    <td>${superManager.tel}</td>
+                    <%--<td>${superManager.tel}</td>--%>
                     <%--<td>${superManager.address}</td>--%>
                     <td>${superManager.moduleName}</td>
                     <td>${superManager.roomNum}</td>

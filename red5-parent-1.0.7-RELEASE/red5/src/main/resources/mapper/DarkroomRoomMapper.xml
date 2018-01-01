@@ -287,7 +287,7 @@
 		a.real_name "realName",
 		r.id "roomId",
 		m.id "moduleId",
-		m.name "name",
+		m.name "moduleName",
 		dr.reason "reason",
 		dr.photo "photo",
 		dr.time "startTime",

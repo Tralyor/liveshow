@@ -179,7 +179,7 @@
                 {field:'nickName', title:'主播昵称'},
                 {field:'realName', title:'主播姓名'},
                 {field:'roomId', title:'房间号'},
-                {field:'name', title:'所属板块'},
+                {field:'moduleName', title:'所属板块'},
                 {field:'reason', title:'封禁理由'},
                 {field:'photo', title:'封禁证据', templet:'#picBtn'},
                 {field:'startTime', title:'开始时间'},
@@ -218,7 +218,6 @@
                 offset: "200px"
             });
 
-            console.log($(this).attr("data-photo"));
             $("#photo").attr("src", $(this).attr("data-photo"));
         });
     });

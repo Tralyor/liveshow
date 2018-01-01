@@ -54,7 +54,7 @@
 
                 option = {
                     title : {
-                        text: '各个板块封禁游客数比例饼图',
+                        text: '各个板块封禁主播数比例饼图',
                         x:'center'
                     },
                     tooltip : {
@@ -223,12 +223,6 @@
                             name:'房间封禁数',
                             type:'line',
                             data:roomNumList,
-//                    markPoint: {
-//                        data: [
-//                            {type: 'max', name: '最大值'},
-//                            {type: 'min', name: '最小值'}
-//                        ]
-//                    },
                             markLine: {
                                 data: [
                                     {type: 'average', name: '平均值'}
@@ -239,31 +233,9 @@
                             name:'游客封禁数',
                             type:'line',
                             data:danmaNumList,
-//                    markPoint: {
-//                        data: [
-////                            {name: '周最低', value: 0, xAxis: 1, yAxis: 0}
-//                            {type:'max',name:'最大值'},
-//                            {type:'max',name:'最小值'}
-//                        ]
-//                    },
                             markLine: {
                                 data: [
                                     {type: 'average', name: '平均值'}
-//                            [{
-//                                symbol: 'none',
-//                                x: '90%',
-//                                yAxis: 'max'
-//                            }, {
-//                                symbol: 'circle',
-//                                label: {
-//                                    normal: {
-//                                        position: 'start',
-//                                        formatter: '最大值'
-//                                    }
-//                                },
-//                                type: 'max',
-//                                name: '最高点'
-//                            }]
                                 ]
                             }
                         }
