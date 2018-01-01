@@ -62,30 +62,37 @@ public class ApplicationServiceImpl implements ApplicationService {
         Show show = new Show();
         try
 		{
-			applicationMapper.updateApplicationInfo(id, passState, managerId);
-			Application application = applicationMapper.selectByPrimaryKey(id);
-			userMapper.updateTypeById(application.getUserId(), 1);
-			Anchor anchor = new Anchor();
-			anchor.setIdcardId(application.getIdcardId());
-			anchor.setUserId(application.getUserId());
-			anchor.setName(application.getRealName());
-			anchor.setIdcardPhoto(application.getIdcardPhoto());
-			anchor.setTelephone(application.getTelephone());
-			anchorMapper.insert(anchor);
-			Room room = new Room();
-			room.setUserId(application.getUserId());
-			room.setSwitchJudge(false);
-			room.setMostPopular(0);
-			room.setModuleId(1);
-			room.setPhoto("/static/img/logo/logo-2.png");
+			if (passState == true)
+			{
+				applicationMapper.updateApplicationInfo(id, passState, managerId);
+				Application application = applicationMapper.selectByPrimaryKey(id);
+				userMapper.updateTypeById(application.getUserId(), 1);
+				Anchor anchor = new Anchor();
+				anchor.setIdcardId(application.getIdcardId());
+				anchor.setUserId(application.getUserId());
+				anchor.setName(application.getRealName());
+				anchor.setIdcardPhoto(application.getIdcardPhoto());
+				anchor.setTelephone(application.getTelephone());
+				anchorMapper.insert(anchor);
+				Room room = new Room();
+				room.setUserId(application.getUserId());
+				room.setSwitchJudge(false);
+				room.setMostPopular(0);
+				room.setModuleId(1);
+				room.setPhoto("/static/img/logo/logo-2.png");
 
-			String code = "applicationId=" + id + "&" + UUID.randomUUID().toString();
-			room.setStreamCode(code);
+				String code = "applicationId=" + id + "&" + UUID.randomUUID().toString();
+				room.setStreamCode(code);
 
-			roomMapper.insert(room);
+				roomMapper.insert(room);
+			}
+			else
+			{
+				applicationMapper.updateApplicationInfo(id, passState, managerId);
+			}
+
 			show.setState(1);
 			show.setMessage("操作成功");
-
 			return show;
 		}
 		catch (RuntimeException e)
@@ -139,7 +146,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Override
 	public PersonalApplicationDTO isApplication(int uid)
 	{
-		Application application = applicationMapper.selectByUserId(uid);
+		List<Application> applicationList = applicationMapper.selectByUserId(uid);
+		Application application = applicationList.get(0);
 		if (application != null)
 		{
 			PersonalApplicationDTO personalApplicationDTO = new PersonalApplicationDTO();

@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
 	{
 		logger.info("获取id：" + id + "的个人资料");
 		Boolean idCardState;
-		CardState cardState = applicationMapper.selectPassStateByUserId(id);
+		CardState cardState = applicationMapper.selectPassStateByUserId(id).get(0);
 		if (cardState == null)
 		{
 			idCardState = false;

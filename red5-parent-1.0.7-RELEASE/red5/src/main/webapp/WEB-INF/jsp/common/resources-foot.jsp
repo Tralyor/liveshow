@@ -30,21 +30,21 @@
                 <form>
                     <div class="form-group">
                         <label>用户名</label>
-                        <input type="text" class="form-control" placeholder="username">
+                        <input type="text" class="form-control" id="registerLoginName" name="loginName" placeholder="username">
                     </div>
                     <div class="form-group">
                         <label>昵称</label>
-                        <input type="text" class="form-control" placeholder="username">
+                        <input type="text" class="form-control" id="registerNickName" name="nickName" placeholder="nickName">
                     </div>
                     <div class="form-group">
                         <label>密码</label>
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" id="registerPassword" name="password" placeholder="password">
                     </div>
                     <div class="form-group">
                         <label>确认密码</label>
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="password">
                     </div>
-                    <button type="button" class="btn btn-default" id="register">Submit</button>
+                    <button type="submit" class="btn btn-default" id="register">Submit</button>
                 </form>
             </div>
         </div>

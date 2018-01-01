@@ -306,6 +306,7 @@
 		FROM application
 		WHERE
 			application.user_id = #{userId}
+		ORDER BY apply_time DESC
 	</select>
 
 	<resultMap id="ApplicationInfos" type="org.liveshow.entity.CombinationEntity.ApplicationInfo">

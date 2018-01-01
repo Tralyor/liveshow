@@ -36,7 +36,7 @@ public interface ApplicationMapper {
 	 * @param userId
 	 * @return
 	 */
-	Application selectByUserId(int userId);
+	List<Application> selectByUserId(int userId);
 
     /**
      * 查询指定日期的主播申请记录
@@ -55,5 +55,5 @@ public interface ApplicationMapper {
      */
     int updateApplicationInfo(@Param("id") int id, @Param("passState") Boolean passState, @Param("managerId") int managerId);
 
-	CardState selectPassStateByUserId(int userId);
+	List<CardState> selectPassStateByUserId(int userId);
 }

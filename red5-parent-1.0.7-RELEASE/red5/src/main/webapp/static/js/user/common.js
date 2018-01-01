@@ -107,3 +107,28 @@ $(document).on("click", "#login", function() {
 
     return false;
 });
+
+$(document).on("click", "#register", function() {
+    var loginName = $("#registerLoginName").val();
+    var password = $("#registerPassword").val();
+    var nickName = $("#registerNickName").val();
+
+    $.ajax({
+        url: "/user/register",
+        type: "post",
+        data: "loginName=" + loginName + "&password=" + password + "&nickName=" + nickName,
+        dataType: "json",
+        success: function(show) {
+            if(show.status == 0)
+            {
+                layerMsg(show, nothingDoFun);
+            }
+            else
+            {
+                layerMsg(show, flush);
+            }
+        }
+    });
+
+    return false;
+});

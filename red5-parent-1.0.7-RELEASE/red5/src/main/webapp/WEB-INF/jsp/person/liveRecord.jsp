@@ -212,7 +212,7 @@
                             $liveRecordTbody.append(
                                 "<tr>" +
                                 "<td>" + tmp.startTime + "&nbsp;&nbsp;---&nbsp;&nbsp;" + tmp.endTime + "</td>" +
-                                "<td style=\"width: 164px;\">" + tmp.endTime + "分钟</td>" +
+                                "<td style=\"width: 164px;\">" + tmp.duration + "分钟</td>" +
                                 "</tr>"
                             );
                         }

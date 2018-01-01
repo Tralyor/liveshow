@@ -57,7 +57,7 @@ public class SupermanagerServiceImpl implements SupermanagerService {
 		if (user != null)
 		{
 			logger.info("用户存在");
-			Application application = applicationMapper.selectByUserId(user.getId());
+			Application application = applicationMapper.selectByUserId(user.getId()).get(0);
 			if (application != null)
 			{
 				logger.info("用户已实名认证");
