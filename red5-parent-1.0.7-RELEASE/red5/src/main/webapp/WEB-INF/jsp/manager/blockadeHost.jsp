@@ -120,8 +120,8 @@
             </div>
             <!--<div class="modal-body">在这里添加一些文本</div>-->
             <div class="modal-footer" style="text-align: center">
-                <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 50px">取消</button>
-                <button type="button" class="btn btn-primary" style="width: 50px">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"  id="close" style="width: 50px">取消</button>
+                <button type="button" class="btn btn-primary" id="cancelSubmit" style="width: 50px">确定</button>
             </div>
         </div><!-- /.moreasontent -->
     </div><!-- /.modal -->
@@ -139,14 +139,14 @@
             </div>
             <div class="modal-footer" style="text-align: center">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 50px">取消</button>
-                <button type="button" class="btn btn-primary" style="width: 50px">确定</button>
+                <button type="button" class="btn btn-primary" style="width: 50px" >确定</button>
             </div>
         </div><!-- /.moreasontent -->
     </div><!-- /.modal -->
 </div>
 </html>
 <template id="tool">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="width: 50px;">解封</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" lay-event="cancel" style="width: 50px;">解封</button>
 </template>
 <template id="picBtn">
     <button type="button" class="btn btn-primary" data-photo="{{d.photo}}" name="show" style="width: 50px;">查看</button>
@@ -219,6 +219,40 @@
             });
 
             $("#photo").attr("src", $(this).attr("data-photo"));
+        });
+
+        table.on('tool(darkroomRoomId)', function(obj)
+        {
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+            if(layEvent == 'cancel')
+            {
+                console.log($("#cancelSubmit"));
+                $("#cancelSubmit").click(function()
+                {
+                    $.ajax({
+                        url: "/admin/cancelRoomMute",
+                        type: "post",
+                        data: {
+                            "id": data.roomMuteId
+                        },
+                        dataType: "json",
+                        success: function(show)
+                        {
+                            if(show.state == 1)
+                            {
+                                obj.del();
+                            }
+                            layerMsg(show, nothingDoFun, nothingDoFun);
+                            $("#close").click();
+                        }
+                    })
+                });
+
+                console.log(data);
+            }
         });
     });
 

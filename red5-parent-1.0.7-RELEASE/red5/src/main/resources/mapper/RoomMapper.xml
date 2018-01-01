@@ -278,11 +278,11 @@
   </update>
 
 	<select id="findRecoRoom" resultType="org.liveshow.entity.CombinationEntity.RoomAndOwner">
-    SELECT * FROM room a, `user` b WHERE a.user_id =  b.id  AND a.module_id  =#{moduleId} AND a.switch_judge = 1 AND  NOT EXISTS(SELECT * FROM darkroom_room d WHERE d.room_id = a.id AND d.time + d.hours > unix_timestamp(now())) ORDER BY a.most_popular DESC LIMIT #{pageNo},#{pageSize}
+    SELECT * FROM room a, `user` b WHERE a.user_id =  b.id  AND a.module_id  =#{moduleId} AND a.switch_judge = 1 AND  NOT EXISTS(SELECT * FROM darkroom_room d WHERE d.room_id = a.id AND (d.time + d.hours > unix_timestamp(now()) AND state = 0)) ORDER BY a.most_popular DESC LIMIT #{pageNo},#{pageSize}
     </select>
 
 	<select id="findRoomById" resultType="org.liveshow.entity.CombinationEntity.RoomAndOwner">
-    SELECT * FROM room a, `user` b WHERE a.user_id =  b.id AND  NOT EXISTS(SELECT * FROM darkroom_room d WHERE d.room_id = a.id AND d.time + d.hours > unix_timestamp(now()))  AND a.id = #{roomId}
+    SELECT * FROM room a, `user` b WHERE a.user_id =  b.id AND  NOT EXISTS(SELECT * FROM darkroom_room d WHERE d.room_id = a.id AND (d.time + d.hours > unix_timestamp(now()) AND state = 0 ))  AND a.id = #{roomId}
   </select>
 
   <select id="getAllRoom" resultMap="BaseResultMap">

@@ -68,6 +68,8 @@ public class SuperManagerController {
         /**拼成完整的文件保存路径加文件**/
         String fileName = logoRealPathDir + File.separator   + logImageName;
         File file = new File(fileName);
+
+        String fileNamesss = logoPathDir + File.separator   + logImageName;
         System.out.println(fileName);
         try {
             multipartFile.transferTo(file);
@@ -80,7 +82,7 @@ public class SuperManagerController {
         HttpSession session = request.getSession();
         User user =(User)session.getAttribute("user");
         
-        int res = darkroomRoomService.insertDarkRecord(roomId,reason,hours*60*60,fileName,user.getId());
+        int res = darkroomRoomService.insertDarkRecord(roomId,reason,hours*60*60,fileNamesss,user.getId());
         if (res == 0){
             show.setState(0);
             show.setMessage("操作失败");

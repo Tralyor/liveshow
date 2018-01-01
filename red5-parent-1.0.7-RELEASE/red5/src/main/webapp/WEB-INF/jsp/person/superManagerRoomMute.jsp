@@ -120,7 +120,7 @@
                                                 <button class="btn btn-info btn-xs" name="photo" data-photo="${room.photo}">查看</button>
                                             </td>
                                             <td>
-                                                <button class="btn btn-defaule btn-xs">解封</button>
+                                                <button class="btn btn-defaule btn-xs" name="undo" darkRoomId="${room.id}">解封</button>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -153,6 +153,20 @@
         });
 
         $("#photo").attr("src", $(this).attr("data-photo"));
+    });
+
+    $(document).on("click", "button[name='undo']", function () {
+        var darkroomId = $(this).attr("darkRoomId");
+
+        $.ajax({
+            url: "/person/undoDarkRoom",
+            type: "post",
+            data: "id=" + darkroomId,
+            dataType: "json",
+            success: function (show) {
+                layerMsg(show, flush);
+            }
+        })
     });
 </script>
 </html>

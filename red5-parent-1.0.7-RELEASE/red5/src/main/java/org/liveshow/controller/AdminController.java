@@ -70,6 +70,14 @@ public class AdminController
 		return darkroomRoomService.getRoomMuteDTO(roomMuteDTO);
 	}
 
+	@RequestMapping(value = "/cancelRoomMute", method = RequestMethod.POST)
+	@ResponseBody
+	public Show cancelRoomMute(int id, HttpSession session)
+	{
+//		User admin = (User) session.getAttribute("admin");
+		return darkroomRoomService.undoDarkRoom(id, 2);
+	}
+
 	@RequestMapping(value = "/blockadeOverview", method = RequestMethod.GET)
 	public String enterBlockadeOverview()
 	{

@@ -409,13 +409,14 @@
         so.write("CuPlayer");
     }
     createFlash(_width, _height, _stream, _rtmpIp);
+
     window.onresize = function()
     {
         var fatherWidth = $("#main").width();
         var playBody = fatherWidth * 0.8;
         var _width = playBody + ""; //播放器属性
         var _height = playBody / 1.65;
-        var _stream = "cat";
+        var _stream = _stream;
         $("#showNav").css("height", _height + "px");
         $("#showNav").children("div").css("height", (_height - 25) / 4 + "px");
         /**

@@ -2,6 +2,7 @@ package org.liveshow.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.liveshow.entity.CombinationEntity.DarkRoomInfo;
 import org.liveshow.entity.CombinationEntity.ManagerDarkroomRoom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -34,6 +35,16 @@ public class DarkroomRoomMapperTest
 		for (ManagerDarkroomRoom m : managerDarkroomRoomList)
 		{
 			System.out.println(m.getDarkroomRoomId());
+		}
+	}
+
+	@Test
+	public void selectDarkRoomInfo()
+	{
+		List<DarkRoomInfo> darkRoomInfoList = darkroomRoomMapper.selectDarkRoomInfo(Integer.MIN_VALUE, Integer.MAX_VALUE);
+		for (DarkRoomInfo info :
+				darkRoomInfoList) {
+			System.out.println(info.getNickName());
 		}
 	}
 
