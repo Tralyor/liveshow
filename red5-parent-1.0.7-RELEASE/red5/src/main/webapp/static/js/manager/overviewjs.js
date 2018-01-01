@@ -48,13 +48,19 @@ option = {
         text:'实时客流量',
         left: 'center'
     },
+    // tooltip: {
+    //     trigger: 'axis',
+    //     formatter: function (params) {
+    //         params = params[0];
+    //         var date = new Date(params.name);
+    //         return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + '   ' + params.value[1];
+    //     },
+    //     axisPointer: {
+    //         animation: false
+    //     }
+    // },
     tooltip: {
         trigger: 'axis',
-        formatter: function (params) {
-            params = params[0];
-            var date = new Date(params.name);
-            return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + '   ' + params.value[1];
-        },
         axisPointer: {
             animation: false
         }
@@ -73,7 +79,7 @@ option = {
         }
     },
     series: [{
-        name: '模拟数据',
+        name: '人数',
         type: 'line',
         showSymbol: false,
         hoverAnimation: false,
