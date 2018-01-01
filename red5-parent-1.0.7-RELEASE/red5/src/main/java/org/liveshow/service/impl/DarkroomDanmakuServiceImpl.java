@@ -37,6 +37,7 @@ public class DarkroomDanmakuServiceImpl implements DarkroomDanmakuService {
     
     @Override
     public int addDarkRoomDanmaku(DarkroomDanmaku darkroomDanmaku) {
+    	darkroomDanmaku.setState(false);
         int res =  darkroomDanmakuMapper.insert(darkroomDanmaku);
         return res;
     }

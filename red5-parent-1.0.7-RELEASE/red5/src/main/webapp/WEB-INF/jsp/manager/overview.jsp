@@ -61,4 +61,4 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="/static/js/manager/overviewjs.js"></script>
+<script type="text/javascript" src="/static/js/manager/overviewjs2.js"></script>

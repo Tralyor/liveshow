@@ -3,6 +3,9 @@
 	position: absolute;
 	top: 70px;
 }
+.colfirst{
+	margin-left: -40px;
+}
 #choosediv {
 	margin-top: 20px;
 	min-width: 1000px;

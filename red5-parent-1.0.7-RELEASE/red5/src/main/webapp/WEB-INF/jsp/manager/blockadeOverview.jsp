@@ -19,7 +19,7 @@
     </div>
     <div id="content">
         <div id="chart1"></div>
-        <div id="chart2" style="height:300px; width: 656.63px;"></div>
+        <div id="chart2" style="height:300px; width: 45%;"></div>
         <div id="chart3"></div>
     </div>
 

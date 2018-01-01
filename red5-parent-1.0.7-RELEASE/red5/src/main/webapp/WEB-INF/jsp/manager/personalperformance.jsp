@@ -28,9 +28,9 @@
         <div class="col-lg-8 col-md-offset-3">
             <div class="row partdiv">
                 <div class="row">
-                    <div class="col-md-1"><h5><strong>主播名称</strong></h5></div>
-                    <div class="col-md-2"><input type="text" id="username" name="name" class="form-control"></div>
-                    <div class="col-md-1"><button class="btn btn-default" onclick="getInfo()">搜索</button></div>
+                    <div class="col-md-2"><h5><strong>主播名称</strong></h5></div>
+                    <div class="col-md-3" style="margin-left: -30px;"><input type="text" id="username" name="name" class="form-control"></div>
+                    <div class="col-md-2"><button class="btn btn-default" onclick="getInfo()">搜索</button></div>
                 </div>
                 <div class="row">
                     <table class="table table-bordered table-hover">

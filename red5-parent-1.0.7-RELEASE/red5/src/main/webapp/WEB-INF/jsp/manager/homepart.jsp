@@ -34,11 +34,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
+                    <div class="col-md-2 col-md-offset-2">
                         <h4><strong>模块一：</strong></h4>
                     </div>
                     <form name="form1" id="form1">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,1)"></select>
                         </div>
                         <div class="col-md-2">
@@ -50,11 +50,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
+                    <div class="col-md-2 col-md-offset-2">
                         <h4><strong>模块二：</strong></h4>
                     </div>
                     <form name="form2" id="form2">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,2)"></select>
                         </div>
                         <div class="col-md-2">
@@ -66,11 +66,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
+                    <div class="col-md-2 col-md-offset-2">
                         <h4><strong>模块三：</strong></h4>
                     </div>
                     <form name="form3" id="form3">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,3)"></select>
                         </div>
                         <div class="col-md-2">
@@ -82,11 +82,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
+                    <div class="col-md-2 col-md-offset-2">
                         <h4><strong>模块四：</strong></h4>
                     </div>
                     <form name="form4" id="form4">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,4)"></select>
                         </div>
                         <div class="col-md-2">
@@ -98,11 +98,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
-                        <h4><strong>模块四：</strong></h4>
+                    <div class="col-md-2 col-md-offset-2">
+                        <h4><strong>模块五：</strong></h4>
                     </div>
                     <form name="form5" id="form5">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,5)"></select>
                         </div>
                         <div class="col-md-2">
@@ -114,11 +114,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
-                        <h4><strong>模块四：</strong></h4>
+                    <div class="col-md-2 col-md-offset-2">
+                        <h4><strong>模块六：</strong></h4>
                     </div>
                     <form name="form6" id="form6">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,6)"></select>
                         </div>
                         <div class="col-md-2">
@@ -138,11 +138,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
+                    <div class="col-md-2 col-md-offset-2">
                         <h4><strong>模块一：</strong></h4>
                     </div>
                     <form name="form7" id="form7">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,7)"></select>
                         </div>
                         <div class="col-md-2">
@@ -154,11 +154,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
+                    <div class="col-md-2 col-md-offset-2">
                         <h4><strong>模块二：</strong></h4>
                     </div>
                     <form name="form8" id="form8">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,8)"></select>
                         </div>
                         <div class="col-md-2">
@@ -170,11 +170,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
+                    <div class="col-md-2 col-md-offset-2">
                         <h4><strong>模块三：</strong></h4>
                     </div>
                     <form name="form9" id="form9">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,9)"></select>
                         </div>
                         <div class="col-md-2">
@@ -186,11 +186,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
+                    <div class="col-md-2 col-md-offset-2">
                         <h4><strong>模块四：</strong></h4>
                     </div>
                     <form name="form10" id="form10">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,10)"></select>
                         </div>
                         <div class="col-md-2">
@@ -202,11 +202,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
-                        <h4><strong>模块四：</strong></h4>
+                    <div class="col-md-2 col-md-offset-2">
+                        <h4><strong>模块五：</strong></h4>
                     </div>
                     <form name="form11" id="form11">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,11)"></select>
                         </div>
                         <div class="col-md-2">
@@ -218,11 +218,11 @@
                     </div>
                 </div>
                 <div class="row partrow">
-                    <div class="col-md-1 col-md-offset-3">
-                        <h4><strong>模块四：</strong></h4>
+                    <div class="col-md-2 col-md-offset-2">
+                        <h4><strong>模块六：</strong></h4>
                     </div>
                     <form name="form12" id="form12">
-                        <div class="col-md-2">
+                        <div class="col-md-2 colfirst">
                             <select class="form-control" name="part" onchange="select_change(this.selectedIndex,12)"></select>
                         </div>
                         <div class="col-md-2">

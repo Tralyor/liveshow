@@ -147,14 +147,17 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public PersonalApplicationDTO isApplication(int uid)
 	{
 		List<Application> applicationList = applicationMapper.selectByUserId(uid);
-		Application application = applicationList.get(0);
-		if (application != null)
+		if (applicationList.size() > 0)
 		{
+			Application application = applicationList.get(0);
 			PersonalApplicationDTO personalApplicationDTO = new PersonalApplicationDTO();
 			personalApplicationDTO.setPassState(application.getPassState());
 			return personalApplicationDTO;
 		}
-		return null;
+		else
+		{
+			return null;
+		}
 	}
 
 }

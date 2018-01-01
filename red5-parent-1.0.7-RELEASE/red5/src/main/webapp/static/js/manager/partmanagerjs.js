@@ -52,9 +52,9 @@
                             for (var i = 0; i < data.data.length; i++) {
                                 partList[i] = data.data[i];
                                 if (name == data.data[i].name) {
-                                    document.getElementById("manangediv").innerHTML += '<div class="row rowall"><div class="col-md-2 col-md-offset-1"><button class="btn btn-default btnpart" id="partButton ' + data.data[i].id + '" onclick="managepart(' +
+                                    document.getElementById("manangediv").innerHTML += '<div class="row rowall"><div class="col-md-3 col-md-offset-1"><button class="btn btn-default btn-danger btnpart" id="partButton ' + data.data[i].id + '" onclick="managepart(' +
                                         data.data[i].id + ')">' + data.data[i].name + '</button></div><div class="col-md-8 module"><div id="part' + data.data[i].name +
-                                        '"></div><div class="col-md-2"><button class="btn btn-default newone" onclick="addmodule(' + data.data[i].id + ')">新添</button></div></div></div>';
+                                        '"></div><div class="col-md-3"><button class="btn btn-default btn-success newone" onclick="addmodule(' + data.data[i].id + ')">新添</button></div></div></div>';
                                 }
                             }
                         }
@@ -315,8 +315,8 @@
                             for (var i = 0; i < data.data.length; i++) {
                                 moduleList[i] = data.data[i];
                                 if (data.data[i].partId == partId && data.data[i].name == name) {
-                                    document.getElementById("part" + partId).innerHTML += '<div class="col-md-2"><button class="btn btn-default" id="module' +
-                                        data.data[i].id + '" onclick="managemodule(' + partId + ',' + data.data[i].id + '">' + data.data[i].name + '</button></div>';
+                                    document.getElementById("part" + partId).innerHTML += '<div class="col-md-3"><button class="btn btn-default" id="module' +
+                                        data.data[i].id + '" onclick="managemodule(' + partId + ',' + data.data[i].id + ')' + '">' + data.data[i].name + '</button></div>';
                                 }
                             }
                             layer.msg(data.message);

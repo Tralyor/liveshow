@@ -254,14 +254,14 @@
 			<if test="state == true">
 				AND
 						(
-						dd.time + dd.hours > unix_timestamp(now())
+						dd.time + dd.hours &lt; unix_timestamp(now())
 						OR
 						dd.state = 1
 					)
 			</if>
 			<if test="state == false">
 				AND
-					dd.time + dd.hours &lt; unix_timestamp(now())
+					dd.time + dd.hours > unix_timestamp(now())
 				AND
 					dd.state = 0
 			</if>
