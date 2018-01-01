@@ -95,9 +95,11 @@
     </div><!-- /.modal -->
 </div>
 
-<template id="tool">
+<script type="text/html" id="tool">
+    {{# if(d.state == 0 && (new Date(d.endTime) > new Date())) { }}
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" lay-event="cancel" style="width: 50px">解封</button>
-</template>
+    {{# } }}
+</script>
 </body>
 </html>
 <script src="/static/js/manager/managerCommon.js"></script>

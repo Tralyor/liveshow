@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>${room.nickName}的直播间</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/liveshow.css">
     <link rel="stylesheet" href="/static/barrage/static/css/style.css"/>

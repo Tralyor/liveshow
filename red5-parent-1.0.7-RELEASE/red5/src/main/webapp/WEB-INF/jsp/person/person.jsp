@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" reason="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" reason="ie=edge">
-    <title>template</title>
+    <title>个人资料</title>
     <%@ include file="../common/resources.jsp"%>
     <link rel="stylesheet" href="/static/css/user/user.css" />
 </head>
@@ -42,45 +42,49 @@
                                         <i class="fa fa-user-o fa-fw"></i> &nbsp;我的关注
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-tv fa-fw"></i> &nbsp;直播相关
-                                        <i class="live-caret"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/person/application" class="li-children">
-                                        <i class="fa fa-fw"></i> &nbsp;直播申请
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/person/liveSetting" class="li-children">
-                                        <i class="fa fa-fw"></i> &nbsp;直播设置
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/person/liveRecord" class="li-children">
-                                        <i class="fa fa-fw"></i> &nbsp;直播记录
-                                    </a>
-                                </li>
-                                <c:if test="${sessionScope.user.type == 2}">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-tv fa-fw"></i> &nbsp;超管相关
-                                            <i class="live-caret"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/person/managerApplication" class="li-children">
-                                            <i class="fa fa-fw"></i> &nbsp;申请管理
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/person/managerRoomMute" class="li-children">
-                                            <i class="fa fa-fw"></i> &nbsp;主播封禁
-                                        </a>
-                                    </li>
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${sessionScope.user.type == 2}">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-tv fa-fw"></i> &nbsp;超管相关
+                                                <i class="live-caret"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/person/managerApplication" class="li-children">
+                                                <i class="fa fa-fw"></i> &nbsp;申请管理
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/person/managerRoomMute" class="li-children">
+                                                <i class="fa fa-fw"></i> &nbsp;主播封禁
+                                            </a>
+                                        </li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-tv fa-fw"></i> &nbsp;直播相关
+                                                <i class="live-caret"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/person/application" class="li-children">
+                                                <i class="fa fa-fw"></i> &nbsp;直播申请
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/person/liveSetting" class="li-children">
+                                                <i class="fa fa-fw"></i> &nbsp;直播设置
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/person/liveRecord" class="li-children">
+                                                <i class="fa fa-fw"></i> &nbsp;直播记录
+                                            </a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
                             </ul>
                         </div>
                     </div>
@@ -118,38 +122,42 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <c:choose>
-                                            <c:when test="${empty personalProfileDTO.isIdCardState()}">
-                                                <div class="user-setting">
-                                                    <i class="fa fa-user-o fa-5x"></i>
-                                                    <div class="user-setting-word">
-                                                        <h3>实名认证</h3>
-                                                        <span>正在审核</span>
-                                                    </div>
-                                                </div>
-                                            </c:when>
-                                            <c:otherwise>
+                                            <c:when test="${sessionScope.user.type != 2}">
                                                 <c:choose>
-                                                    <c:when test="${personalProfileDTO.isIdCardState()}">
+                                                    <c:when test="${empty personalProfileDTO.isIdCardState()}">
                                                         <div class="user-setting">
                                                             <i class="fa fa-user-o fa-5x"></i>
                                                             <div class="user-setting-word">
                                                                 <h3>实名认证</h3>
-                                                                <span>已认证</span>
+                                                                <span>正在审核</span>
                                                             </div>
                                                         </div>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <div class="user-setting">
-                                                            <i class="fa fa-user-o fa-5x"></i>
-                                                            <div class="user-setting-word">
-                                                                <h3>实名认证</h3>
-                                                                <span>认证后可进行直播</span>
-                                                            </div>
-                                                            <a href="application" class="btn btn-default">实名认证</a>
-                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${personalProfileDTO.isIdCardState()}">
+                                                                <div class="user-setting">
+                                                                    <i class="fa fa-user-o fa-5x"></i>
+                                                                    <div class="user-setting-word">
+                                                                        <h3>实名认证</h3>
+                                                                        <span>已认证</span>
+                                                                    </div>
+                                                                </div>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="user-setting">
+                                                                    <i class="fa fa-user-o fa-5x"></i>
+                                                                    <div class="user-setting-word">
+                                                                        <h3>实名认证</h3>
+                                                                        <span>认证后可进行直播</span>
+                                                                    </div>
+                                                                    <a href="application" class="btn btn-default">实名认证</a>
+                                                                </div>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </c:otherwise>
                                                 </c:choose>
-                                            </c:otherwise>
+                                            </c:when>
                                         </c:choose>
                                     </div>
                                 </div>

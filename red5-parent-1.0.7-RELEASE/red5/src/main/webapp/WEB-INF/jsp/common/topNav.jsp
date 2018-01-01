@@ -42,7 +42,7 @@
                                                     </c:if>
                                                 </c:forEach>
                                             </ul>
-                                            <h4>热门分类</h4>
+                                            <h4>推荐分类</h4>
                                             <ul class="live-btns">
                                                 <c:forEach var="modules" items="${modules}">
                                                     <c:if test="${modules.type == false}">
@@ -89,12 +89,20 @@
                                                         <a href="/user/logout">退出</a>
                                                     </div>
                                                     <div class="user-pic">
-                                                        <img src="../static/img/logo.jpg" alt="">
+                                                        <img src="/static/img/logo.jpg" alt="">
                                                     </div>
                                                     <div class="user-btns">
                                                         <a class="btn btn-large btn-primary btn-block" href="/person/">个人中心</a>
                                                         <a class="btn btn-large btn-primary btn-block" href="/person/following">我的关注</a>
-                                                        <a class="btn btn-large btn-primary btn-block" href="/person/liveSetting">直播设置</a>
+                                                        <c:choose>
+                                                            <c:when test="${sessionScope.user.type == 2}">
+                                                                <a class="btn btn-large btn-primary btn-block" href="/person/managerApplication">申请管理</a>
+                                                                <a class="btn btn-large btn-primary btn-block" href="/person/managerRoomMute">主播封禁</a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <a class="btn btn-large btn-primary btn-block" href="/person/liveSetting">直播设置</a>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </div>
                                                 </div>
                                             </div>

@@ -7,7 +7,7 @@
     <meta name="viewport"
           reason="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" reason="ie=edge">
-    <title>Document</title>
+    <title>${module.name}</title>
     <%@ include file="../common/resources.jsp"%>
     <style>
 
