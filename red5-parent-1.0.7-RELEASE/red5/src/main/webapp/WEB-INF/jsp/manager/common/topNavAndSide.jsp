@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=utf-8" language="java" %>
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top" style="z-index: 1;">
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
@@ -56,3 +56,5 @@
         </div>
     </div>
 </nav>
+<img src="/static/img/logo/logo-0.png" style="height: 60px;max-height: 60px;position: fixed;top: 5px;left: 10px;z-index: 1"/>
+<img src="/static/img/commonlogo.jpg" style="border-radius: 40px;height: 40px;max-height: 40px;position: fixed;top: 15px;right: 30px;z-index: 1"/>

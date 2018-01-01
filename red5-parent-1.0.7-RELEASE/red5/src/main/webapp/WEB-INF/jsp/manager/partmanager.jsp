@@ -30,8 +30,8 @@
                 <div id="manangediv">
                     <c:forEach var="part" items="${partList}">
                         <div class="row rowall">
-                            <div class="col-md-2 col-md-offset-1">
-                                <button class="btn btn-default btnpart" id="partButton<c:out value="${part.id}"/>" onclick="managepart(<c:out value="${part.id}"/>)">
+                            <div class="col-md-3 col-md-offset-1">
+                                <button class="btn btn-default btnpart btn-danger" id="partButton<c:out value="${part.id}"/>" onclick="managepart(<c:out value="${part.id}"/>)">
                                     <c:out value="${part.name}"/>
                                 </button>
                             </div>
@@ -39,7 +39,7 @@
                                 <div id="part<c:out value="${part.id}"/>">
                                     <c:forEach var="module" items="${moduleList}">
                                         <c:if test="${part.id == module.partId}">
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <button class="btn btn-default" id="module<c:out value="${module.id}"/>" onclick="managemodule(<c:out value="${part.id}"/>,<c:out value="${module.id}"/>)">
                                                     <c:out value="${module.name}"/>
                                                 </button>
@@ -47,14 +47,14 @@
                                         </c:if>
                                     </c:forEach>
                                 </div>
-                                <div class="col-md-2"><button class="btn btn-default newone" onclick="addmodule(<c:out value="${part.id}"/>)">新添</button></div>
+                                <div class="col-md-3"><button class="btn btn-default newone btn-success" onclick="addmodule(<c:out value="${part.id}"/>)">新添</button></div>
                             </div>
                         </div>
                     </c:forEach>
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-md-offset-4">
-                        <button class="btn btn-default newpart" onclick="addpart()">添加板块</button>
+                        <button class="btn btn-default newpart btn-primary" onclick="addpart()">添加板块</button>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="col-md-8 col-md-offset-2">
-                        <input type="button" id="addPartButtom" name="submit" class="btn btn-default confirmbtn" style="width: 100%;margin-top: 35px;" value="确定">
+                        <input type="button" id="addPartButtom" name="submit" class="btn btn-default confirmbtn btn-primary" style="width: 100%;margin-top: 35px;" value="确定">
                     </div>
                 </div>
             </div>
@@ -104,10 +104,10 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="col-md-4 col-md-offset-2">
-                        <input type="button" name="submit" id="updatePartBtn" class="btn btn-default managebtn" style="width: 100%;margin-top: 35px;" value="确认修改">
+                        <input type="button" name="submit" id="updatePartBtn" class="btn btn-default managebtn btn-primary" style="width: 100%;margin-top: 35px;" value="确认修改">
                     </div>
                     <div class="col-md-4">
-                        <input type="button" name="move" id="movePartBtn" class="btn btn-default movebtn" style="width: 100%;margin-top: 35px;" value="移除板块">
+                        <input type="button" name="move" id="movePartBtn" class="btn btn-default movebtn btn-danger" style="width: 100%;margin-top: 35px;" value="移除板块">
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                 <input type="text" name="name" id="changename" style="width: 100%;margin-top: 1px;margin-top: 3px;padding: 2px;border-radius: 2px">
             </div>
             <div class="col-md-2">
-                <input type="button" id="namebutton" class="btn btn-default" style="width: 100%; margin-top: 2px" value="确认">
+                <input type="button" id="namebutton" class="btn btn-default btn-primary" style="width: 100%; margin-top: 2px" value="确认">
             </div>
         </div>
         <div class="row" style="margin-top: 20px">
@@ -146,7 +146,7 @@
                 <textarea name="description" id="changedescription" style="height: 80px;width: 100%;margin-top: 1px;margin-top: 3px;padding: 2px;border-radius: 2px"></textarea>
             </div>
             <div class="col-md-2">
-                <input type="button" id="descriptionbutton" class="btn btn-default" style="width: 100%; margin-top: 2px" value="确认">
+                <input type="button" id="descriptionbutton" class="btn btn-default btn-primary" style="width: 100%; margin-top: 2px" value="确认">
             </div>
         </div>
        <form id="changephotoForm">
@@ -159,17 +159,17 @@
                    <input type="file" name="file" style="width: 100%;margin-top: 5px;padding: 2px;border-radius: 2px">
                </div>
                <div class="col-md-2">
-                   <input type="button" id="changephotoButton" class="btn btn-default" style="width: 100%; margin-top: 2px" value="上传">
+                   <input type="button" id="changephotoButton" class="btn btn-default btn-primary" style="width: 100%; margin-top: 2px" value="上传">
                </div>
            </div>
        </form>
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="col-md-4 col-md-offset-2">
-                    <input type="button" name="submit" class="btn btn-default managebtn" style="width: 100%;margin-top: 35px;" value="预览图片" id="picbutton">
+                    <input type="button" name="submit" class="btn btn-default managebtn btn-info" style="width: 100%;margin-top: 35px;" value="预览图片" id="picbutton">
                 </div>
                 <div class="col-md-4">
-                    <input type="button" name="move" class="btn btn-default movebtn" style="width: 100%;margin-top: 35px;" value="移除板块" id="movemodulebutton">
+                    <input type="button" name="move" class="btn btn-default movebtn btn-danger" style="width: 100%;margin-top: 35px;" value="移除板块" id="movemodulebutton">
                 </div>
             </div>
         </div>
@@ -217,7 +217,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="col-md-8 col-md-offset-2">
-                        <input type="button" id="addmoduleButton" class="btn btn-default confirmbtn" style="width: 100%;margin-top: 35px;" value="确定">
+                        <input type="button" id="addmoduleButton" class="btn btn-default btn-primary confirmbtn" style="width: 100%;margin-top: 35px;" value="确定">
                     </div>
                 </div>
             </div>

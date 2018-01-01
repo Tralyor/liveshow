@@ -1,4 +1,8 @@
-
+window.onload = function () {
+    document.getElementById("text1").value = "2017-12-15";
+    document.getElementById("text2").value = "2018-01-02";
+    setData();
+}
 
 $(function() {
     $('#side-menu').metisMenu();
