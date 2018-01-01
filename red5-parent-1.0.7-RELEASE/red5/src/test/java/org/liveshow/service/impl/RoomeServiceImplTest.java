@@ -28,7 +28,7 @@ public class RoomeServiceImplTest
 	@Test
 	public void getPersonalLiveSetting() throws Exception
 	{
-		PersonalLiveSettingDTO personalLiveSettingDTO = roomService.getPersonalLiveSetting(1);
+		PersonalLiveSettingDTO personalLiveSettingDTO = roomService.getPersonalLiveSetting(3);
 		System.out.println(personalLiveSettingDTO);
 	}
 

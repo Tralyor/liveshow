@@ -6,6 +6,7 @@ import org.liveshow.dao.RoomMapper;
 import org.liveshow.dao.UserMapper;
 import org.liveshow.dao.ApplicationMapper;
 
+import org.liveshow.entity.CombinationEntity.CardState;
 import org.liveshow.entity.Part;
 import org.liveshow.entity.Room;
 import org.liveshow.entity.User;
@@ -60,7 +61,16 @@ public class UserServiceImpl implements UserService {
 	public PersonalProfileDTO getPersonalProfile(int id)
 	{
 		logger.info("获取id：" + id + "的个人资料");
-		Boolean idCardState = applicationMapper.selectPassStateByUserId(id);
+		Boolean idCardState;
+		CardState cardState = applicationMapper.selectPassStateByUserId(id).get(0);
+		if (cardState == null)
+		{
+			idCardState = false;
+		}
+		else
+		{
+			idCardState = cardState.getIdcardstate();
+		}
 		logger.info("id：" + id + "实名状态" + idCardState);
 		return entity2PersonalProfileDTO(userMapper.selectByPrimaryKey(id), idCardState);
 	}

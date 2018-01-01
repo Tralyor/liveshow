@@ -2,6 +2,7 @@ package org.liveshow.service.impl;
 
 import org.liveshow.dao.DarkroomRoomMapper;
 import org.liveshow.dto.Show;
+import org.liveshow.dto.SuperManagerDarkroomRoomDTO;
 import org.liveshow.dto.manager.DarkroomByDateDTO;
 import org.liveshow.dto.manager.DarkroomByModuleDTO;
 import org.liveshow.dto.manager.RoomMuteDTO;
@@ -12,6 +13,7 @@ import org.liveshow.entity.CombinationEntity.DarkRoomInfo;
 
 import org.liveshow.entity.DarkroomRoom;
 import org.liveshow.service.DarkroomRoomService;
+import org.liveshow.util.TimeEnum;
 import org.liveshow.util.TimeTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -173,8 +175,20 @@ public class DarkroomRoomServiceImpl implements DarkroomRoomService {
 
     @Override
     @Transactional
-    public List<DarkRoomInfo> initDarkRoomInfos() {
-        return darkroomRoomMapper.selectDarkRoomInfo(Integer.MIN_VALUE, Integer.MAX_VALUE);
+    public List<SuperManagerDarkroomRoomDTO> initDarkRoomInfos() {
+    	String format = "yyyy-MM-dd HH:mm";
+    	List<DarkRoomInfo> darkRoomInfoList = darkroomRoomMapper.selectDarkRoomInfo(Integer.MIN_VALUE, Integer.MAX_VALUE);
+    	List<SuperManagerDarkroomRoomDTO> darkroomRoomDTOList = new ArrayList<>();
+		for (DarkRoomInfo info : darkRoomInfoList)
+		{
+			SuperManagerDarkroomRoomDTO tmp = new SuperManagerDarkroomRoomDTO();
+			BeanUtils.copyProperties(info, tmp);
+			tmp.setTime(TimeTool.getDateFormat(info.getTime(), format));
+			tmp.setHours(TimeEnum.time2String(info.getHours()));
+
+			darkroomRoomDTOList.add(tmp);
+		}
+        return darkroomRoomDTOList;
     }
 
     @Override

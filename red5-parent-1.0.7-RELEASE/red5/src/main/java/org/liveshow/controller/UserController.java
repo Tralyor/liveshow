@@ -55,4 +55,11 @@ public class UserController {
         return userService.doRegister(loginName,password,nickName);
     }
 
+    @RequestMapping(value = "/logout")
+    public String logout(HttpSession session)
+	{
+		session.removeAttribute("user");
+		return "redirect:/";
+	}
+
 }

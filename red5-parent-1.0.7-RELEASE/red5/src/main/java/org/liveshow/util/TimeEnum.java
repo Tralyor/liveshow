@@ -18,6 +18,7 @@ public class TimeEnum
 		time2StringMap.put(3600, "1小时");
 		time2StringMap.put(43200, "12小时");
 		time2StringMap.put(86400, "1天");
+		time2StringMap.put(172800, "2天");
 		time2StringMap.put(259200, "3天");
 		time2StringMap.put(604800, "7天");
 		time2StringMap.put(2592000, "30天");

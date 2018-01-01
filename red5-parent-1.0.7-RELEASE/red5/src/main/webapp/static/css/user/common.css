@@ -276,3 +276,79 @@ li:hover .class-main, .live-user-img:hover .user-main
     top: 51px;
     left: 290px;
 }
+
+/*登录部分*/
+.login-tab
+{
+	margin: 10px 0;
+	padding: 0px;
+}
+
+.login-tab-title
+{
+	position: relative;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	height: 50px;
+	white-space: nowrap;
+	font-size: 0;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #e6e6e6;
+	transition: all .2s;
+	-webkit-transition: all .2s;
+}
+
+.login-tab-title li
+{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 14px;
+	transition: all .2s;
+	-webkit-transition: all .2s;
+	position: relative;
+	line-height: 50px;
+	min-height: 50px;
+	width: 50%;
+	padding: 0 15px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.login-tab-title .login-this
+{
+	color: #000;
+}
+
+.login-tab-title .login-this:after
+{
+	content: '';
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 50px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #e6e6e6;
+	border-bottom-color: #fff;
+	border-radius: 2px 2px 0 0;
+	/*box-sizing: border-box;*/
+	pointer-events: none;
+}
+
+.login-tab-content
+{
+	padding: 10px;
+}
+
+.login-tab-item
+{
+	display: none;
+}
+
+.login-show
+{
+	display: block!important;
+}

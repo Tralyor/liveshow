@@ -226,7 +226,7 @@
 		AND
 			b.id = c.danmaku_id
 		AND
-			(c.time + c.hours > unix_timestamp(now()) OR state = 0)
+			(c.time + c.hours > unix_timestamp(now()) AND state = 0)
 		AND
 		 	a.id = #{userId}
 		AND
@@ -238,7 +238,7 @@
 	<select id="selectExpiredByUserId" resultType="org.liveshow.entity.DarkroomDanmaku">
 		SELECT
 			u.nick_name "danmaku.user.nickName",
-			d.reason "danmaku.reason",
+			d.content "danmaku.content",
 			dd.id,
 			dd.hours,
 			dd.time,
@@ -267,7 +267,7 @@
 			</if>
 			<if test="userId != 0">
 				AND
-					r.user_id = #{userId}
+					d.user_id = #{userId}
 			</if>
 		</where>
 	</select>

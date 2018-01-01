@@ -103,7 +103,11 @@ public class RoomeServiceImpl implements RoomService {
 	public PersonalLiveSettingDTO getPersonalLiveSetting(int userId)
 	{
 		Room room = roomMapper.selectByUserIdWithModule(userId);
-		return entity2PersonalLiveSettingDTO(room);
+		if (room != null)
+		{
+			return entity2PersonalLiveSettingDTO(room);
+		}
+		return null;
 	}
 
 	@Override

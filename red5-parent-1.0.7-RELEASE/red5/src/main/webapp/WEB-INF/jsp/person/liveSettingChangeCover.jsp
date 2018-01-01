@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: asus
+  Date: 2017/12/31
+  Time: 23:57
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=utf-8" %>
 <%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
@@ -50,7 +57,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/person/liveSetting" class="li-children">
+                                <a href="/person/liveSetting" class="li-children clicked">
                                     <i class="fa fa-fw"></i> &nbsp;直播设置
                                 </a>
                             </li>
@@ -72,7 +79,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/person/managerRoomMute" class="li-children clicked">
+                                    <a href="/person/managerRoomMute" class="li-children">
                                         <i class="fa fa-fw"></i> &nbsp;主播封禁
                                     </a>
                                 </li>
@@ -84,50 +91,24 @@
                     <div class="user-body">
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-tv fa-fw"></i> &nbsp;
-                                <a href="#">超管相关</a>
+                                <i class="fa fa-vcard"></i> &nbsp;
+                                <a href="/person/liveSetting">直播设置</a>
                             </li>
-                            <li class="active">主播封禁</li>
+                            <li class="active">修改封面图片</li>
                         </ol>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr class="active">
-                                <td>封禁主播</td>
-                                <td style="width: 230px;">封禁理由</td>
-                                <td style="width: 150px;">封禁时间</td>
-                                <td style="width: 100px;">封禁时长</td>
-                                <td>图片证据</td>
-                                <td>操作</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:choose>
-                                <c:when test="${empty darkroomRoom}">
-                                    <tr>
-                                        <td colspan="7" style="text-align: center;">
-                                            暂无封禁记录
-                                        </td>
-                                    </tr>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach items="${darkroomRoom}" var="room">
-                                        <tr>
-                                            <td style="vertical-align: middle;">${room.nickName}</td>
-                                            <td style="vertical-align: middle;">${room.reason}</td>
-                                            <td style="vertical-align: middle;">${room.time}</td>
-                                            <td style="vertical-align: middle;">${room.hours}</td>
-                                            <td>
-                                                <button class="btn btn-info btn-xs" name="photo" data-photo="${room.photo}">查看</button>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-defaule btn-xs">解封</button>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                            </tbody>
-                        </table>
+                        <form action="/person/changeCover" method="post" id="changeCover" class="form-horizontal" enctype="multipart/form-data">
+                            <input type="hidden" name="roomId" value="${roomId}"/>
+                            <div class="user-info">
+                                <img src="${cover}" id="coverImg" style="width: 400px;">
+                                <div class="user-info-name" style="margin-left: 20px;">
+                                    <label for="cover" class="btn btn-default">选择图片</label>
+                                    <input type="file" id="cover" name="cover" accept="image/png, image/jpeg, image/gif, image/jpg" style="display:none;"/>
+                                </div>
+                            </div>
+                            <div class="form-group" style="text-align: center;">
+                                <button type="button" id="ajaxSubmit" class="btn btn-default">提交</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -135,25 +116,33 @@
     </div>
 </div>
 </body>
-<template id="showPic">
-    <div class="col-lg-10 col-lg-offset-1">
-        <img src="" id="photo"/>
-    </div>
-</template>
 <%@ include file="../common/resources-foot.jsp" %>
 <script type="text/javascript" src="/static/js/user/common.js"></script>
 <script type="text/javascript">
-    $("button[name='photo']").click(function() {
-        layer.open({
-            title: "查看图片证据",
-            content: $("#showPic").html(),
-            btn: [],
-            area: "800px",
-            offset: "200px"
+    $("#cover").change(function()
+    {
+        preview(this, "coverImg");
+    });
+
+    $("#ajaxSubmit").one("click", function() {
+        layer.msg('上传中，请稍等', {
+            icon: 16
+            ,shade: 0.01
         });
 
-        $("#photo").attr("src", $(this).attr("data-photo"));
+        var options = {
+            url: "/person/changeCover",
+            type: "post",
+            dataType: "json",
+            success: function(show) {
+                layer.closeAll('loading');
+                layerMsg(show, function() {
+                    location = "/person/liveSetting";
+                });
+            }
+        };
+
+        $("#changeCover").ajaxSubmit(options);
     });
 </script>
 </html>
-

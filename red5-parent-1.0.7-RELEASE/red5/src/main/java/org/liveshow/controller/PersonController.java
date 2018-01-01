@@ -3,6 +3,7 @@ package org.liveshow.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.liveshow.dto.*;
+import org.liveshow.entity.CombinationEntity.RecommendModulAndInfo;
 import org.liveshow.entity.User;
 import org.liveshow.service.*;
 import org.slf4j.Logger;
@@ -51,6 +52,8 @@ public class PersonController
 	private ApplicationService applicationService;
 	@Autowired
 	private DarkroomRoomService darkroomRoomService;
+	@Autowired
+	private RecommendModuleService recommendModuleService;
 	ObjectMapper mapper = new ObjectMapper();
 
 	/**
@@ -66,6 +69,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int id = user.getId();
 			List<PersonalFollowingDTO> personalFollowingDTOList = userService.getPersonFollowing(id);
 
@@ -78,7 +84,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录，跳转到登录页面");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -130,6 +136,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			List<PersonalLiveRecordDTO> personalLiveRecordDTOList = liveRecordService.getLiveRecordByUserId(userId);
 
@@ -142,7 +151,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录，跳转到登录页面");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -186,16 +195,21 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			PersonalLiveSettingDTO personalLiveSettingDTO = roomService.getPersonalLiveSetting(userId);
+			if (personalLiveSettingDTO != null)
+			{
+				logger.info("将直播设置放入model");
+				model.addAttribute("personalLiveSettingDTO", personalLiveSettingDTO);
 
-			logger.info("将直播设置放入model");
-			model.addAttribute("personalLiveSettingDTO", personalLiveSettingDTO);
-
-			List<PersonalLiveSettingPartDTO> personalLiveSettingPartDTOList = partService.getAllPartWithModuleList();
-			logger.info("将全部板块模块放入model");
-			model.addAttribute("personalLiveSettingPartDTOListJson", mapper.writeValueAsString(personalLiveSettingPartDTOList));
-			model.addAttribute("personalLiveSettingPartDTOList", personalLiveSettingPartDTOList);
+				List<PersonalLiveSettingPartDTO> personalLiveSettingPartDTOList = partService.getAllPartWithModuleList();
+				logger.info("将全部板块模块放入model");
+				model.addAttribute("personalLiveSettingPartDTOListJson", mapper.writeValueAsString(personalLiveSettingPartDTOList));
+				model.addAttribute("personalLiveSettingPartDTOList", personalLiveSettingPartDTOList);
+			}
 
 			logger.info("进入直播设置页面");
 			return "person/liveSetting";
@@ -203,7 +217,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -235,6 +249,91 @@ public class PersonController
 	}
 
 	/**
+	 * 进入修改直播间封面页面
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/changeCover", method = RequestMethod.GET)
+	public String enterChangeCover(HttpSession session, Model model)
+	{
+		User user = (User) session.getAttribute("user");
+		if (user != null)
+		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
+			int userId = user.getId();
+			PersonalLiveSettingDTO personalLiveSettingDTO = roomService.getPersonalLiveSetting(userId);
+			logger.info("将有关信息放入model");
+			model.addAttribute("roomId", personalLiveSettingDTO.getRoomId());
+			model.addAttribute("cover", personalLiveSettingDTO.getPhoto());
+
+			logger.info("进入直播设置页面");
+			return "person/liveSettingChangeCover";
+		}
+		else
+		{
+			logger.info("未登录");
+			return "redirect:/";
+		}
+	}
+
+	@RequestMapping(value = "/changeCover", method = RequestMethod.POST)
+	@ResponseBody
+	public Show changeCover(HttpSession session, HttpServletRequest request)
+	{
+		User user = (User) session.getAttribute("user");
+
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
+		/**构建图片保存的目录**/
+		String logoPathDir = "/cover/"+ dateformat.format(new Date()) + "/" + user.getId();
+		System.out.println(logoPathDir);
+		/**得到图片保存目录的真实路径**/
+		String logoRealPathDir = multipartHttpServletRequest.getSession().getServletContext().getRealPath(logoPathDir);
+		/**根据真实路径创建目录**/
+		File logoSaveFile = new File(logoRealPathDir);
+		if(!logoSaveFile.exists())
+			logoSaveFile.mkdirs();
+
+		PersonalLiveSettingDTO personalLiveSettingDTO = new PersonalLiveSettingDTO();
+
+		int roomId = Integer.parseInt(multipartHttpServletRequest.getParameter("roomId"));
+		MultipartFile multipartFile = multipartHttpServletRequest.getFile("cover");
+
+		if (!multipartFile.isEmpty())
+		{
+			/**获取文件的后缀**/
+			String suffix = multipartFile.getOriginalFilename().substring
+					(multipartFile.getOriginalFilename().lastIndexOf("."));
+			/**使用UUID生成文件名称**/
+			String logImageName = UUID.randomUUID().toString()+ suffix;//构建文件名称
+			//				String logImageName = multipartFile.getOriginalFilename();
+			/**拼成完整的文件保存路径加文件**/
+			String fileName = logoRealPathDir + File.separator + logImageName;
+			File file = new File(fileName);
+
+			try {
+				multipartFile.transferTo(file);
+				String path = logoPathDir + File.separator + logImageName;
+				personalLiveSettingDTO.setRoomId(roomId);
+				personalLiveSettingDTO.setPhoto(path);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		else
+		{
+			return new Show(null, 0, "图片未选择");
+		}
+
+		return roomService.updateLiveSetting(personalLiveSettingDTO);
+	}
+
+	/**
 	 * 进入禁言名单页面
 	 * @param session
 	 * @param model
@@ -246,6 +345,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			List<PersonalMuteDTO> personalMuteDTOList = darkroomDanmakuService.getNotExpiredMute(userId);
 
@@ -258,7 +360,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -298,6 +400,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			List<PersonalMuteDTO> personalMuteDTOList = darkroomDanmakuService.getExpireMute(userId);
 
@@ -310,7 +415,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -326,10 +431,13 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			PersonalProfileDTO personalProfileDTO = userService.getPersonalProfile(userId);
 
-			logger.info("将禁言记录放入model");
+			logger.info("将个人信息放入model");
 			model.addAttribute("personalProfileDTO", personalProfileDTO);
 
 			logger.info("用户" + userId + "进入个人资料页面");
@@ -338,7 +446,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -354,6 +462,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			logger.info("用户" + userId + "进入修改密码页面");
 
@@ -362,7 +473,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -403,6 +514,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			logger.info("用户" + userId + "进入修改昵称页面");
 			return "person/personChangeName";
@@ -410,7 +524,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -450,6 +564,9 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
 			logger.info("用户" + userId + "进入修改头像页面");
 			return "person/personChangePic";
@@ -457,7 +574,7 @@ public class PersonController
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
@@ -467,19 +584,28 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null)
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
-			PersonalProfileDTO personalProfileDTO = userService.getPersonalProfile(userId);
-			model.addAttribute("personalProfileDTO", personalProfileDTO);
+			PersonalApplicationDTO personalApplicationDTO = applicationService.isApplication(userId);
+			model.addAttribute("personalApplicationDTO", personalApplicationDTO);
 			logger.info("用户" + userId + "进入实名认证页面");
 			return "person/liveApplication";
 		}
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
 		}
 	}
 
+	/**
+	 * 提交申请，上传图片
+	 * @param session
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/submitApplication", method = RequestMethod.POST)
 	@ResponseBody
 	public Show submitApplication(HttpSession session, HttpServletRequest request)
@@ -490,7 +616,7 @@ public class PersonController
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
 		/**构建图片保存的目录**/
-		String logoPathDir = "/application"+ dateformat.format(new Date()) + "/" + user.getId();
+		String logoPathDir = "/application/"+ dateformat.format(new Date()) + "/" + user.getId();
 		System.out.println(logoPathDir);
 		/**得到图片保存目录的真实路径**/
 		String logoRealPathDir = multipartHttpServletRequest.getSession().getServletContext().getRealPath(logoPathDir);
@@ -548,17 +674,17 @@ public class PersonController
 			}
 			else
 			{
-				return new Show(null, 0, "有图片未选择");
+				return new Show(null, 0, "图片未选择");
 			}
 		}
 
 		if (applicationService.addApplication(personalApplicationDTO))
 		{
-			return new Show(null, 1, "上传成功！");
+			return new Show(null, 1, "提交成功！");
 		}
 		else
 		{
-			return new Show(null, 0, "上传失败！");
+			return new Show(null, 0, "提交失败！");
 		}
 	}
 
@@ -568,15 +694,39 @@ public class PersonController
 		User user = (User) session.getAttribute("user");
 		if (user != null )
 		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
 			int userId = user.getId();
-			logger.info("用户" + userId + "进入实名认证页面");
+			logger.info("用户" + userId + "进入超管审核实名认证页面");
 			model.addAttribute("applications", applicationService.initApplication());
-			return "";
+			return "person/superManagerApplication";
 		}
 		else
 		{
 			logger.info("未登录");
-			return "redirect:/user/login";
+			return "redirect:/";
+		}
+	}
+
+	@RequestMapping(value = "/managerRoomMute", method = RequestMethod.GET)
+	public String managerRoomMute(HttpSession session, Model model)
+	{
+		User user = (User) session.getAttribute("user");
+		if (user != null )
+		{
+			List<RecommendModulAndInfo> modules = recommendModuleService.findRecoModul();
+			model.addAttribute("modules",modules);
+
+			int userId = user.getId();
+			logger.info("用户" + userId + "进入超管封禁主播页面");
+			model.addAttribute("darkroomRoom", darkroomRoomService.initDarkRoomInfos());
+			return "person/superManagerRoomMute";
+		}
+		else
+		{
+			logger.info("未登录");
+			return "redirect:/";
 		}
 	}
 

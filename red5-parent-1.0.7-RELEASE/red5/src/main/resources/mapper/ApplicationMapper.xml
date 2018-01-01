@@ -292,8 +292,10 @@
       manager_id = #{managerId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-	<select id="selectPassStateByUserId" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
-		SELECT pass_state
+	<select id="selectPassStateByUserId" parameterType="java.lang.Integer" resultType="org.liveshow.entity.CombinationEntity.CardState">
+		SELECT
+		  	id "id",
+			pass_state "idcardstate"
 		FROM `application`
 		WHERE user_id = #{userId}
 		ORDER BY apply_time DESC;
@@ -304,6 +306,7 @@
 		FROM application
 		WHERE
 			application.user_id = #{userId}
+		ORDER BY apply_time DESC
 	</select>
 
 	<resultMap id="ApplicationInfos" type="org.liveshow.entity.CombinationEntity.ApplicationInfo">

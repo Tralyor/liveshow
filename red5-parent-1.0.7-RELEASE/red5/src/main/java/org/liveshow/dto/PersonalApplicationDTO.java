@@ -7,12 +7,13 @@ public class PersonalApplicationDTO
 	private int id;
 	private int userId;
 	private String realName;
+	private String nickName;
 	private String passportType;
 	private String idcardId;
 	private String headheldPassport;
 	private String passportFront;
 	private String passportBack;
-	private Date applyTime;
+	private String applyTime;
 	private Boolean passState;
 	private Integer managerId;
 
@@ -44,6 +45,16 @@ public class PersonalApplicationDTO
 	public void setRealName(String realName)
 	{
 		this.realName = realName;
+	}
+
+	public String getNickName()
+	{
+		return nickName;
+	}
+
+	public void setNickName(String nickName)
+	{
+		this.nickName = nickName;
 	}
 
 	public String getPassportType()
@@ -96,12 +107,12 @@ public class PersonalApplicationDTO
 		this.passportBack = passportBack;
 	}
 
-	public Date getApplyTime()
+	public String getApplyTime()
 	{
 		return applyTime;
 	}
 
-	public void setApplyTime(Date applyTime)
+	public void setApplyTime(String applyTime)
 	{
 		this.applyTime = applyTime;
 	}
