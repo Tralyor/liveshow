@@ -124,6 +124,7 @@ public class DarkroomDanmakuServiceImpl implements DarkroomDanmakuService {
 	{
 		String format = "yyyy-MM-dd HH:mm";
 		long endTimeLong = managerDarkroomDanma.getStartTime() + managerDarkroomDanma.getDuration();
+		logger.info("startTime: " + managerDarkroomDanma.getStartTime() + "endTime: "+ endTimeLong + "duration: " + managerDarkroomDanma.getDuration());
 		return new MuteDTO(managerDarkroomDanma.getDarkRoomDanmaId(), managerDarkroomDanma.getLoginName(),
 				managerDarkroomDanma.getNickName(), managerDarkroomDanma.getRoomId(),
 				managerDarkroomDanma.getModuleName(), managerDarkroomDanma.getDanmaContent(),

@@ -290,7 +290,7 @@
 			m.name "moduleName",
 			d.content "danmaContent",
 			dd.time "startTime",
-			dd.hours "endTime",
+			dd.hours "duration",
 			dd.state "state"
 		FROM
 			`user` u,

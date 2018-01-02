@@ -149,7 +149,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">rtmp地址：</label>
                                                         <div class="col-sm-5">
-                                                            <input type="text" id="rtmp" class="form-control" value="rtmp://send3.douyu.com/live">
+                                                            <input type="text" id="rtmp" class="form-control" value="rtmp://172.16.54.186/oflaDemo">
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <button type="button" class="btn btn-default" id="copyRtmp">复制</button>
